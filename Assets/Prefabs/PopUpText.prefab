@@ -102,7 +102,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u51B7\u5374\u4E2D\u3002\u3002\u3002"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6f3a74fb5bcb51d44a0c0df7ee36fa74, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd99fc5dc55270048a0df0e158690ee4, type: 2}
   m_sharedMaterial: {fileID: -3085066179410023080, guid: 6f3a74fb5bcb51d44a0c0df7ee36fa74, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -169,7 +169,7 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_renderer: {fileID: 4990235260466515314}
   m_maskType: 0
 --- !u!114 &2200289756868310686
