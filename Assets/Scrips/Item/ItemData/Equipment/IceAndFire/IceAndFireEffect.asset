@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 291c135910031a64b8b0f85a272bbb93, type: 3}
+  m_Name: IceAndFireEffect
+  m_EditorClassIdentifier: 
+  description: "\u51FB\u4E2D\u654C\u4EBA\u65F6\u5BF9\u654C\u4EBA\u9020\u6210\u9B54\u6CD5\u4F24\u5BB310,\u65BD\u52A0\u70B9\u71C3\u548C\u51B0\u51BB\u72B6\u60011\u79D2"
+  IceAndFireStrikePrefab: {fileID: 5866980673829563323, guid: 98c60769b58fd5648b04477cc12007c5, type: 3}
+  damage:
+    _physical: 0
+    _magical: 10
+    _ignite: 1
+    _igniteDamageCooldown: 0.2
+    _igniteDuration: 1
+    _igniteDamage: 5
+    _chill: 1
+    _chillSlowPercentage: 0.5
+    _chillDuration: 1
+    _shock: 0
+    _shockDuration: 0
+    _thunderStrikeRadius: 0
+    _thunderStrikeRate: 0
+    _thunderStrikerCounter: 0
+    _attackerShockReduceAccuracy: 0
+  moveSpeed: 15
+  duration: 2
+  generateOffset: {x: 0, y: 0}

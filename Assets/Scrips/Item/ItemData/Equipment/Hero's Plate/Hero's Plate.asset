@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0030604f8c71c7c43bb2ebb1e8f46e63, type: 3}
+  m_Name: Hero's Plate
+  m_EditorClassIdentifier: 
+  icon: {fileID: -1294465547, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  itemName: "\u82F1\u96C4\u677F\u7532"
+  itemType: 1
+  craftingMaterials: []
+  equipmentType: 1
+  statsModifierData:
+    strength: 0
+    agility: 0
+    intelligence: 0
+    vitality: 0
+    maxHealth: 0
+    armor: 10
+    evasion: 0
+    magicResistance: 0
+    damage: 0
+    critChance: 0
+    critPower: 0
+    fireDamage: 0
+    iceDamage: 0
+    lightningDamage: 0
+  effects:
+  - {fileID: 11400000, guid: 415a361d10e9fd04a97d00f015a7f320, type: 2}

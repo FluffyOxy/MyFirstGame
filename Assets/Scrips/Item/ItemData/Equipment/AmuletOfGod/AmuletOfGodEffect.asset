@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f18b446d6bfe1f4e81bea9f1df34657, type: 3}
+  m_Name: AmuletOfGodEffect
+  m_EditorClassIdentifier: 
+  description: "\u6280\u80FD\u9020\u6210\u7684\u4F24\u5BB3\u5C06\u89E6\u53D1\u96F7\u51FB,\u9020\u6210\u9B54\u6CD5\u4F24\u5BB310\u5E76\u65BD\u52A0\u611F\u7535\u72B6\u60014\u79D2"
+  ThunderStrikePrefab: {fileID: 5575556344581072705, guid: 74c2b60064feaa74180114aa15a442b9, type: 3}
+  damage:
+    _physical: 0
+    _magical: 10
+    _ignite: 0
+    _igniteDamageCooldown: Infinity
+    _igniteDuration: 0
+    _igniteDamage: 0
+    _chill: 0
+    _chillSlowPercentage: 0
+    _chillDuration: 0
+    _shock: 1
+    _shockDuration: 4
+    _thunderStrikeRadius: 20
+    _thunderStrikeRate: 0.3
+    _thunderStrikerCounter: 2
+    _attackerShockReduceAccuracy: 10
+  yOffset: 0.5

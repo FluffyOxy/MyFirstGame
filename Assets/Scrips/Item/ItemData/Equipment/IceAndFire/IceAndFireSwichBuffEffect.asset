@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69c0d082a6912a4488268b089022af9c, type: 3}
+  m_Name: IceAndFireSwichBuffEffect
+  m_EditorClassIdentifier: 
+  description: "\u51FB\u4E2D\u65F6\u5728\u6781\u77ED\u65F6\u95F4\u5185\u589E\u52A0\u706B\u7130\u4F24\u5BB35"
+  modifierData:
+    strength: 0
+    agility: 0
+    intelligence: 0
+    vitality: 0
+    maxHealth: 0
+    armor: 0
+    evasion: 0
+    magicResistance: 0
+    damage: 0
+    critChance: 0
+    critPower: 0
+    fireDamage: 5
+    iceDamage: 0
+    lightningDamage: 0
+  buffDuration: 0.2
