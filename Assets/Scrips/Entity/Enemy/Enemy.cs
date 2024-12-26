@@ -33,7 +33,7 @@ public class Enemy : Entity
 
     #region Attack
     [Header("EnemyBase Attack Info")]
-    [SerializeField] public float toAttackDistance;
+    [SerializeField] public float toAttackRadius;
     [SerializeField] public float minAttackCooldown;
     [SerializeField] public float maxAttackCooldown;
     [HideInInspector] public float lastAttackTime;
@@ -49,8 +49,6 @@ public class Enemy : Entity
     protected bool canBeStuuned;
     [SerializeField] protected GameObject counterImage;
     #endregion
-
-    public EnemyStats cs { get; private set; }
 
     [Header("Enemy Overlap Check Info")]
     [SerializeField] protected float overlapCheckRadius = 1.0f;
@@ -82,8 +80,6 @@ public class Enemy : Entity
     {
         base.Start();
         counterImage.SetActive(false);
-
-        cs = GetComponent<EnemyStats>();
     }
 
     override protected void Update()
@@ -146,7 +142,7 @@ public class Enemy : Entity
     public RaycastHit2D IsDetectPlayerFront()
     {
         RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer);
-        if(hit && !hit.collider.GetComponent<Player>().isDead)
+        if(hit && !hit.collider.GetComponent<Player>().isDead && CanSeePlayer())
         {
             return hit;
         }
@@ -156,10 +152,10 @@ public class Enemy : Entity
         }
     }
 
-    public bool IsPlayerNearBy()
+    public bool IsPlayerDetected()
     {
         Transform player = PlayerManager.instance.player.transform;
-        return !PlayerManager.instance.player.isDead && Vector2.Distance(player.position, transform.position) < playerDetectRadius;
+        return !PlayerManager.instance.player.isDead && Vector2.Distance(player.position, transform.position) < playerDetectRadius && CanSeePlayer();
     }
 
     override public void OnDrawGizmos()
@@ -169,7 +165,7 @@ public class Enemy : Entity
         Gizmos.DrawWireSphere(transform.position, playerDetectRadius);
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + playerCheckDistance * facingDir, playerCheck.position.y));
         Gizmos.color = Color.red;
-        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + toAttackDistance * facingDir, playerCheck.position.y));
+        Gizmos.DrawWireSphere(playerCheck.position, toAttackRadius);
         Gizmos.color = Color.white;
     }
 
@@ -216,7 +212,7 @@ public class Enemy : Entity
         if(!isDead)
         {
             DropItem();
-            PlayerManager.instance.AddCurrencyAmount((int)cs.currencyDropAmount.GetValue());
+            PlayerManager.instance.AddCurrencyAmount((int)(cs as EnemyStats).currencyDropAmount.GetValue());
             base.Die();
         }
     }
@@ -237,5 +233,15 @@ public class Enemy : Entity
     public override CharacterStats GetStats()
     {
         return cs;
+    }
+
+    public bool CanAttack()
+    {
+        return (Time.time - lastAttackTime) > Random.Range(minAttackCooldown, maxAttackCooldown);
+    }
+
+    public bool CanSeePlayer()
+    {
+        return !Physics2D.Linecast(playerCheck.position, PlayerManager.instance.player.transform.position, whatIsGround);
     }
 }

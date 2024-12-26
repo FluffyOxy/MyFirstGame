@@ -24,7 +24,7 @@ public class SkeletonIdleState : SkeletonGroundedState
     public override void Update()
     {
         base.Update();
-        if(enemy.IsDetectPlayerFront() || enemy.IsPlayerNearBy())
+        if(enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
             float moveDir = 1;
             if (PlayerManager.instance.player.transform.position.x < enemy.transform.position.x)

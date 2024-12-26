@@ -42,7 +42,7 @@ public class SkeletonBattleState : EnemyState
         {
             stateMachine.changeState(enemy.idleState);
         }
-        else if(Vector2.Distance(enemy.transform.position, player.position) > enemy.toAttackDistance + Mathf.Abs(enemy.playerCheck.position.x - enemy.transform.position.x))
+        else if(Vector2.Distance(enemy.transform.position, player.position) > enemy.toAttackRadius + Mathf.Abs(enemy.playerCheck.position.x - enemy.transform.position.x))
         {
             enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, enemy.rg.velocity.y);
         }
@@ -54,7 +54,7 @@ public class SkeletonBattleState : EnemyState
         if (enemy.IsDetectPlayerFront())
         {
             timer = enemy.battleDuration;
-            if (enemy.IsDetectPlayerFront().distance < enemy.toAttackDistance)
+            if (enemy.IsDetectPlayerFront().distance < enemy.toAttackRadius)
             {
                 if(CanAttack())
                 {

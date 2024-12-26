@@ -65,7 +65,6 @@ public class Player : Entity
     #region Component
     public SkillManager skill { get; private set; }
     public GameObject swordThrown;
-    public PlayerStats cs { get; private set; }
     #endregion
 
     [Header("Health Bar")]
@@ -92,8 +91,6 @@ public class Player : Entity
         catchSwordState = new PlayerCatchSwordState(stateMachine, this, "CatchSword");
         blackHoleState = new PlayerBlackHoleState(stateMachine, this, "Air");
         deadState = new PlayerDeadState(stateMachine, this, "Dead");
-
-        cs = GetComponent<PlayerStats>();
 
         isHealthBarActive = healthBar.activeSelf;
     }
@@ -286,28 +283,28 @@ public class Player : Entity
 
     public virtual void DoDamageTo_Clone(Entity _target, float _damageRate, Transform _swordTransform)
     {
-        float damage = cs.DoDamageTo_Clone(_target, _damageRate, _swordTransform);
+        float damage = (cs as PlayerStats).DoDamageTo_Clone(_target, _damageRate, _swordTransform);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.Clone, _target, damage);
         Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_Crystal(Entity _target, Transform _crystalTransform)
     {
-        float damage = cs.DoDamageTo_Crystal(_target, _crystalTransform);
+        float damage = (cs as PlayerStats).DoDamageTo_Crystal(_target, _crystalTransform);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.Crystal, _target, damage);
         Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_Sword(Entity _target, float _damageRate, Transform _swordTransform)
     {
-        float damage = cs.DoDamageTo_Sword(_target, _damageRate, _swordTransform);
+        float damage = (cs as PlayerStats).DoDamageTo_Sword(_target, _damageRate, _swordTransform);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.Sword, _target, damage);
         Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_CounterAttack(Entity _target)
     {
-        float damage = cs.DoDamageTo_CounterAttack(_target);
+        float damage = (cs as PlayerStats).DoDamageTo_CounterAttack(_target);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.CounterAttack, _target, damage);
         Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
     }

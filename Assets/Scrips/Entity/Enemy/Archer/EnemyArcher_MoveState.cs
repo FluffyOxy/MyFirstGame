@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonMoveState : SkeletonGroundedState
+public class EnemyArcher_MoveState : EnemyArcher_GroundedState
 {
-    public SkeletonMoveState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Skeleton enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, enemy)
+    public EnemyArcher_MoveState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Archer _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, _enemy)
     {
     }
 
@@ -25,11 +25,11 @@ public class SkeletonMoveState : SkeletonGroundedState
     public override void Update()
     {
         base.Update();
-        if(enemy.IsTouchWall())
+        if (enemy.IsTouchWall())
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
         }
-        else if(!enemy.IsGrounded())
+        else if (!enemy.IsGrounded())
         {
             stateMachine.changeState(enemy.idleState);
         }
@@ -38,7 +38,11 @@ public class SkeletonMoveState : SkeletonGroundedState
             enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, enemy.rg.velocity.y);
         }
 
-        if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
+        if(enemy.shouldPullBack())
+        {
+            stateMachine.changeState(enemy.pullBackState);
+        }
+        else if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
             stateMachine.changeState(enemy.battleState);
         }

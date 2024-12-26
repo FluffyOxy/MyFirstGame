@@ -37,6 +37,7 @@ public class PlayerCounterAttackState : PlayerState
                     stateMachine.ChangeState(player.successfulCounterAttackState);
                 }
             }
+            hit.GetComponent<IDeflectableProjectile>()?.BeDeflected();
         }
     }
 }

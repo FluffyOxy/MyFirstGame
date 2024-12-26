@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime_IdleState : EnemySlime_GroundedState
+public class EnemyArcher_IdleState : EnemyArcher_GroundedState
 {
-    public EnemySlime_IdleState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Slime _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, _enemy)
+    public EnemyArcher_IdleState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Archer _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, _enemy)
     {
     }
 
@@ -23,16 +23,28 @@ public class EnemySlime_IdleState : EnemySlime_GroundedState
     public override void Update()
     {
         base.Update();
-        if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
+        if (enemy.shouldPullBack())
+        {
+            stateMachine.changeState(enemy.pullBackState);
+        }
+        else if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
             float moveDir = 1;
             if (PlayerManager.instance.player.transform.position.x < enemy.transform.position.x)
             {
                 moveDir = -1;
             }
+
             if ((enemy.IsTouchWall() || !enemy.IsGrounded()) && moveDir == enemy.facingDir)
             {
                 timer = Random.Range(enemy.minIdleDuration, enemy.maxIdleDuration);
+                if (Vector2.Distance(enemy.transform.position, PlayerManager.instance.player.transform.position) < enemy.toAttackRadius)
+                {
+                    if (enemy.CanAttack())
+                    {
+                        stateMachine.changeState(enemy.attackState);
+                    }
+                }
             }
             else
             {

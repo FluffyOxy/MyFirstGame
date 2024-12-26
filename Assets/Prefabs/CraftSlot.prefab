@@ -314,8 +314,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u7A83\u8D3C\u4E4B\u5251"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6f3a74fb5bcb51d44a0c0df7ee36fa74, type: 2}
-  m_sharedMaterial: {fileID: -3085066179410023080, guid: 6f3a74fb5bcb51d44a0c0df7ee36fa74, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bd99fc5dc55270048a0df0e158690ee4, type: 2}
+  m_sharedMaterial: {fileID: -3085066179410023080, guid: bd99fc5dc55270048a0df0e158690ee4, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

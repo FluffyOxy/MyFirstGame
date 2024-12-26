@@ -53,7 +53,7 @@ public class EnemySlime_BattleState : EnemyState
         if (enemy.IsDetectPlayerFront())
         {
             timer = enemy.battleDuration;
-            if (enemy.IsDetectPlayerFront().distance < enemy.toAttackDistance)
+            if (enemy.IsDetectPlayerFront().distance < enemy.toAttackRadius)
             {
                 if (CanAttack())
                 {

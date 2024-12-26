@@ -41,7 +41,7 @@ public class EnemySlime_MoveState : EnemySlime_GroundedState
         Debug.Log("enemy.moveSpeed: " + enemy.moveSpeed);
         Debug.Log("enemy.facingDir: " + enemy.facingDir);
 
-        if (enemy.IsDetectPlayerFront() || enemy.IsPlayerNearBy())
+        if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
             stateMachine.changeState(enemy.battleState);
         }
