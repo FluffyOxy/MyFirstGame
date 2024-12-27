@@ -17,6 +17,7 @@ public class ArrowController : MonoBehaviour, IDeflectableProjectile
     private float liveTimer;
     [SerializeField] private EntityType targetType;
 
+
     private void Start()
     {
         
@@ -42,7 +43,7 @@ public class ArrowController : MonoBehaviour, IDeflectableProjectile
         }
     }
 
-    public void Setup(EntityType _targetType, float _arrowSpeedReference)
+    public void Setup(EntityType _targetType, float _arrowSpeedReference, float _speedMapK)
     {
         col = GetComponent<CapsuleCollider2D>();
         rg = GetComponent<Rigidbody2D>();
@@ -53,19 +54,20 @@ public class ArrowController : MonoBehaviour, IDeflectableProjectile
         isStuck = false;
         targetType = _targetType;
 
-        rg.velocity = CulculateArrowSpeed(PlayerManager.instance.player, _arrowSpeedReference);
+        rg.velocity = CulculateArrowSpeed(PlayerManager.instance.player, _arrowSpeedReference, _speedMapK);
     }
-    private Vector2 CulculateArrowSpeed(Entity _target, float _arrowSpeedReference)
+    private Vector2 CulculateArrowSpeed(Entity _target, float _arrowSpeedReference, float _speedMapK)
     {
         float distanceToPlayer = Vector2.Distance(_target.transform.position, transform.position);
         float timeToHit = distanceToPlayer / _arrowSpeedReference;
 
         Vector2 sourcePosition = transform.position;
 
-        Vector2 targetPositionAfterTimeToHit = (Vector2)_target.transform.position + _target.rg.velocity * timeToHit;
+        float affectFactor = 1 - 1 / Mathf.Pow(1 + _arrowSpeedReference, _speedMapK);
+        Vector2 targetPositionAfterTimeToHit = (Vector2)_target.transform.position + _target.rg.velocity * timeToHit * affectFactor;
         if(!_target.IsGrounded())
         {
-            targetPositionAfterTimeToHit += 0.5f * Physics2D.gravity * _target.rg.gravityScale * timeToHit * timeToHit;
+            targetPositionAfterTimeToHit += 0.5f * Physics2D.gravity * _target.rg.gravityScale * timeToHit * timeToHit * affectFactor;
         }
 
         Vector2 arrowVelocity = (

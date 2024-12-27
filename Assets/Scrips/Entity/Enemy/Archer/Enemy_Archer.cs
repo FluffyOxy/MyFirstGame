@@ -14,16 +14,27 @@ public class Enemy_Archer : Enemy
     public EnemyArcher_IdleState idleState;
     public EnemyArcher_MoveState moveState;
     public EnemyArcher_PullBackState pullBackState;
+    public EnemyArcher_PullBackJumpState pullBackJumpState;
+    public EnemyArcher_AirState airState;
     #endregion
 
     [Header("Pull Back Info")]
     [SerializeField] public float pullBackRadius;
     [SerializeField] public float pullBackSpeed;
+    [SerializeField] public float pullBackJumpCooldown;
+    [SerializeField] public Vector2 maxPullBackJumpForce;
+    [SerializeField] public Vector2 minPullBackJumpForce;
+    [HideInInspector] public Vector2 pullBackJumpForce;
+    [SerializeField] public float pullBackJumpForceCulculateAlpha;
+    [HideInInspector] public float lastPullBackJumpTime = -100;
+    [SerializeField] public float edgeCheckOffset = 2f;
+
 
     [Header("Arrow")]
     [SerializeField] public GameObject arrowPrefab;
     [SerializeField] public float arrowSpeedReference;
     [SerializeField] public float arrowSpeedReference_High;
+    [Range(0, 1)][SerializeField] private float speedMapK = 1;
 
     protected override void Awake()
     {
@@ -35,6 +46,8 @@ public class Enemy_Archer : Enemy
         idleState = new EnemyArcher_IdleState(this, stateMachine, "Idle", this);
         moveState = new EnemyArcher_MoveState(this, stateMachine, "Move", this);
         pullBackState = new EnemyArcher_PullBackState(this, stateMachine, "Move", this);
+        pullBackJumpState = new EnemyArcher_PullBackJumpState(this, stateMachine, "PullBackJump", this);
+        airState = new EnemyArcher_AirState(this, stateMachine, "Air", this);
     }
 
     protected override void Start()
@@ -91,11 +104,11 @@ public class Enemy_Archer : Enemy
         ArrowController newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<ArrowController>();
         if(CanSeePlayer())
         {
-            newArrow.Setup(EntityType.Player, arrowSpeedReference);
+            newArrow.Setup(EntityType.Player, arrowSpeedReference, speedMapK);
         }
         else
         {
-            newArrow.Setup(EntityType.Player, arrowSpeedReference_High);
+            newArrow.Setup(EntityType.Player, arrowSpeedReference_High, speedMapK);
         }
          
     }
@@ -105,5 +118,52 @@ public class Enemy_Archer : Enemy
         base.OnDrawGizmos();
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(playerCheck.transform.position, pullBackRadius);
+    }
+
+    public int GetPullBackDir()
+    {
+        Vector3 playerPosition = PlayerManager.instance.player.transform.position;
+
+        int pullBackDir = 1;
+        if (playerPosition.x > transform.position.x)
+        {
+            pullBackDir = -1;
+        }
+        return pullBackDir;
+    }
+
+    public bool TryPullBackJump()
+    {
+        if((Time.time - lastPullBackJumpTime) > pullBackJumpCooldown)
+        {
+            int pullBackDir = GetPullBackDir();
+
+            pullBackJumpForce = maxPullBackJumpForce;
+            while (true)
+            {
+                float jumpDuration = (2 * pullBackJumpForce.y) / (-Physics2D.gravity.y * rg.gravityScale);
+                float moveDistance = pullBackJumpForce.x * jumpDuration * pullBackDir + edgeCheckOffset;
+
+                bool haveGround = Physics2D.Raycast(groundCheck.transform.position + new Vector3(moveDistance, 0), Vector2.down, groundCheckDistance, whatIsGround);
+                bool haveWall = Physics2D.Raycast(wallCheck.transform.position, Vector2.right * pullBackDir, groundCheckDistance + moveDistance, whatIsGround);
+                if (haveGround && !haveWall)
+                {
+                    stateMachine.changeState(pullBackJumpState);
+                    return true;
+                }
+                else
+                {
+                    pullBackJumpForce.x -= pullBackJumpForceCulculateAlpha;
+                    if (pullBackJumpForce.x < minPullBackJumpForce.x)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+        else
+        {
+            return false;
+        }
     }
 }

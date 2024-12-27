@@ -24,8 +24,13 @@ public class EnemyArcher_PullBackState : EnemyState
     public override void Update()
     {
         base.Update();
-        UpdatePullBackDir();
-        enemy.SetVelocity(enemy.pullBackSpeed * pullBackDir, enemy.rg.velocity.y);
+
+        pullBackDir = enemy.GetPullBackDir();
+        if(!enemy.TryPullBackJump())
+        {
+            enemy.SetVelocity(enemy.pullBackSpeed * pullBackDir, enemy.rg.velocity.y);
+        }
+
         if (ShouldStopPullBack())
         {
             enemy.stateMachine.changeState(enemy.battleState);
@@ -37,25 +42,14 @@ public class EnemyArcher_PullBackState : EnemyState
                 stateMachine.changeState(enemy.attackState);
             }
         }
-        else if((enemy.IsTouchWall() || !enemy.IsGrounded()) && pullBackDir == enemy.facingDir)
+
+        if((enemy.IsTouchWall() || !enemy.IsGrounded()) && pullBackDir == enemy.facingDir)
         {
             enemy.SetVelocity(0, enemy.rg.velocity.y);
         }
     }
 
-    private void UpdatePullBackDir()
-    {
-        Vector3 playerPosition = PlayerManager.instance.player.transform.position;
 
-        if(playerPosition.x > enemy.transform.position.x)
-        {
-            pullBackDir = -1;
-        }
-        else
-        {
-            pullBackDir = 1;
-        }
-    }
     private bool ShouldStopPullBack()
     {
         Vector3 playerPosition = PlayerManager.instance.player.transform.position;
