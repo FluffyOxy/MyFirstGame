@@ -15153,6 +15153,7 @@ MonoBehaviour:
   knockBackDir: {x: 10, y: 10}
   knockBackDirAlpha: 10
   knockBackDuration: 0.07
+  isKnocked: 0
   selfDestroyAfterDead: 10
   moveSpeed: 2
   maxIdleDuration: 5
@@ -15163,13 +15164,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerDetectRadius: 3.19
-  toAttackDistance: 2.75
+  toAttackRadius: 2.68
   minAttackCooldown: 1
   maxAttackCooldown: 2
   lastAttackTime: 0
   battleDuration: 7
   battleMoveSpeed: 4
-  defaultBattleMoveSpeed: 0
   stunDuration: 0.7
   stunDir: {x: 10, y: 12}
   counterImage: {fileID: 1379696552308094345}
@@ -15200,6 +15200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 9217734ed79ec624a870731ed90d5c0c, type: 2}
   fleshDuration: 0.3
+  originalMat: {fileID: 0}
   stunBlinkRate: 0.1
   chillColor: {r: 0.5424528, g: 0.8441974, b: 1, a: 1}
   igniteColor:
@@ -15211,9 +15212,9 @@ MonoBehaviour:
   shockFlashRate: 0.1
   igniteFlashRate: 0.1
   isShock: 0
-  igniteParticleFX: {fileID: 0}
-  chillParticleFX: {fileID: 0}
-  shockParticleFX: {fileID: 0}
+  igniteParticleFX: {fileID: 9196238772838259576}
+  chillParticleFX: {fileID: 8276617417958689292}
+  shockParticleFX: {fileID: 2414434122231512249}
   hitFXPrefab: {fileID: 8908972046427557398, guid: 6df3ea42d060b9b439685cd6668a2289, type: 3}
   maxXYRandomPositionOffset_Hit: {x: 0.1, y: 0.5}
   hitCritFXPrefab: {fileID: 6476683805674293482, guid: f49b38e3a8904a74eaefff995980fed2, type: 3}

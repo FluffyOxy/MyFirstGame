@@ -52,7 +52,7 @@ public class Enemy_Skeleton : Enemy
         if (_damageSource != null)
         {
             Player player = _damageSource as Player;
-            if (player != null && stateMachine.currentState != stunnedState)
+            if (player != null && stateMachine.currentState == idleState || stateMachine.currentState == moveState)
             {
                 stateMachine.changeState(battleState);
             }

@@ -59,7 +59,7 @@ public class Enemy_Archer : Enemy
         if (_damageSource != null)
         {
             Player player = _damageSource as Player;
-            if (player != null)
+            if (player != null && stateMachine.currentState == idleState || stateMachine.currentState == moveState)
             {
                 stateMachine.changeState(battleState);
             }
