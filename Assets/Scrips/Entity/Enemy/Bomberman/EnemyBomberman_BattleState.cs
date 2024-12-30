@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBomberman_BattleState : EnemyState
+public class EnemyBomberman_BattleState : Enemytate
 {
     Enemy_Bomberman enemy;
     private Transform player;

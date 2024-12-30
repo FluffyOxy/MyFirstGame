@@ -14,6 +14,11 @@ public class PlayerStateMachine
 
     public void ChangeState(PlayerState _newState)
     {
+        if(currentState == PlayerManager.instance.player.deadState)
+        {
+            return;
+        }
+
         currentState.Exit();
         currentState = _newState;
         currentState.Enter();

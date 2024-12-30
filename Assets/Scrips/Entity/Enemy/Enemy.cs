@@ -244,4 +244,35 @@ public class Enemy : Entity
     {
         return !Physics2D.Linecast(playerCheck.position, PlayerManager.instance.player.transform.position, whatIsGround);
     }
+
+    public void FaceToPlayer()
+    {
+        if(PlayerManager.instance.player.transform.position.x < transform.position.x)
+        {
+            if(!isFacingLeft)
+            {
+                Flip();
+            }
+        }
+        else
+        {
+            if(isFacingLeft)
+            {
+                Flip();
+            }
+        }
+    }
+
+    public bool IsPlayerFaceToEnemy()
+    {
+        Player player = PlayerManager.instance.player;
+        if(player.transform.position.x < transform.position.x)
+        {
+            return !player.isFacingLeft;
+        }
+        else
+        {
+            return player.isFacingLeft;
+        }
+    }
 }

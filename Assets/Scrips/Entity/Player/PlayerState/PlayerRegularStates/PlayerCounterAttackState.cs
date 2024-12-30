@@ -37,6 +37,13 @@ public class PlayerCounterAttackState : PlayerState
                     stateMachine.ChangeState(player.successfulCounterAttackState);
                 }
             }
+            else if (hit.GetComponentInParent<Enemy>() != null)
+            {
+                if (hit.GetComponentInParent<Enemy>().TryToBeStuuned())
+                {
+                    stateMachine.ChangeState(player.successfulCounterAttackState);
+                }
+            }
             hit.GetComponent<IDeflectableProjectile>()?.BeDeflected();
         }
     }

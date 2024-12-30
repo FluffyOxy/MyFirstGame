@@ -22,6 +22,7 @@ public enum StatType
 public class DamageData
 {
     public Entity _damageSource { get; private set; } = null;
+
     public bool shouldPlayAnim { get; private set; } = true;
 
     public float _physical { get; private set; } = 0;

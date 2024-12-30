@@ -104,11 +104,11 @@ public class Enemy_Archer : Enemy
         ArrowController newArrow = Instantiate(arrowPrefab, transform.position, Quaternion.identity).GetComponent<ArrowController>();
         if(CanSeePlayer())
         {
-            newArrow.Setup(EntityType.Player, arrowSpeedReference, speedMapK);
+            newArrow.Setup(EntityType.Player, arrowSpeedReference, speedMapK, this);
         }
         else
         {
-            newArrow.Setup(EntityType.Player, arrowSpeedReference_High, speedMapK);
+            newArrow.Setup(EntityType.Player, arrowSpeedReference_High, speedMapK, this);
         }
          
     }
@@ -144,8 +144,21 @@ public class Enemy_Archer : Enemy
                 float jumpDuration = (2 * pullBackJumpForce.y) / (-Physics2D.gravity.y * rg.gravityScale);
                 float moveDistance = pullBackJumpForce.x * jumpDuration * pullBackDir + edgeCheckOffset;
 
-                bool haveGround = Physics2D.Raycast(groundCheck.transform.position + new Vector3(moveDistance, 0), Vector2.down, groundCheckDistance, whatIsGround);
-                bool haveWall = Physics2D.Raycast(wallCheck.transform.position, Vector2.right * pullBackDir, groundCheckDistance + moveDistance, whatIsGround);
+                bool haveGround = 
+                    Physics2D.Raycast(
+                        groundCheck.transform.position + new Vector3(pullBackDir * moveDistance, 0), 
+                        Vector2.down, 
+                        groundCheckDistance, 
+                        whatIsGround
+                    );
+                bool haveWall = 
+                    Physics2D.Raycast(
+                        wallCheck.transform.position, 
+                        Vector2.right * pullBackDir, 
+                        groundCheckDistance + moveDistance, 
+                        whatIsGround
+                    );
+
                 if (haveGround && !haveWall)
                 {
                     stateMachine.changeState(pullBackJumpState);

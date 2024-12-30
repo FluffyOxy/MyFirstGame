@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArcher_PullBackJumpState : EnemyState
+public class EnemyArcher_PullBackJumpState : Enemytate
 {
     Enemy_Archer enemy;
     public EnemyArcher_PullBackJumpState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Archer _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName)

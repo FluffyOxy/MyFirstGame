@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonDeadState : EnemyState
+public class SkeletonDeadState : Enemytate
 {
     Enemy_Skeleton enemy;
 

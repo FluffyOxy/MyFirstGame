@@ -184,7 +184,7 @@ public class Player : Entity
     }
     private bool IsInStateNotAllowDash()
     {
-        return stateMachine.currentState == blackHoleState;
+        return !isKnocked && stateMachine.currentState == blackHoleState;
     }
 
     private void FlaskUseCheck()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArcher_BattleState : EnemyState
+public class EnemyArcher_BattleState : Enemytate
 {
     Enemy_Archer enemy;
     private Transform player;

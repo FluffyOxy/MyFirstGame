@@ -43,7 +43,7 @@ public class ArrowController : MonoBehaviour, IDeflectableProjectile
         }
     }
 
-    public void Setup(EntityType _targetType, float _arrowSpeedReference, float _speedMapK)
+    public void Setup(EntityType _targetType, float _arrowSpeedReference, float _speedMapK, Entity _owner)
     {
         col = GetComponent<CapsuleCollider2D>();
         rg = GetComponent<Rigidbody2D>();
@@ -55,6 +55,7 @@ public class ArrowController : MonoBehaviour, IDeflectableProjectile
         targetType = _targetType;
 
         rg.velocity = CulculateArrowSpeed(PlayerManager.instance.player, _arrowSpeedReference, _speedMapK);
+        damageData.SetDamageSource(_owner);
     }
     private Vector2 CulculateArrowSpeed(Entity _target, float _arrowSpeedReference, float _speedMapK)
     {

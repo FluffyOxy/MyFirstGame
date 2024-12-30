@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime_GroundedState : EnemyState
+public class EnemySlime_GroundedState : Enemytate
 {
     protected Enemy_Slime enemy;
     public EnemySlime_GroundedState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Slime _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName)

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBomberman_ExplodeState : EnemyState
+public class EnemyBomberman_ExplodeState : Enemytate
 {
     Enemy_Bomberman enemy;
     private bool haveExploded = false;
