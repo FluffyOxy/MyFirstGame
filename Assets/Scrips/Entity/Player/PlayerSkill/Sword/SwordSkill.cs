@@ -148,7 +148,7 @@ public class SwordSkill : Skill
     public Vector2 AimDirection()
     {
         Vector2 playerPos = player.transform.position;
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos = UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition);
         return mousePos - playerPos;
     }
 

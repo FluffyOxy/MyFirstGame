@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathBriner_IdleState : DeathBriner_FirstStageState
+public class DeathBriner_IdleState : DeathBriner_StateBase
 {
     bool isFighting = false;
 
@@ -54,10 +54,21 @@ public class DeathBriner_IdleState : DeathBriner_FirstStageState
     {
         Player player = PlayerManager.instance.player;
         float dice = Random.Range(0, 100);
+        float rate = 0;
 
-        //决定攻击方案,再针对攻击方案决定移动策略
-        if (dice < enemy.flashAttackRate_primary)
+        if(enemy.isStageChanging)
         {
+            enemy.currentAttackState = enemy.remoteAttackState;
+            enemy.isPullBack = true;
+            enemy.SetRandomAttackCount();
+            stateMachine.changeState(enemy.runMoveState);
+            return;
+        }
+
+        //闪现近战攻击
+        if (dice < enemy.flashAttackRate_primary + rate)
+        {
+            rate += enemy.flashAttackRate_primary;
             int moveDir = -enemy.GetPullBackDir();
             float moveDistance = 
                 Mathf.Abs((player.transform.position.x + enemy.toAttackRadius * -player.facingDir) - enemy.transform.position.x);
@@ -77,24 +88,40 @@ public class DeathBriner_IdleState : DeathBriner_FirstStageState
             enemy.SetRandomAttackCount();
             stateMachine.changeState(enemy.flashMoveState);
         }
-        else if(dice < enemy.flashAttackRate_remote + enemy.flashAttackRate_primary)
+        //闪现远程攻击
+        else if(dice < enemy.flashAttackRate_remote + (rate += enemy.flashAttackRate_primary))
         {
-            float distanceToLeft = Vector2.Distance(player.transform.position, enemy.flashRemoteAttackPosition_1[0].position);
-            float distanceToRight = Vector2.Distance(player.transform.position, enemy.flashRemoteAttackPosition_1[1].position);
+            float distanceToLeft = Vector2.Distance(player.transform.position, enemy.flashRemoteAttackPosition[0].position);
+            float distanceToRight = Vector2.Distance(player.transform.position, enemy.flashRemoteAttackPosition[1].position);
 
             if(distanceToLeft > distanceToRight)
             {
-                enemy.flashMoveState.targetPosition = enemy.flashRemoteAttackPosition_1[0].position;
+                enemy.flashMoveState.targetPosition = enemy.flashRemoteAttackPosition[0].position;
             }
             else
             {
-                enemy.flashMoveState.targetPosition = enemy.flashRemoteAttackPosition_1[1].position;
+                enemy.flashMoveState.targetPosition = enemy.flashRemoteAttackPosition[1].position;
             }
 
             enemy.currentAttackState = enemy.remoteAttackState;
             enemy.SetRandomAttackCount();
             stateMachine.changeState(enemy.flashMoveState);
         }
+        //冲刺攻击
+        else if(dice < enemy.dashAttackRate + (rate += enemy.flashAttackRate_remote))
+        {
+            enemy.currentAttackState = enemy.dashAttackState;
+            enemy.attackCounter = 1;
+            stateMachine.changeState(enemy.dashAttackState);
+        }
+        //暗影攻击
+        else if(dice < enemy.shadowAttackRate + (rate += enemy.dashAttackRate))
+        {
+            enemy.currentAttackState = enemy.shadowAttackState;
+            enemy.attackCounter = 1;
+            stateMachine.changeState(enemy.shadowAttackState);
+        }
+        //普通的近战和远程攻击
         else
         {
             bool isPlayerMoveToEnemy = enemy.IsPlayerFaceToEnemy();

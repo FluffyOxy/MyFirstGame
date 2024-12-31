@@ -172,7 +172,7 @@ public class Player : Entity
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !IsTouchWall() && skill.dash.TryUseSkill())
+        if(Input.GetKeyDown(KeyCode.LeftShift) && !IsTouchWall() && skill.dash.TryUseSkill() && !isKnocked)
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)

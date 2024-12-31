@@ -13,7 +13,7 @@ public class DeathBriner_FlashMoveState : DeathBriner_MoveStateBase
     public override void Enter()
     {
         base.Enter();
-        enemy.cs.evasion.AddModifier(100);
+        enemy.canBeDamage = false;
         enemy.anim.ResetTrigger("FlashIn");
         enemy.isFlashOut = false;
     }
@@ -21,7 +21,7 @@ public class DeathBriner_FlashMoveState : DeathBriner_MoveStateBase
     public override void Exit()
     {
         base.Exit();
-        enemy.cs.evasion.RemoveModifier(100);
+        enemy.canBeDamage = true;
     }
 
     public override void Update()

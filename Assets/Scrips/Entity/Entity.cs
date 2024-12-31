@@ -34,12 +34,15 @@ public class Entity : MonoBehaviour
     public int facingDir = 1;
     #endregion
 
+    [Header("Entity Name")]
+    [SerializeField] public string entityName;
+
     #region Fight
     [Header("Entity Fight Info")]
     [SerializeField] protected Vector2 knockBackDir;
     [SerializeField] protected float knockBackDirAlpha = 10f;
     [SerializeField] protected float knockBackDuration = 0.07f;
-    [SerializeField] protected bool isKnocked;
+    [SerializeField] public bool isKnocked;
     #endregion
 
     [SerializeField] float selfDestroyAfterDead = 10f;
@@ -50,6 +53,8 @@ public class Entity : MonoBehaviour
 
     public System.Action onFlipped;
 
+    public bool canBeDamage;
+
     protected virtual void Awake()
     {
         
@@ -58,6 +63,7 @@ public class Entity : MonoBehaviour
     protected virtual void Start()
     {
         ComponentSetUp();
+        canBeDamage = true;
     }
 
     protected void ComponentSetUp()
@@ -223,7 +229,7 @@ public class Entity : MonoBehaviour
     {
         if (isDead)
         {
-            Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+            Vector3 viewportPosition = UnityEngine.Camera.main.WorldToViewportPoint(transform.position);
             if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 || viewportPosition.y > 1)
             {
                 Destroy(gameObject);

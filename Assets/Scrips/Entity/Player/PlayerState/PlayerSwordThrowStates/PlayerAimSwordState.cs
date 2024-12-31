@@ -30,8 +30,8 @@ public class PlayerAimSwordState : PlayerState
         {
             stateMachine.ChangeState(player.idleState);
         }
-        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > player.transform.position.x && player.isFacingLeft
-            || Camera.main.ScreenToWorldPoint(Input.mousePosition).x < player.transform.position.x && !player.isFacingLeft
+        if(UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition).x > player.transform.position.x && player.isFacingLeft
+            || UnityEngine.Camera.main.ScreenToWorldPoint(Input.mousePosition).x < player.transform.position.x && !player.isFacingLeft
             )
         {
             player.Flip();

@@ -221,6 +221,7 @@ public class EntityFX : MonoBehaviour
         Destroy(newHitFX, 0.5f);
     }
 
+    //此处的isFacingLeft参数针对的时初始面向右边的实体，若初始面向左边，应为isFacingRight
     public void CreateAfterImage(bool isFacingLeft)
     {
         AfterImageFX newAfterImage = Instantiate(afterImagePrefab, transform.position, Quaternion.identity).GetComponent<AfterImageFX>();

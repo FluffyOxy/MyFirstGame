@@ -43,7 +43,7 @@ public class PlayerGroundedState : PlayerState
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && SkillManager.intance.counterAttack.isUnlocked_counterAttack && SkillManager.intance.counterAttack.TryUseSkill())
+        if(Input.GetKeyDown(KeyCode.E) && SkillManager.intance.counterAttack.isUnlocked_counterAttack && SkillManager.intance.counterAttack.TryUseSkill() && !player.isKnocked)
         {
             stateMachine.ChangeState(player.counterAttackState);
         }

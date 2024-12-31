@@ -73,7 +73,7 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  yOffset: 1.62
+  yOffset: 4.5
   attackDelay: 0.8
   speedMapK: 0.722
 --- !u!1 &7915126743967487653

@@ -1,11 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class EnemyBoss_DeathBriner : Enemy
+
+[Serializable]
+public class DeathBrinerStageInfo
+{
+    [Header("AttackPlan Info")]
+    [SerializeField] public int maxAttackAmount;
+    [SerializeField] public int minAttackAmount;
+
+    [Header("Flash Attack Info")]
+    [Range(0, 100)][SerializeField] public float flashAttackRate_remote;
+    [Range(0, 100)][SerializeField] public float flashAttackRate_primary;
+    [SerializeField] public List<Transform> flashRemoteAttackPosition;
+
+    [Header("Dash Attack Info")]
+    [Range(0, 100)][SerializeField] public float dashAttackRate;
+    [SerializeField] public float dashSpeed;
+    [SerializeField] public float dashAnimPlaySpeed;
+    [SerializeField] public float dashDamageCooldown;
+
+    [Header("Shadow Attack Info")]
+    [Range(0, 100)][SerializeField] public float shadowAttackRate;
+    [SerializeField] public int minShadowAttackAmount;
+    [SerializeField] public int maxShadowAttackAmount;
+    [SerializeField] public float shadowMoveSpeed;
+    [SerializeField] public float shadowDamageCooldown;
+    [SerializeField] public float minShadowIdleDuration;
+    [SerializeField] public float maxShadowIdleDuration;
+}
+
+public class EnemyBoss_DeathBriner : Enemy, IStageEntity
 {
     #region States
     public DeathBriner_IdleState idleState;
@@ -15,6 +46,9 @@ public class EnemyBoss_DeathBriner : Enemy
     public DeathBriner_RemoteAttackState remoteAttackState;
     public DeathBriner_FlashMoveState flashMoveState;
     public DeathBriner_StunState stunState;
+    public DeathBriner_DashAttackState dashAttackState;
+    public DeathBriner_ShadowAttack shadowAttackState;
+    public DeathBriner_DeadState deadState;
     #endregion
 
     [Header("AttackPlan Info")]
@@ -41,9 +75,37 @@ public class EnemyBoss_DeathBriner : Enemy
     [Header("Flash Attack Info")]
     [Range(0, 100)][SerializeField] public float flashAttackRate_remote;
     [Range(0, 100)][SerializeField] public float flashAttackRate_primary;
-    [SerializeField] public List<Transform> flashRemoteAttackPosition_1;
-    [SerializeField] public List<Transform> flashRemoteAttackPosition_2;
+    [SerializeField] public List<Transform> flashRemoteAttackPosition;
     [HideInInspector] public bool isFlashOut;
+
+    [Header("Dash Attack Info")]
+    [Range(0, 100)][SerializeField] public float dashAttackRate;
+    [SerializeField] public float dashSpeed;
+    [SerializeField] public float dashAnimPlaySpeed;
+    [SerializeField] public float dashDamageCooldown;
+    [SerializeField] public bool isDashing;
+
+    [Header("Shadow Attack Info")]
+    [Range(0, 100)][SerializeField] public float shadowAttackRate;
+    [SerializeField] public int minShadowAttackAmount;
+    [SerializeField] public int maxShadowAttackAmount;
+    [SerializeField] public float shadowMoveSpeed;
+    [SerializeField] public ParticleSystem shadowParticle;
+    [SerializeField] public float shadowDamageRadius;
+    [SerializeField] public float shadowDamageCooldown;
+    [SerializeField] public float minShadowIdleDuration;
+    [SerializeField] public float maxShadowIdleDuration;
+    [SerializeField] public float shadowIdleMoveUpSpeed = 5f;
+
+    [Header("To Be Stunned Info")]
+    [SerializeField] private CircleCollider2D primaryAttackCollider;
+    [SerializeField] private CircleCollider2D shadowAttackCollider;
+
+    [Header("Stage Info")]
+    [SerializeField] private List<StageController> stages;
+    [SerializeField] private List<DeathBrinerStageInfo> deathBrinerStageInfos;
+    private int liveCounter = 0;
+    public bool isStageChanging = false;
 
     [HideInInspector] public float idleDuration;
     [HideInInspector] public bool isPullBack;
@@ -60,12 +122,17 @@ public class EnemyBoss_DeathBriner : Enemy
         remoteAttackState = new DeathBriner_RemoteAttackState(this, stateMachine, "RemoteAttack", this);
         flashMoveState = new DeathBriner_FlashMoveState(this, stateMachine, "Flash", this);
         stunState = new DeathBriner_StunState(this, stateMachine, "Stun", this);
+        dashAttackState = new DeathBriner_DashAttackState(this, stateMachine, "Dash", this);
+        shadowAttackState = new DeathBriner_ShadowAttack(this, stateMachine, "Flash", this);
+        deadState = new DeathBriner_DeadState(this, stateMachine, "Idle", this);
     }
     protected override void Start()
     {
         base.Start();
         stateMachine.Initialize(idleState);
         overlapCheckRadius = GetComponent<CapsuleCollider2D>().size.x;
+        primaryAttackCollider.enabled = true;
+        shadowAttackCollider.enabled = false;
     }
 
     protected override void Update()
@@ -73,10 +140,28 @@ public class EnemyBoss_DeathBriner : Enemy
         base.Update();
     }
 
+    public void SetShadowStunCollider(bool _isShadow)
+    {
+        if(_isShadow)
+        {
+            primaryAttackCollider.enabled = false;
+            shadowAttackCollider.enabled = true;
+        }
+        else
+        {
+            primaryAttackCollider.enabled = true;
+            shadowAttackCollider.enabled = false;
+        }
+    }
+
     public override bool TryToBeStuuned()
     {
         if (base.TryToBeStuuned())
         {
+            if(stateMachine.currentState == shadowAttackState)
+            {
+                shadowAttackState.BeStunned();
+            }
             stateMachine.changeState(stunState);
             return true;
         }
@@ -95,11 +180,53 @@ public class EnemyBoss_DeathBriner : Enemy
 
     public override void Die()
     {
-        if (!isDead)
+        stages[liveCounter].StageExit();
+
+        if (liveCounter >= stages.Count - 1)
         {
-            
-            base.Die();
+            if (!isDead)
+            {
+                stateMachine.changeState(deadState);
+                base.Die();
+            }
         }
+        else
+        {
+            ++liveCounter;
+
+            isStageChanging = true;
+
+            flashMoveState.targetPosition = stages[liveCounter].bossInitTransform.position;
+            currentAttackState = remoteAttackState;
+            stateMachine.changeState(flashMoveState);
+            LoadStageInfo(deathBrinerStageInfos[liveCounter]);
+            cs.SetCurrentHealth(cs.GetStatByType(StatType.MaxHealth));
+        }
+    }
+    private void LoadStageInfo(DeathBrinerStageInfo _info)
+    {
+        minAttackAmount = _info.minAttackAmount;
+        maxAttackAmount = _info.maxAttackAmount;
+
+        flashAttackRate_remote = _info.flashAttackRate_remote;
+        flashAttackRate_primary = _info.flashAttackRate_primary;
+        flashRemoteAttackPosition = _info.flashRemoteAttackPosition;
+
+        dashAttackRate = _info.dashAttackRate;
+        dashSpeed = _info.dashSpeed;
+        dashAnimPlaySpeed = _info.dashAnimPlaySpeed;
+        dashDamageCooldown = _info.dashDamageCooldown;
+
+        shadowAttackRate = _info.shadowAttackRate;
+        minShadowAttackAmount = _info.minShadowAttackAmount;
+        maxShadowAttackAmount = _info.maxShadowAttackAmount;
+        shadowMoveSpeed = _info.shadowMoveSpeed;
+        minShadowIdleDuration = _info.minShadowIdleDuration;
+        maxShadowIdleDuration = _info.maxShadowIdleDuration;
+    }
+    public void StageChangeFinish()
+    {
+        isStageChanging = false;
     }
 
     public override void Flip()
@@ -109,7 +236,7 @@ public class EnemyBoss_DeathBriner : Enemy
 
     public void SetRandomAttackCount()
     {
-        attackCounter = Random.Range(minAttackAmount, maxAttackAmount);
+        attackCounter = UnityEngine.Random.Range(minAttackAmount, maxAttackAmount);
     }
 
     public int GetPullBackDir()
@@ -153,11 +280,13 @@ public class EnemyBoss_DeathBriner : Enemy
         base.OnDrawGizmos();
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, pullBackJumpRadius);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(shadowParticle.transform.position, shadowDamageRadius);
     }
 
     public void SetRandomIdleDuration()
     {
-        idleDuration = Random.Range(minIdleDuration, maxIdleDuration);
+        idleDuration = UnityEngine.Random.Range(minIdleDuration, maxIdleDuration);
     }
 
     public void GenerateDeathHand()

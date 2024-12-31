@@ -65,7 +65,7 @@ public class SwordSkillController : MonoBehaviour
 
         if (isReturning)
         {
-            Vector3 viewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+            Vector3 viewportPosition = UnityEngine.Camera.main.WorldToViewportPoint(transform.position);
             if (viewportPosition.x < 0 || viewportPosition.x > 1 || viewportPosition.y < 0 ||viewportPosition.y > 1)
             {
                 float distance = Vector2.Distance(transform.position, player.transform.position);

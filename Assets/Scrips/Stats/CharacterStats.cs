@@ -290,7 +290,7 @@ public class CharacterStats : MonoBehaviour
     {
         return currentHealth;
     }
-    protected void SetCurrentHealth(float _newCurrentHealth)
+    public void SetCurrentHealth(float _newCurrentHealth)
     {
         currentHealth = _newCurrentHealth;
         if (onCurrentHealthChange != null)
@@ -440,6 +440,11 @@ public class CharacterStats : MonoBehaviour
 
     public virtual float TakeDamage(in DamageData _damageData, Transform _damageDirection)
     {
+        if(!entity.canBeDamage)
+        {
+            return 0f;
+        }
+
         float finalPhysicalDamage = CalculatePhysicalDamageTake(_damageData);
         float finalMagicalDamage = CalculateMagicalDamageTake(_damageData);
 

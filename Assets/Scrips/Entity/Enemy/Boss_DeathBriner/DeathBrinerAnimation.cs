@@ -18,4 +18,13 @@ public class DeathBrinerAnimation : EnemyAnimation
     {
         AnimFinishTrigger();
     }
+
+    protected void DashStartTrigger()
+    {
+        (enemy as EnemyBoss_DeathBriner).isDashing = true;
+    }
+    protected void DashEndTrigger()
+    {
+        (enemy as EnemyBoss_DeathBriner).isDashing = false;
+    }
 }

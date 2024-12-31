@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class DeathBriner_AttackStateBase : DeathBriner_FirstStageState, IDeathBrinerAttackState
+public class DeathBriner_AttackStateBase : DeathBriner_StateBase, IDeathBrinerAttackState
 {
     public DeathBriner_AttackStateBase(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, EnemyBoss_DeathBriner _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, _enemy)
     {
@@ -11,13 +11,12 @@ public class DeathBriner_AttackStateBase : DeathBriner_FirstStageState, IDeathBr
 
     public virtual void AttackTrigger()
     {
-        Assert.IsTrue(false, "AttackStateBase.AttackDamage() 不应被调用！");
+        
     }
 
     public virtual bool CanAttack()
     {
-        Assert.IsTrue(false, "AttackStateBase.CanAttack() 不应被调用！");
-        return false;
+        return true;
     }
 
     public override void Enter()
@@ -29,6 +28,7 @@ public class DeathBriner_AttackStateBase : DeathBriner_FirstStageState, IDeathBr
     {
         base.Exit();
         enemy.SetRandomIdleDuration();
+        enemy.CloseCounterAttackWindow();
     }
 
     public override void Update()
