@@ -36,6 +36,14 @@ public class AreaSound : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.GetComponent<Player>() != null && AudioManager.instance.isPlayingSFX(areaSoundIndex))
+        {
+            AudioManager.instance.PlaySFX(areaSoundIndex, null, false);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.GetComponent<Player>() != null)

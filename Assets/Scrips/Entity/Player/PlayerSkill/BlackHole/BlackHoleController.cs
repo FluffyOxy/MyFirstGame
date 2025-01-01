@@ -143,6 +143,7 @@ public class BlackHoleController : MonoBehaviour
         if (enemy != null && !isBeginAttack && canGrow)
         {
             enemy.FreezeTime(true);
+            enemy.SetCanBeDamage_Temp(true);
             CreateHotKeyLabel(enemy);
         }
     }
@@ -154,6 +155,7 @@ public class BlackHoleController : MonoBehaviour
         if (enemy != null && !isBeginAttack && !canGrow)
         {
             enemy.FreezeTime(false);
+            enemy.ResetCanBeDamage_Temp();
         }
     }
 

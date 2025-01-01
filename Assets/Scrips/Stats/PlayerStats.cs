@@ -146,10 +146,12 @@ public class PlayerStats : CharacterStats
 
         _target.DamageSourceNotice(player);
 
+
         if (UnityEngine.Random.Range(0, 100) < (1 - shockReduceAccuracyPercentage))
         {
+            
             return 0;
         }
-        return _target.GetStats().TakeDamage(damageData, _cloneTransform);
+        return _target.cs.TakeDamage(damageData, _cloneTransform);
     }
 }

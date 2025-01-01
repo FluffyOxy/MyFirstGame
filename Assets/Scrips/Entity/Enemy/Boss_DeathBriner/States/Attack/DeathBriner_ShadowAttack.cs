@@ -22,6 +22,8 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
 
     private float shadowDamageTimer;
     private float shadowIdleTimer;
+
+    public bool isEscape;
     public DeathBriner_ShadowAttack(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, EnemyBoss_DeathBriner _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, _enemy)
     {
     }
@@ -45,7 +47,7 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
 
         enemy.SetShadowStunCollider(true);
 
-        enemy.canBeDamage = false;
+        enemy.SetCanBeDamage(false);
     }
 
     public override void Exit()
@@ -56,8 +58,9 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
         enemy.shadowParticle.Stop();
 
         enemy.SetShadowStunCollider(false);
+        enemy.SetCanBeDamage(true);
 
-        enemy.canBeDamage = true;
+        isEscape = false;
     }
 
     public override void Update()
@@ -73,7 +76,14 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
                     enemy.SetVelocity(0, 0);
                     if(enemy.isFlashOut)
                     {
-                        state = ShadowState.Attack;
+                        if (isEscape)
+                        {
+                            state = ShadowState.Leave;
+                        }
+                        else
+                        {
+                            state = ShadowState.Attack;
+                        }
                     }
                     break;
                 }
@@ -128,7 +138,7 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
                         isTarget = false;
 
                         --attackCount;
-                        if (attackCount > 0)
+                        if (attackCount > 0 && !isEscape)
                         {
                             state = ShadowState.LeaveIdle;
                             shadowIdleTimer = Random.Range(enemy.minShadowIdleDuration, enemy.maxShadowIdleDuration);

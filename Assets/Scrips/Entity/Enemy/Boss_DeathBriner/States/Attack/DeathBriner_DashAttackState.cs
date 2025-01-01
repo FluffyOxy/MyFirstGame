@@ -32,7 +32,7 @@ public class DeathBriner_DashAttackState : DeathBriner_AttackStateBase
         defaultAnimSpeed = enemy.anim.speed;
         enemy.isDashing = false;
 
-        enemy.canBeDamage = false;
+        enemy.SetCanBeDamage(false);
     }
 
     public override void Exit()
@@ -45,7 +45,7 @@ public class DeathBriner_DashAttackState : DeathBriner_AttackStateBase
         damageTimer = 0;
         afterImageTimer = 0;
 
-        enemy.canBeDamage = true;
+        enemy.SetCanBeDamage(true);
     }
 
     public override void Update()

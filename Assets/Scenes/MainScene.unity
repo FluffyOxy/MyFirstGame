@@ -28107,7 +28107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 903706025}
   - component: {fileID: 903706026}
-  m_Layer: 7
+  m_Layer: 10
   m_Name: AttackCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40775,7 +40775,7 @@ MonoBehaviour:
     baseValue: 200
     modifiers: []
   armor:
-    baseValue: 5
+    baseValue: 0
     modifiers: []
   evasion:
     baseValue: 0

@@ -89,6 +89,7 @@ public class AudioManager : MonoBehaviour
                 sfxArray[_sfxIndex].volume = sfxEffectHelpers[_sfxIndex].volume;
                 sfxDecreaseCoroutine.Remove(_sfxIndex);
             }
+
             if (!sfxArray[_sfxIndex].isPlaying)
             {
                 if (isRandomPitch)
@@ -98,6 +99,11 @@ public class AudioManager : MonoBehaviour
                 sfxArray[_sfxIndex].Play();
             }
         }
+    }
+
+    public bool isPlayingSFX(int _index)
+    {
+        return sfxArray[_index].isPlaying;
     }
 
     public void StopSFXWithTime(int _index, float duration = 1f, float _smooth = 0.1f)

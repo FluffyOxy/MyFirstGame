@@ -196,11 +196,12 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
 
             isStageChanging = true;
 
-            flashMoveState.targetPosition = stages[liveCounter].bossInitTransform.position;
-            currentAttackState = remoteAttackState;
-            stateMachine.changeState(flashMoveState);
             LoadStageInfo(deathBrinerStageInfos[liveCounter]);
             cs.SetCurrentHealth(cs.GetStatByType(StatType.MaxHealth));
+
+            currentAttackState = shadowAttackState;
+            shadowAttackState.isEscape = true;
+            stateMachine.changeState(shadowAttackState);
         }
     }
     private void LoadStageInfo(DeathBrinerStageInfo _info)

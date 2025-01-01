@@ -53,7 +53,8 @@ public class Entity : MonoBehaviour
 
     public System.Action onFlipped;
 
-    public bool canBeDamage;
+    private bool canBeDamage_current;
+    private bool canBeDamage;
 
     protected virtual void Awake()
     {
@@ -64,6 +65,26 @@ public class Entity : MonoBehaviour
     {
         ComponentSetUp();
         canBeDamage = true;
+    }
+
+    public bool CanBeDamage()
+    {
+        return canBeDamage;
+    }
+
+    public void SetCanBeDamage(bool _canBeDamage)
+    {
+        canBeDamage = _canBeDamage;
+        canBeDamage_current = _canBeDamage;
+    }
+
+    public void SetCanBeDamage_Temp(bool _canBeDamage)
+    {
+        canBeDamage = _canBeDamage;
+    }
+    public void ResetCanBeDamage_Temp()
+    {
+        canBeDamage = canBeDamage_current;
     }
 
     protected void ComponentSetUp()
