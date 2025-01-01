@@ -500,12 +500,15 @@ public class CharacterStats : MonoBehaviour
     {
         if (isShock && _damageData._shock && UnityEngine.Random.Range(0, 100) < _damageData._thunderStrikeRate && _damageData._thunderStrikerCounter > 0)
         {
-            Enemy nearestEnemy = TryFindNearestEnemyInRadius(_damageData._thunderStrikeRadius);
-
-            if (nearestEnemy != null)
+            if(this is EnemyStats)
             {
-                ThunderStrikeController newThunder = Instantiate(thunderAttackPrefab, transform.position, Quaternion.identity).GetComponent<ThunderStrikeController>();
-                newThunder.SetUp(nearestEnemy, _damageData);
+                Enemy nearestEnemy = TryFindNearestEnemyInRadius(_damageData._thunderStrikeRadius);
+
+                if (nearestEnemy != null)
+                {
+                    ThunderStrikeController newThunder = Instantiate(thunderAttackPrefab, transform.position, Quaternion.identity).GetComponent<ThunderStrikeController>();
+                    newThunder.SetUp(nearestEnemy, _damageData);
+                }
             }
         }
 

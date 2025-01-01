@@ -40,7 +40,7 @@ public class Entity : MonoBehaviour
     #region Fight
     [Header("Entity Fight Info")]
     [SerializeField] protected Vector2 knockBackDir;
-    [SerializeField] protected float knockBackDirAlpha = 10f;
+    [Range(0, 1)][SerializeField] protected float knockBackDirMapK = 0.5f;
     [SerializeField] protected float knockBackDuration = 0.07f;
     [SerializeField] public bool isKnocked;
     #endregion
@@ -137,7 +137,7 @@ public class Entity : MonoBehaviour
             knockBackFacing = -facingDir;
         }
 
-        float alpha = _damageAmount / (_damageAmount + knockBackDirAlpha);
+        float alpha = 1 - (1 / Mathf.Pow(1 + _damageAmount, knockBackDirMapK));
 
         SetVelocityWhenKnockBack(alpha * knockBackDir.x * knockBackFacing, alpha * knockBackDir.y);
         yield return new WaitForSeconds(knockBackDuration);
