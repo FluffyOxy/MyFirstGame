@@ -145,12 +145,12 @@ public class Entity : MonoBehaviour
     }
 
 
-    public virtual bool IsGrounded()
+    public virtual RaycastHit2D IsGrounded()
     {
         return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     }
 
-    public virtual bool IsTouchWall()
+    public virtual RaycastHit2D IsTouchWall()
     {
         return Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
     }

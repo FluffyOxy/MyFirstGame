@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemytate
+public class EnemyState
 {
     protected Enemy enemyBase;
     protected EnemyStateMachine stateMachine;
@@ -12,7 +12,7 @@ public class Enemytate
 
     protected float timer;
 
-    public Enemytate(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName)
+    public EnemyState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName)
     {
         this.enemyBase = _enemyBase;
         this.stateMachine = _enemyStateMachine;

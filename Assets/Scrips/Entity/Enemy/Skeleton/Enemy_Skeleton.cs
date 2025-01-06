@@ -5,12 +5,12 @@ using UnityEngine;
 public class Enemy_Skeleton : Enemy
 {
     #region States
-    public Enemytate idleState { get; private set; }
-    public Enemytate moveState { get; private set; }
-    public Enemytate battleState { get; private set; }
-    public Enemytate attackState { get; private set; }
-    public Enemytate stunnedState { get; private set; }
-    public Enemytate deadState { get; private set; }
+    public EnemyState idleState { get; private set; }
+    public EnemyState moveState { get; private set; }
+    public EnemyState battleState { get; private set; }
+    public EnemyState attackState { get; private set; }
+    public EnemyState stunnedState { get; private set; }
+    public EnemyState deadState { get; private set; }
     #endregion
 
     protected override void Awake()

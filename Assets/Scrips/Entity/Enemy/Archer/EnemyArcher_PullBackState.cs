@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyArcher_PullBackState : Enemytate
+public class EnemyArcher_PullBackState : EnemyState
 {
     Enemy_Archer enemy;
     private int pullBackDir;

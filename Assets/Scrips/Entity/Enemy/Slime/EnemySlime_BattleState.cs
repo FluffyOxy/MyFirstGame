@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime_BattleState : Enemytate
+public class EnemySlime_BattleState : EnemyState
 {
     Enemy_Slime enemy;
     protected Transform player;

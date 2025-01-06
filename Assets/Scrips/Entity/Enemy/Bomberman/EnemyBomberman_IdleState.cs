@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBomberman_IdleState : Enemytate
+public class EnemyBomberman_IdleState : EnemyState
 {
     Enemy_Bomberman enemy;
     public EnemyBomberman_IdleState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Bomberman _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName)

@@ -171,7 +171,7 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
     public override void DamageSourceNotice(Entity _damageSource)
     {
         isTakingDamage = true;
-        Invoke("CancelTakingDamage", 2 * Time.deltaTime);
+        Invoke("CancelTakingDamage", 3 * Time.deltaTime);
     }
     private void CancelTakingDamage()
     {

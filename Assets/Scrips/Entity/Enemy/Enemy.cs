@@ -235,7 +235,7 @@ public class Enemy : Entity
         return cs;
     }
 
-    public bool CanAttack()
+    public virtual bool CanAttack()
     {
         return (Time.time - lastAttackTime) > Random.Range(minAttackCooldown, maxAttackCooldown);
     }
@@ -260,6 +260,18 @@ public class Enemy : Entity
             {
                 Flip();
             }
+        }
+    }
+
+    public int GetPlayerDir()
+    {
+        if (PlayerManager.instance.player.transform.position.x < transform.position.x)
+        {
+            return -1;
+        }
+        else
+        {
+            return 1;
         }
     }
 

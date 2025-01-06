@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkeletonBattleState : Enemytate
+public class SkeletonBattleState : EnemyState
 {
     private Enemy_Skeleton enemy;
     private Transform player;

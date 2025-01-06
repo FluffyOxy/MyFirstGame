@@ -52,7 +52,7 @@ public class EnemyArcher_IdleState : EnemyArcher_GroundedState
             }
 
         }
-        if (timer < 0)
+        else if (timer < 0)
         {
             stateMachine.changeState(enemy.moveState);
         }
