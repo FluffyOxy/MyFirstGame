@@ -29,7 +29,7 @@ public class PlayerAnimation : MonoBehaviour
             hit.GetComponent<IDeflectableProjectile>()?.BeDeflected();
         }
 
-        AudioManager.instance.PlayerAttack((player.primaryAttackState as PlayerPrimaryAttackState).comboCounter);
+        SceneAudioManager.instance.playerSFX.Attack((player.primaryAttackState as PlayerPrimaryAttackState).comboCounter);
     }
 
     private void SwordThrowTrigger()

@@ -14,7 +14,7 @@ public class PlayerDashState : PlayerState
         timer = player.dashDuration;
         player.isDashing = true;
         player.skill.dash.TryCreateClone_DashStart();
-        AudioManager.instance.PlayerDash();
+        SceneAudioManager.instance.playerSFX.dash.Play(null);
         afterImageGenerateTimer = player.fx.afterImageGenerateCooldown;
     }
 

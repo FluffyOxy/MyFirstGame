@@ -4,43 +4,22 @@ using UnityEngine;
 
 public class AreaSound : MonoBehaviour
 {
-    [SerializeField] private int areaSoundIndex;
+    [SerializeField] private EnvSoundType type;
     [SerializeField] private float exitDuration = 1f;
-
-    private IEnumerator CheckPlayerInside(float _duration)
-    {
-        float timer = _duration;
-        while(timer > 0)
-        {
-            Debug.Log("Check");
-            Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, GetComponent<BoxCollider2D>().size, 0);
-            foreach (var collider in colliders)
-            {
-                if (collider.GetComponent<Player>() != null)
-                {
-                    Debug.Log("Find");
-                    AudioManager.instance.PlaySFX(areaSoundIndex, null, false);
-                    yield break;
-                }
-            }
-            timer -= 0.5f;
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.GetComponent<Player>() != null)
         {
-            AudioManager.instance.PlaySFX(areaSoundIndex, null, false);
+            SceneAudioManager.instance.env.GetEnvSoundByType(type).Play(null);
         }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.GetComponent<Player>() != null && AudioManager.instance.isPlayingSFX(areaSoundIndex))
+        if (collision.GetComponent<Player>() != null && !SceneAudioManager.instance.env.GetEnvSoundByType(type).IsPlaying())
         {
-            AudioManager.instance.PlaySFX(areaSoundIndex, null, false);
+            SceneAudioManager.instance.env.GetEnvSoundByType(type).Play(null);
         }
     }
 
@@ -48,7 +27,7 @@ public class AreaSound : MonoBehaviour
     {
         if (collision.GetComponent<Player>() != null)
         {
-            AudioManager.instance.StopSFXWithTime(areaSoundIndex, exitDuration);
+            SceneAudioManager.instance.env.GetEnvSoundByType(type).StopWithinTime(exitDuration);
         }
     }
 }

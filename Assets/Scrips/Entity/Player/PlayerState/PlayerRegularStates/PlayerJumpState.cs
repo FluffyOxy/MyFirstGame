@@ -13,7 +13,7 @@ public class PlayerJumpState : PlayerAirState
     {
         base.Enter();
         player.SetVelocity(rg.velocity.x, player.jumpSpeed);
-        AudioManager.instance.PlayerJump();
+        SceneAudioManager.instance.playerSFX.jump.Play(null);
     }
 
     public override void Exit()

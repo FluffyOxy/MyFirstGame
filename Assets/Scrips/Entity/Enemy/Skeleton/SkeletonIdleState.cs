@@ -18,7 +18,7 @@ public class SkeletonIdleState : SkeletonGroundedState
     public override void Exit()
     {
         base.Exit();
-        AudioManager.instance.SkeletonExitIdle(enemy.transform);
+        SceneAudioManager.instance.skeletonSFX.moan.Play(enemy.transform);
     }
 
     public override void Update()

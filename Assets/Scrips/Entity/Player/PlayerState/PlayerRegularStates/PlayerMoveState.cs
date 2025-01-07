@@ -13,13 +13,13 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        AudioManager.instance.PlayerMove(currentGroundType);
+        SceneAudioManager.instance.playerSFX.GetStepSound(GroundType.Rock).Play(null);
     }
 
     public override void Exit()
     {
         base.Exit();
-        AudioManager.instance.PlayerStopMove(currentGroundType);
+        SceneAudioManager.instance.playerSFX.GetStepSound(GroundType.Rock).Stop();
     }
 
     public override void Update()
