@@ -24,6 +24,11 @@ public class UI_VolumeSlider : MonoBehaviour, ISaveManager
             slider.value = _data.sfxVolume;
             SliderValue(_data.sfxVolume);
         }
+        else if (paramter == "env")
+        {
+            slider.value = _data.envVolume;
+            SliderValue(_data.envVolume);
+        }
     }
 
     public void SaveData(ref GameData _data)
@@ -35,6 +40,10 @@ public class UI_VolumeSlider : MonoBehaviour, ISaveManager
         else if (paramter == "sfx")
         {
             _data.sfxVolume = slider.value;
+        }
+        else if (paramter == "env")
+        {
+            _data.envVolume = slider.value;
         }
     }
 

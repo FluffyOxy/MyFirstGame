@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &366608313794541253
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888917348166926060}
+  m_Layer: 0
+  m_Name: MapGenerateStartTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &888917348166926060
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366608313794541253}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.14, y: -1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8554910269420605361}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4674128292013885369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8554910269420605361}
+  - component: {fileID: 4678375902910632755}
+  m_Layer: 0
+  m_Name: MapGenerateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8554910269420605361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674128292013885369}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.0879657, y: -0.4231367, z: 0.019253328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 888917348166926060}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4678375902910632755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4674128292013885369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a087b510367e6604b998521cf31b53d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryRoomPrefabs:
+  - {fileID: 9186818707541959046, guid: 43185b88af7d03945849640b755d8549, type: 3}
+  exitRoomPrefabs:
+  - {fileID: 6620305606442209809, guid: 0398310c6d294cf49bdeec7269c11319, type: 3}
+  battleRoomPrefabs:
+  - {fileID: 9122924721718098285, guid: 34d27281ef8dd754783d72f7255788e2, type: 3}
+  passageRoomPrefabs:
+  - {fileID: 5519137933671674140, guid: 79363c42ae395f544a27a461d5eed25c, type: 3}
+  mainLine:
+    lineEndRoomType: 1
+    battleCount: 4
+    lineRooms:
+    - battleRoomRate: 26.5
+      rewardRoomRate: 0
+    - battleRoomRate: 26.5
+      rewardRoomRate: 0
+    - battleRoomRate: 40.9
+      rewardRoomRate: 0
+    - battleRoomRate: 38.6
+      rewardRoomRate: 0
+    - battleRoomRate: 39.4
+      rewardRoomRate: 0
+  startTransform: {fileID: 888917348166926060}

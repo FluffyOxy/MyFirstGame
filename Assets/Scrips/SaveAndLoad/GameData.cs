@@ -24,6 +24,7 @@ public class GameData
 
     public float bgmVolume;
     public float sfxVolume;
+    public float envVolume;
 
     public GameData() 
     { 
@@ -39,6 +40,7 @@ public class GameData
 
         bgmVolume = 0.3688f;
         sfxVolume = 0.3688f;
+        envVolume = 0.3688f;
 
         isPlayerHealthBarActive = false;
     }
