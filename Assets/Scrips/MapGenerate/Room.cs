@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 public class Room : MonoBehaviour
 {
+    protected RoomType type;
+
     [Header("Room Info")]
     [SerializeField] public float height;
     [SerializeField] public float width;
@@ -12,13 +16,16 @@ public class Room : MonoBehaviour
     [SerializeField] public Access leftAccess;
     [SerializeField] public Access rightAccess;
 
+    [Header("Room Element Generate Info")]
+    [SerializeField] protected Tilemap groundTilemap;
+
     public virtual void GenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
     {
         Debug.Log(_index);
 
         Room newRoom = null;
         //判断下一个房间类型
-        RoomType roomType = _currentLine.GetNextRoomType(_index);
+        RoomType roomType = _currentLine.GetNextRoomType(_index, type);
 
         Debug.Log(roomType);
 
@@ -73,5 +80,40 @@ public class Room : MonoBehaviour
         }
 
         return _exitAccess.transform.position - nextRoomEnterTransform.position;
+    }
+
+    protected List<Vector2> GetFlatPositionsInRoomByRadius(int _flatRadius)
+    {
+        List<Vector2> flatPositions = new List<Vector2>();
+
+        Vector3Int lowerLeftCoo = groundTilemap.cellBounds.min;
+
+        //遍历房间内的每个瓦片位置
+        for (int x = lowerLeftCoo.x + _flatRadius; x < (this.height + lowerLeftCoo.x - _flatRadius); x++)
+        {
+            for (int y = lowerLeftCoo.y; y < (this.width + lowerLeftCoo.y - 1); y++)//最高层上面必然没有方块，不需要判断
+            {
+                
+
+                //若一个瓦片位置及其两侧flatRadius宽内的所有瓦片位置都符合条件：此处有瓦片且此处上方没有瓦片
+                //则，此处是一个平坦位置
+                bool isSuit = true;
+                for(int flatCheckX = x - _flatRadius; flatCheckX < x + _flatRadius + 1; flatCheckX++)
+                {
+                    if (groundTilemap.GetTile(new Vector3Int(x, y, 0)) == null 
+                        || groundTilemap.GetTile(new Vector3Int(x, y + 1, 0)) != null
+                        )//如果此处不为空方块
+                    {
+                        isSuit = false;
+                    }
+                }
+                if(isSuit)
+                {
+                    flatPositions.Add((Vector2)groundTilemap.CellToWorld(new Vector3Int(x, y)));
+                }
+            }
+        }
+
+        return flatPositions;
     }
 }

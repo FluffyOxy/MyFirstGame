@@ -13,8 +13,12 @@ public class Drop
 [RequireComponent(typeof(CapsuleCollider2D))]
 [RequireComponent(typeof(EnemyStats))]
 [RequireComponent(typeof(EntityFX))]
+[RequireComponent(typeof(DropItem))]
 public class Enemy : Entity
 {
+    [Header("Enemy Difficulty")]
+    [SerializeField] public float difficulty;
+
     #region Move
     [Header("EnemyBase Move Info")]
     [SerializeField] public float moveSpeed;
@@ -57,13 +61,9 @@ public class Enemy : Entity
     [SerializeField] public float deadAnimDuration = 0.2f;
     [SerializeField] public Vector2 deadAnimVelocity = new Vector2(0, 10);
 
-    [Header("Enemy Drop Info")]
-    [SerializeField] protected List<Drop> drops;
-    [SerializeField] protected GameObject itemObjectPrefab;
-    [SerializeField] protected Vector2 maxDropVelocity;
-    [SerializeField] protected Vector2 minDropVelocity;
-
     public EnemyStateMachine stateMachine;
+
+    private DropItem dropItem;
 
     public string lastAnimBoolName { get; private set; }
 
@@ -80,6 +80,7 @@ public class Enemy : Entity
     {
         base.Start();
         counterImage.SetActive(false);
+        dropItem = GetComponent<DropItem>();
     }
 
     override protected void Update()
@@ -218,16 +219,7 @@ public class Enemy : Entity
     }
     private void DropItem()
     {
-        foreach(var drop in drops)
-        {
-            if(Random.Range(0, 100) < drop.dropChance)
-            {
-                ItemObject newItemObject = Instantiate(itemObjectPrefab, transform.position, Quaternion.identity).GetComponent<ItemObject>();
-                Vector2 velocity = new Vector2(Random.Range(-1, 1) * Random.Range(minDropVelocity.x, maxDropVelocity.x), Random.Range(minDropVelocity.y, maxDropVelocity.y));
-                newItemObject.ThrowToward(velocity);
-                newItemObject.SetItemData(drop.item);
-            }
-        }
+        dropItem.Drop();
     }
 
     public override CharacterStats GetStats()

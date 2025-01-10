@@ -27,6 +27,7 @@ public class PlayerAnimation : MonoBehaviour
                 player.DoDamageTo_PrimaryAttack(hit.GetComponent<Enemy>());
             }
             hit.GetComponent<IDeflectableProjectile>()?.BeDeflected();
+            hit.GetComponent<Chest>()?.Open();
         }
 
         SceneAudioManager.instance.playerSFX.Attack((player.primaryAttackState as PlayerPrimaryAttackState).comboCounter);

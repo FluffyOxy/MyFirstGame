@@ -86,16 +86,27 @@ MonoBehaviour:
   - {fileID: 5519137933671674140, guid: 79363c42ae395f544a27a461d5eed25c, type: 3}
   mainLine:
     lineEndRoomType: 1
-    battleCount: 4
     lineRooms:
     - battleRoomRate: 26.5
       rewardRoomRate: 0
-    - battleRoomRate: 26.5
+    - battleRoomRate: 65.4
       rewardRoomRate: 0
-    - battleRoomRate: 40.9
+    - battleRoomRate: 65.6
       rewardRoomRate: 0
-    - battleRoomRate: 38.6
+    - battleRoomRate: 26.8
+      rewardRoomRate: 0
+    - battleRoomRate: 67.9
       rewardRoomRate: 0
     - battleRoomRate: 39.4
       rewardRoomRate: 0
+    battles:
+    - difficulty: 20
+    - difficulty: 30
+    - difficulty: 50
   startTransform: {fileID: 888917348166926060}
+  enemyList:
+  - {fileID: 5637944703504468775, guid: 7f169eb32812e984aba3b9fae1d72151, type: 3}
+  - {fileID: 4262958126211719847, guid: fc9d793840956564fb65a825b8550a90, type: 3}
+  - {fileID: 6948483205627279620, guid: 46bc7acc8e4b30d43a333499a7fe8f79, type: 3}
+  - {fileID: 8928872454373980311, guid: e75685b8777999e4a92851b20a2da959, type: 3}
+  - {fileID: 3776551239192708493, guid: 16948f0ffb70b104aa796eba03de0263, type: 3}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4785453427122949054}
   - component: {fileID: 8791768834597824113}
   - component: {fileID: 1560506450286590569}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,6 +1008,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 10
   width: 21
+  lowerLeftCoo: {x: 0, y: 0}
   upperAccess:
     transform: {fileID: 0}
     canEnter: 0
@@ -1024,6 +1025,7 @@ MonoBehaviour:
     transform: {fileID: 2390639563578337127}
     canEnter: 1
     canExit: 1
+  groundTilemap: {fileID: 4438462839777258000}
 --- !u!1 &5616348507619446011
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1070,7 @@ GameObject:
   - component: {fileID: 8470357928743073666}
   - component: {fileID: 4380291992529954485}
   - component: {fileID: 1165982582565112731}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -30,23 +30,34 @@ public class LineSlot
 }
 
 [Serializable]
+public class BattleSlot
+{
+    [SerializeField] public float difficulty; 
+}
+
+[Serializable]
 public class Line
 {
     public RoomType lineEndRoomType;
-    public int battleCount;
-
+    public int battleIndex { get; private set; }
     public List<LineSlot> lineRooms;
+    public List<BattleSlot> battles;
 
-    public bool shouldEnd()
+    public Line()
     {
-        return battleCount <= 0;
+        
     }
 
-    public RoomType GetNextRoomType(int _currentRoomIndex)
+    public RoomType GetNextRoomType(int _currentRoomIndex, RoomType _currentRoomType)
     {
+        if(_currentRoomType == RoomType.Battle)
+        {
+            ++battleIndex;
+        }
+
         if (_currentRoomIndex >= lineRooms.Count)
         {
-            if (battleCount > 0)
+            if (battleIndex < battles.Count)
             {
                 return RoomType.Battle;
             }
@@ -54,7 +65,7 @@ public class Line
         }
 
 
-        if (battleCount <= 0)
+        if (battleIndex >= battles.Count)
         {
             lineRooms[_currentRoomIndex].battleRoomRate = 0;
         }
@@ -84,9 +95,12 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public List<GameObject> passageRoomPrefabs;
 
     [Header("Line info")]
-    [SerializeField] public Line mainLine;
+    [SerializeField] public Line mainLine = new Line();
 
+    [Header("Map Info")]
     [SerializeField] private Transform startTransform;
+    [SerializeField] public List<GameObject> enemyList;
+    [SerializeField] public float enemyGenerateYOffset = 1f;
 
     private void Start()
     {

@@ -2099,6 +2099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   height: 8
   width: 19
+  lowerLeftCoo: {x: 0, y: 0}
   upperAccess:
     transform: {fileID: 0}
     canEnter: 0
@@ -2115,6 +2116,7 @@ MonoBehaviour:
     transform: {fileID: 8112930025225166203}
     canEnter: 1
     canExit: 1
+  groundTilemap: {fileID: 1635884972885697552}
 --- !u!1 &6827238350382984116
 GameObject:
   m_ObjectHideFlags: 0
