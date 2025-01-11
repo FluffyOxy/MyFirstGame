@@ -8,4 +8,9 @@ public class Chest : MonoBehaviour
     {
         GetComponentInChildren<Animator>().SetTrigger("Open");
     }
+
+    public void SetDrops(List<Drop> _drops)
+    {
+        GetComponent<DropItem>().SetDrops(_drops);
+    }
 }

@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: -742685397
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: -912932289, guid: 50bae1505491e8246b66fe9ad72f23ec, type: 3}
+  m_Sprite: {fileID: 70499684, guid: 50bae1505491e8246b66fe9ad72f23ec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 3994265416787359977}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5285f295141055848b8c4f72a4853b8e, type: 2}
+  m_Controller: {fileID: 9100000, guid: 46e56a4918ab9d9419901769ed48f95c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -131,8 +131,9 @@ GameObject:
   - component: {fileID: 866258319901137879}
   - component: {fileID: 6725405404481626677}
   - component: {fileID: 626397537137945183}
+  - component: {fileID: 8858733899601084573}
   m_Layer: 7
-  m_Name: Chest
+  m_Name: AdvancesChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,3 +232,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab11c2bb223d3b48a0673eecbbd7307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!50 &8858733899601084573
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6913548843195122753}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 30
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4

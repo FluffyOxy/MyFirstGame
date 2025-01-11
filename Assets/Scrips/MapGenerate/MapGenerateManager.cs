@@ -11,7 +11,8 @@ public enum RoomType
     Entry,
     Exit,
     Battle,
-    Passage
+    Passage,
+    Reward
 }
 
 [Serializable]
@@ -36,12 +37,33 @@ public class BattleSlot
 }
 
 [Serializable]
+public class RewardSlot
+{
+    [SerializeField] public int rewardAmount;
+    [SerializeField] public int advancedAmount;
+    [Range(0, 100)][SerializeField] public float advancedRewardRate;
+    [Range(0, 100)][SerializeField] public float mimicRate;
+    [Range(0, 100)][SerializeField] public float mimicAdvancedRewardRate;
+}
+
+[Serializable]
 public class Line
 {
     public RoomType lineEndRoomType;
+    [HideInInspector] public bool isEndRoom = false;
+
     public int battleIndex { get; private set; }
+    public int rewardIndex { get; private set; }
+
+    [Header("Room Info")]
     public List<LineSlot> lineRooms;
+
+    [Header("Battle Info")]
     public List<BattleSlot> battles;
+
+    [Header("Reward Info")]
+    public List<RewardSlot> rewards;
+    public RewardSlot lineEndReward;
 
     public Line()
     {
@@ -54,6 +76,10 @@ public class Line
         {
             ++battleIndex;
         }
+        if (_currentRoomType == RoomType.Reward)
+        {
+            ++rewardIndex;
+        }
 
         if (_currentRoomIndex >= lineRooms.Count)
         {
@@ -61,6 +87,11 @@ public class Line
             {
                 return RoomType.Battle;
             }
+            if (rewardIndex < rewards.Count)
+            {
+                return RoomType.Reward;
+            }
+            isEndRoom = true;
             return lineEndRoomType;
         }
 
@@ -69,6 +100,10 @@ public class Line
         {
             lineRooms[_currentRoomIndex].battleRoomRate = 0;
         }
+        if(rewardIndex >= rewards.Count)
+        {
+            lineRooms[_currentRoomIndex].rewardRoomRate = 0;
+        }
 
         float rate = lineRooms[_currentRoomIndex].battleRoomRate;
         float dice = UnityEngine.Random.Range(0, 100);
@@ -76,6 +111,10 @@ public class Line
         if (dice < rate)
         {
             return RoomType.Battle;
+        }
+        else if(dice < (rate += lineRooms[_currentRoomIndex].rewardRoomRate))
+        {
+            return RoomType.Reward;
         }
         else
         {
@@ -93,6 +132,7 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public List<GameObject> exitRoomPrefabs;
     [SerializeField] public List<GameObject> battleRoomPrefabs;
     [SerializeField] public List<GameObject> passageRoomPrefabs;
+    [SerializeField] public List<GameObject> rewardRoomPrefabs;
 
     [Header("Line info")]
     [SerializeField] public Line mainLine = new Line();
@@ -102,10 +142,59 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public List<GameObject> enemyList;
     [SerializeField] public float enemyGenerateYOffset = 1f;
 
+    [Header("Reward Info")]
+    [SerializeField] private List<Drop> primaryRewards;
+    [SerializeField] private List<Drop> advancedRewards;
+    [SerializeField] public GameObject primaryRewardChestPrefab;
+    [SerializeField] public GameObject advancedRewardChestPrefab;
+    [SerializeField] public GameObject mimicChestPrefab;
+
     private void Start()
     {
         int startRoomIndex = UnityEngine.Random.Range(0, entryRoomPrefabs.Count);
         Room startRoom = Instantiate(entryRoomPrefabs[startRoomIndex], startTransform.position, Quaternion.identity).GetComponent<Room>();
         startRoom.GenerateRoom(this, mainLine, 0);
+    }
+
+    public List<Drop> GetPrimaryRewards(int _amount)
+    {
+        return GetRewards(_amount, primaryRewards);
+    }
+
+    public List<Drop> GetAdvancedRewards(int _amount)
+    {
+        return GetRewards(_amount, advancedRewards);
+    }
+
+    private List<Drop> GetRewards(int _amount, List<Drop> _rewardPool) 
+    {
+        float sumWeight = 0f;
+        foreach(var item in _rewardPool)
+        {
+            sumWeight += item.dropChance;
+        }
+
+        List<Drop> rewards = new List<Drop>();
+        for(int i = 0; i < _amount; i++)
+        {
+            float dice = UnityEngine.Random.Range(0f, sumWeight);
+            float rate = 0f;
+            foreach (var item in _rewardPool)
+            {
+                rate += item.dropChance;
+                if(dice < rate)
+                {
+                    rewards.Add(item); 
+                    break;
+                }
+            }
+        }
+
+        foreach(var item in rewards)
+        {
+            item.dropChance = 100f;
+        }
+
+        return rewards;
     }
 }

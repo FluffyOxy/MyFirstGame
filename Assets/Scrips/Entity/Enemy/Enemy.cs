@@ -63,7 +63,7 @@ public class Enemy : Entity
 
     public EnemyStateMachine stateMachine;
 
-    private DropItem dropItem;
+    protected DropItem dropItem;
 
     public string lastAnimBoolName { get; private set; }
 
@@ -74,13 +74,13 @@ public class Enemy : Entity
         stateMachine = new EnemyStateMachine();
         defaultSpeed = moveSpeed;
         defaulltBattleSpeed = battleMoveSpeed;
+        dropItem = GetComponent<DropItem>();
     }
 
     protected override void Start()
     {
         base.Start();
         counterImage.SetActive(false);
-        dropItem = GetComponent<DropItem>();
     }
 
     override protected void Update()
@@ -90,6 +90,10 @@ public class Enemy : Entity
         stateMachine.currentState.Update();
     }
 
+    public void SetDrops(List<Drop> _drops)
+    {
+        dropItem.SetDrops(_drops);
+    }
     public virtual void FreezeTime(bool _isFreeze)
     {
         if(_isFreeze)

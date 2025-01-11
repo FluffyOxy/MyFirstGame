@@ -23,4 +23,9 @@ public class DropItem : MonoBehaviour
             }
         }
     }
+
+    public void SetDrops(List<Drop> _drops)
+    {
+        drops = _drops;
+    }
 }

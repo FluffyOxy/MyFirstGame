@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 366608313794541253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.14, y: -1.6, z: 0}
+  m_LocalPosition: {x: 79.31, y: -1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -84,25 +84,45 @@ MonoBehaviour:
   - {fileID: 9122924721718098285, guid: 34d27281ef8dd754783d72f7255788e2, type: 3}
   passageRoomPrefabs:
   - {fileID: 5519137933671674140, guid: 79363c42ae395f544a27a461d5eed25c, type: 3}
+  rewardRoomPrefabs:
+  - {fileID: 8287352890654296562, guid: 25c51610c3b3a044aa1239b7bca17612, type: 3}
   mainLine:
     lineEndRoomType: 1
+    isEndRoom: 0
     lineRooms:
     - battleRoomRate: 26.5
-      rewardRoomRate: 0
+      rewardRoomRate: 10
     - battleRoomRate: 65.4
-      rewardRoomRate: 0
+      rewardRoomRate: 10
     - battleRoomRate: 65.6
-      rewardRoomRate: 0
+      rewardRoomRate: 10
     - battleRoomRate: 26.8
-      rewardRoomRate: 0
+      rewardRoomRate: 10
     - battleRoomRate: 67.9
-      rewardRoomRate: 0
+      rewardRoomRate: 10
     - battleRoomRate: 39.4
-      rewardRoomRate: 0
+      rewardRoomRate: 10
     battles:
-    - difficulty: 20
-    - difficulty: 30
-    - difficulty: 50
+    - difficulty: 10
+    - difficulty: 10
+    - difficulty: 100
+    rewards:
+    - rewardAmount: 3
+      advancedAmount: 1
+      advancedRewardRate: 10
+      mimicRate: 30
+      mimicAdvancedRewardRate: 50
+    - rewardAmount: 3
+      advancedAmount: 1
+      advancedRewardRate: 20
+      mimicRate: 50
+      mimicAdvancedRewardRate: 50
+    lineEndReward:
+      rewardAmount: 1
+      advancedAmount: 1
+      advancedRewardRate: 100
+      mimicRate: 0
+      mimicAdvancedRewardRate: 0
   startTransform: {fileID: 888917348166926060}
   enemyList:
   - {fileID: 5637944703504468775, guid: 7f169eb32812e984aba3b9fae1d72151, type: 3}
@@ -110,3 +130,23 @@ MonoBehaviour:
   - {fileID: 6948483205627279620, guid: 46bc7acc8e4b30d43a333499a7fe8f79, type: 3}
   - {fileID: 8928872454373980311, guid: e75685b8777999e4a92851b20a2da959, type: 3}
   - {fileID: 3776551239192708493, guid: 16948f0ffb70b104aa796eba03de0263, type: 3}
+  enemyGenerateYOffset: 1.5
+  primaryRewards:
+  - item: {fileID: 11400000, guid: d057f00ceb1f0714d9d76a0a4a3d62fa, type: 2}
+    dropChance: 15
+  - item: {fileID: 11400000, guid: e419b9a9ca54e1d41a7e0dc26db59d03, type: 2}
+    dropChance: 10
+  - item: {fileID: 11400000, guid: 12ab6b390872dc744bbc21d7d61a6a56, type: 2}
+    dropChance: 5
+  advancedRewards:
+  - item: {fileID: 11400000, guid: 81ab45b7c5e236f428ee14c4458bfda4, type: 2}
+    dropChance: 5
+  - item: {fileID: 11400000, guid: d17d0ea0645c11d4f9bfe276a2506c68, type: 2}
+    dropChance: 10
+  - item: {fileID: 11400000, guid: 665e1730ded616641b255b1abcf17b56, type: 2}
+    dropChance: 20
+  - item: {fileID: 11400000, guid: cf7b72a694c6c2c4bb4c7f2e85e58a59, type: 2}
+    dropChance: 10
+  primaryRewardChestPrefab: {fileID: 6913548843195122753, guid: 163721ae8dcceca488db042b2dc7d79b, type: 3}
+  advancedRewardChestPrefab: {fileID: 6913548843195122753, guid: 507091d119ba8904aafdaf75e9fa1ca7, type: 3}
+  mimicChestPrefab: {fileID: 6953725531051475293, guid: 9f6efcec2964bde438ab2ecf9f47ea86, type: 3}

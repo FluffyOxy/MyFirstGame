@@ -6073,7 +6073,7 @@ Transform:
   m_GameObject: {fileID: 296397666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8067503, y: 3.7624154, z: -9.995028}
+  m_LocalPosition: {x: 13.888249, y: 1.8944153, z: -9.995028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12071,7 +12071,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.8067503, y: 3.7624154, z: -9.995028}
+  m_LocalPosition: {x: 13.888249, y: 1.8944153, z: -9.995028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30064,33 +30064,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 888917348166926060, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 79.31
-      objectReference: {fileID: 0}
     - target: {fileID: 4674128292013885369, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: m_Name
       value: MapGenerateManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4674128292013885369, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
-      propertyPath: enemyGenerateYOffset
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
-      propertyPath: mainLine.battles.Array.data[0].difficulty
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
-      propertyPath: mainLine.battles.Array.data[1].difficulty
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
-      propertyPath: mainLine.battles.Array.data[2].difficulty
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8554910269420605361, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: m_LocalPosition.x
@@ -69635,11 +69611,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3790336066899341413, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.67
+      value: 12.025
       objectReference: {fileID: 0}
     - target: {fileID: 3790336066899341413, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.51
+      value: -1.358
       objectReference: {fileID: 0}
     - target: {fileID: 3790336066899341413, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -69672,6 +69648,14 @@ PrefabInstance:
     - target: {fileID: 3790336066899341413, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132495503093237788, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
+      propertyPath: groundCheckDistance
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5687983531965375263, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.183
       objectReference: {fileID: 0}
     - target: {fileID: 5791585645360304906, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: statsSlotParent

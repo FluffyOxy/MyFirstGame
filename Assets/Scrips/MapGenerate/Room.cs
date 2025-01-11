@@ -40,6 +40,9 @@ public class Room : MonoBehaviour
             case RoomType.Exit:
                 newRoom = GetNewRoomByPrefabList(_manager.exitRoomPrefabs);
                 break;
+            case RoomType.Reward:
+                newRoom = GetNewRoomByPrefabList(_manager.rewardRoomPrefabs);
+                break;
         }
         newRoom.GenerateRoom(_manager, _currentLine, _index + 1);
     }
