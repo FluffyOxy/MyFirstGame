@@ -217,7 +217,7 @@ public class Enemy : Entity
             base.Die();
         }
     }
-    private void DropItem()
+    public void DropItem()
     {
         dropItem.Drop();
     }

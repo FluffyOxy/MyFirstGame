@@ -41,7 +41,14 @@ public class UI_HealthBar : MonoBehaviour
 
     private void OnDisable()
     {
-        entity.onFlipped -= FilpUI;
-        stats.onCurrentHealthChange -= UpdateHealthUI;
+        if(entity.onFlipped != null)
+        {
+            entity.onFlipped -= FilpUI;
+        }
+        
+        if(stats.onCurrentHealthChange != null)
+        {
+            stats.onCurrentHealthChange -= UpdateHealthUI;
+        }
     }
 }

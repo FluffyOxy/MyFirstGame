@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySlime_MoveState : EnemySlime_GroundedState
+public class Mimic_MoveState : Mimic_StateBase
 {
-    public EnemySlime_MoveState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Slime _enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, _enemy)
+    public Mimic_MoveState(Enemy _enemyBase, EnemyStateMachine _enemyStateMachine, string _animBoolName, Enemy_Mimic enemy) : base(_enemyBase, _enemyStateMachine, _animBoolName, enemy)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
+
         if (!enemy.IsGrounded())
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
@@ -25,6 +26,7 @@ public class EnemySlime_MoveState : EnemySlime_GroundedState
     public override void Update()
     {
         base.Update();
+
         if (enemy.IsTouchWall())
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
@@ -40,7 +42,7 @@ public class EnemySlime_MoveState : EnemySlime_GroundedState
 
         if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.changeState(enemy.battleIdleState);
         }
     }
 }

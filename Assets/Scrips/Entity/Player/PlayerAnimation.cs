@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface IPlayerInteractive
+{
+    public void Interact();
+}
+
 public class PlayerAnimation : MonoBehaviour
 {
     Player player;
@@ -28,6 +33,7 @@ public class PlayerAnimation : MonoBehaviour
             }
             hit.GetComponent<IDeflectableProjectile>()?.BeDeflected();
             hit.GetComponent<Chest>()?.Open();
+            hit.GetComponent<IPlayerInteractive>()?.Interact();
         }
 
         SceneAudioManager.instance.playerSFX.Attack((player.primaryAttackState as PlayerPrimaryAttackState).comboCounter);
