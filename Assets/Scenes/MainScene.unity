@@ -30068,6 +30068,98 @@ PrefabInstance:
       propertyPath: m_Name
       value: MapGenerateManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorationPrefab
+      value: 
+      objectReference: {fileID: 153967504809312598, guid: 7eba192808eb38544bde108dbef1c545, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: maxDecorationAmount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: minDecorationAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.size
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 9204943f0eacdb74baf3cba4d4bb8f4a, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: d9067e57fb155cb40a3d0f85e9f51544, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e978af5c6e774446add94e8d0cf72bf, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: f33a2a1156e68494e98db1f223bfebdd, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6dafea31fe94dd149a8ce1a0ef196bab, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: 460556444a4e4a2498b0818c9a7dbb94, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 550795fa2a3ca1145933d021eccf3a03, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: accff7572841ae643a6ec222d6856407, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: 75c47b8b553cd8f45927b73d1fdd0f78, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: aa92f6bbee238934181c8550e97b1beb, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: aa12eeb1e0526dc4181cbfd349eed568, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[11]
+      value: 
+      objectReference: {fileID: 21300000, guid: 61529b5e56ddbe94e9ab642de5dd827a, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3a74581a34e06c44aab7a1b26f2ea5e3, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: 7c969826663c474488da130737a73252, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[14]
+      value: 
+      objectReference: {fileID: 21300000, guid: 57ee61f3a6ac2574fad41cb9d8e4dfdc, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[15]
+      value: 
+      objectReference: {fileID: 21300000, guid: a4858fd0287087249bbd13755b620710, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[16]
+      value: 
+      objectReference: {fileID: 21300000, guid: 71630e1e5bc9f4647994ca1c2427fbbe, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[17]
+      value: 
+      objectReference: {fileID: 21300000, guid: bdd66e2978529184588fee9c6ddf0519, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[18]
+      value: 
+      objectReference: {fileID: 21300000, guid: ba4c1f8304ae62f42ad0fdc9f69cf023, type: 3}
     - target: {fileID: 8554910269420605361, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0879657
@@ -31750,7 +31842,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b08efee9eee36984f9acc041d07df759, type: 2}
+  - {fileID: 2100000, guid: 64714c81152296d41b43e61cedbc122b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -69652,6 +69744,10 @@ PrefabInstance:
     - target: {fileID: 5132495503093237788, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: groundCheckDistance
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132495503093237788, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
+      propertyPath: whatIsPlatform.m_Bits
+      value: 2048
       objectReference: {fileID: 0}
     - target: {fileID: 5687983531965375263, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: m_LocalPosition.x

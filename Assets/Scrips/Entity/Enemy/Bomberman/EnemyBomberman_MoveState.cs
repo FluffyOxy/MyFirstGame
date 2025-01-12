@@ -13,7 +13,7 @@ public class EnemyBomberman_MoveState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        if (!enemy.IsGrounded())
+        if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
         }
@@ -31,7 +31,7 @@ public class EnemyBomberman_MoveState : EnemyState
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
         }
-        else if (!enemy.IsGrounded())
+        else if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
             stateMachine.changeState(enemy.idleState);
         }

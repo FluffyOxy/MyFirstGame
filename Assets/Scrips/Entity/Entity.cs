@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float wallCheckDistance;
     [SerializeField] protected Transform wallCheck;
     [SerializeField] protected LayerMask whatIsGround;
+    [SerializeField] protected LayerMask whatIsPlatform;
     [SerializeField] public Transform attackValidCheck;
     [SerializeField] public float attackValidCheckRadius;
     #endregion
@@ -144,10 +145,14 @@ public class Entity : MonoBehaviour
         isKnocked = false;
     }
 
-
     public virtual RaycastHit2D IsGrounded()
     {
         return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
+    }
+
+    public virtual RaycastHit2D IsPlatform()
+    {
+        return Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsPlatform);
     }
 
     public virtual RaycastHit2D IsTouchWall()
@@ -194,7 +199,7 @@ public class Entity : MonoBehaviour
     #region Velocity
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
-        if(isKnocked)
+        if (isKnocked)
         {
             return;
         }

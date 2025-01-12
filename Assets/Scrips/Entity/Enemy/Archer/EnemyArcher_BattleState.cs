@@ -47,7 +47,7 @@ public class EnemyArcher_BattleState : EnemyState
         {
             stateMachine.changeState(enemy.pullBackState);
         }
-        else if ((enemy.IsTouchWall() || !enemy.IsGrounded()) && moveDir == enemy.facingDir)
+        else if ((enemy.IsTouchWall() || (!enemy.IsGrounded() && !enemy.IsPlatform())) && moveDir == enemy.facingDir)
         {
             stateMachine.changeState(enemy.idleState);
         }

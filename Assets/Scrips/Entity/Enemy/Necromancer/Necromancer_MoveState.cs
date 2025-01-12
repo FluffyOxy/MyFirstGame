@@ -12,7 +12,7 @@ public class Necromancer_MoveState : NecromancerStateBase
     {
         base.Enter();
 
-        if (!enemy.IsGrounded())
+        if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
         }
@@ -35,7 +35,7 @@ public class Necromancer_MoveState : NecromancerStateBase
         {
             enemy.SetVelocity(enemy.moveSpeed * -enemy.facingDir, enemy.rg.velocity.y);
         }
-        else if (!enemy.IsGrounded())
+        else if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
             stateMachine.changeState(enemy.idleState);
         }
@@ -45,7 +45,7 @@ public class Necromancer_MoveState : NecromancerStateBase
             {
                 enemy.SetVelocity(enemy.rg.velocity.x, enemy.verticalFlyingSpeed);
             }
-            else if (enemy.IsGrounded().distance > enemy.flyingHeight)
+            else if (enemy.IsGrounded().distance > enemy.flyingHeight )
             {
                 enemy.SetVelocity(enemy.rg.velocity.x, -enemy.verticalFlyingSpeed);
             }
