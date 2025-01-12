@@ -149,6 +149,12 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public GameObject advancedRewardChestPrefab;
     [SerializeField] public GameObject mimicChestPrefab;
 
+    [Header("Room Decoration Info")]
+    [SerializeField] public GameObject decorationPrefab;
+    [SerializeField] public List<Sprite> decorations;
+    [SerializeField] public int minDecorationAmount;
+    [SerializeField] public int maxDecorationAmount;
+
     private void Start()
     {
         int startRoomIndex = UnityEngine.Random.Range(0, entryRoomPrefabs.Count);

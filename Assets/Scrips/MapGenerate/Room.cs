@@ -19,7 +19,86 @@ public class Room : MonoBehaviour
     [Header("Room Element Generate Info")]
     [SerializeField] protected Tilemap groundTilemap;
 
-    public virtual void GenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
+    protected List<Vector2> flatPositions = null;
+    protected int usedFlatPositionIndexEnd = 0;
+
+    public void GenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
+    {
+        PreGenerateRoom(_manager, _currentLine, _index);
+        GenerateCurrentRoom(_manager, _currentLine, _index);
+        GenerateNextRoom(_manager, _currentLine, _index);
+    }
+    protected virtual void PreGenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
+    {
+        flatPositions = GetFlatPositionsInRoomByRadius(1);
+        usedFlatPositionIndexEnd = 0;
+    }
+
+    protected virtual void GenerateCurrentRoom(MapGenerateManager _manager, Line _currentLine, int _index)
+    {
+        GenerateDecorations(_manager);
+    }
+
+    protected void GenerateDecorations(MapGenerateManager _manager)
+    {
+        int randomDecorationAmount = Random.Range(_manager.minDecorationAmount, _manager.maxDecorationAmount);
+        int currentDecorationAmount = 0;
+
+        while (currentDecorationAmount < randomDecorationAmount)
+        {
+            Sprite randomDecorationSprite = _manager.decorations[Random.Range(0, _manager.decorations.Count)];
+
+            if (!HaveFreePosition())
+            {
+                break;//无空闲位置
+            }
+            Vector3 randomPosition = GetRandomNonOverlapPosition(Mathf.CeilToInt(randomDecorationSprite.bounds.size.x));
+            randomPosition += new Vector3(0, 1f);//瓦片大小
+            randomPosition += new Vector3(0, randomDecorationSprite.bounds.size.y / 2);//sprite高度
+
+            GameObject newDecoration = Instantiate(_manager.decorationPrefab, randomPosition, Quaternion.identity);
+            newDecoration.GetComponent<SpriteRenderer>().sprite = randomDecorationSprite;
+            ++currentDecorationAmount;
+        }
+    }
+    private bool HaveFreePosition()
+    {
+        if (usedFlatPositionIndexEnd >= flatPositions.Count)
+        {
+            return false;//无空闲位置
+        }
+        else
+        {
+            return true;
+        }
+    }
+    private Vector3 GetRandomNonOverlapPosition(int _width)
+    {
+        int randomPositionIndex = Random.Range(usedFlatPositionIndexEnd, flatPositions.Count);
+        Vector3 randomPosition = flatPositions[randomPositionIndex];
+
+        int usedPositionIndex = randomPositionIndex - _width / 2;
+        if(usedPositionIndex < usedFlatPositionIndexEnd)
+        {
+            usedPositionIndex = usedFlatPositionIndexEnd;
+        }
+        int end = randomPositionIndex + _width / 2;
+        if(end >= flatPositions.Count)
+        {
+            end = flatPositions.Count - 1;
+        }
+        for (;usedPositionIndex <= end; usedPositionIndex++)
+        {
+            Vector3 usedPosition = flatPositions[usedPositionIndex];
+            flatPositions[usedPositionIndex] = flatPositions[usedFlatPositionIndexEnd];
+            flatPositions[usedFlatPositionIndexEnd] = usedPosition;
+            ++usedFlatPositionIndexEnd;
+        }
+
+        return randomPosition;
+    }
+
+    protected virtual void GenerateNextRoom(MapGenerateManager _manager, Line _currentLine, int _index)
     {
         Debug.Log(_index);
 
@@ -101,7 +180,7 @@ public class Room : MonoBehaviour
                 //若一个瓦片位置及其两侧flatRadius宽内的所有瓦片位置都符合条件：此处有瓦片且此处上方没有瓦片
                 //则，此处是一个平坦位置
                 bool isSuit = true;
-                for(int flatCheckX = x - _flatRadius; flatCheckX < x + _flatRadius + 1; flatCheckX++)
+                for(int flatCheckX = x - _flatRadius; flatCheckX <= x + _flatRadius; flatCheckX++)
                 {
                     if (groundTilemap.GetTile(new Vector3Int(x, y, 0)) == null 
                         || groundTilemap.GetTile(new Vector3Int(x, y + 1, 0)) != null

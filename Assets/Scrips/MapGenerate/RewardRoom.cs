@@ -6,9 +6,16 @@ public class RewardRoom : Room
 {
     [SerializeField] private Transform rewardTransform;
 
-    public override void GenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
+    protected override void PreGenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
     {
         type = RoomType.Reward;
+
+        base.PreGenerateRoom(_manager, _currentLine, _index);
+    }
+
+    protected override void GenerateCurrentRoom(MapGenerateManager _manager, Line _currentLine, int _index)
+    {
+        base.GenerateCurrentRoom(_manager, _currentLine, _index);
 
         RewardSlot slot = _currentLine.lineEndReward;
         if (!_currentLine.isEndRoom)
@@ -54,7 +61,5 @@ public class RewardRoom : Room
                 newChest.SetDrops(drops);
             }
         }
-
-        base.GenerateRoom(_manager, _currentLine, _index);
     }
 }
