@@ -30069,6 +30069,10 @@ PrefabInstance:
       value: MapGenerateManager
       objectReference: {fileID: 0}
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchYOffset
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: decorationPrefab
       value: 
       objectReference: {fileID: 153967504809312598, guid: 7eba192808eb38544bde108dbef1c545, type: 3}
@@ -30079,6 +30083,10 @@ PrefabInstance:
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: minDecorationAmount
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: decorations.Array.size
@@ -30143,7 +30151,7 @@ PrefabInstance:
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: decorations.Array.data[14]
       value: 
-      objectReference: {fileID: 21300000, guid: 57ee61f3a6ac2574fad41cb9d8e4dfdc, type: 3}
+      objectReference: {fileID: 21300000, guid: 695ab07178d13d74c9094b2518e703c8, type: 3}
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: decorations.Array.data[15]
       value: 
@@ -30160,6 +30168,98 @@ PrefabInstance:
       propertyPath: decorations.Array.data[18]
       value: 
       objectReference: {fileID: 21300000, guid: ba4c1f8304ae62f42ad0fdc9f69cf023, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: decorations.Array.data[19]
+      value: 
+      objectReference: {fileID: 21300000, guid: 98b7ea68eca09804d8620ebfab6e9b01, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchRoomPrefabs.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: mainLine.branches.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchRoomPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4416940893296855705, guid: a8c084bca0863ef479784722dfafcf6f, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: mainLine.branches.Array.data[0].isRandom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: mainLine.branches.Array.data[1].isRandom
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineEndRoomType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].battles.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineEndReward.mimicRate
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineEndReward.rewardAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineEndReward.advancedAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].battles.Array.data[0].difficulty
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].battles.Array.data[1].difficulty
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineEndReward.advancedRewardRate
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineEndReward.mimicAdvancedRewardRate
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[0].battleRoomRate
+      value: 44.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[0].branchRoomRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[0].rewardRoomRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[1].battleRoomRate
+      value: 44.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[1].rewardRoomRate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[2].battleRoomRate
+      value: 41.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchLines.Array.data[0].lineRooms.Array.data[2].rewardRoomRate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8554910269420605361, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.0879657
@@ -69740,6 +69840,10 @@ PrefabInstance:
     - target: {fileID: 3790336066899341413, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5132495503093237788, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
+      propertyPath: whatIsDoor.m_Bits
+      value: 8192
       objectReference: {fileID: 0}
     - target: {fileID: 5132495503093237788, guid: bcff18127d2dd104f928e9b3807258d5, type: 3}
       propertyPath: groundCheckDistance

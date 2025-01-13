@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
+public interface IPlayerEnterable
+{
+    public void Enter(Player _player);
+}
 public class Player : Entity
 {
     public bool isBusy { get; private set; }
@@ -72,6 +76,11 @@ public class Player : Entity
     [SerializeField] public GameObject healthBar;
     public bool isHealthBarActive;
 
+    [Header("Enter Check Info")]
+    [SerializeField] private float enterCheckRadius = 2f;
+    [SerializeField] private LayerMask whatIsDoor;
+
+
     override protected void Awake()
     {
         base.Awake();
@@ -127,6 +136,19 @@ public class Player : Entity
             CrystalInputCheck();
         }
         FlaskUseCheck();
+        EnterCheck();
+    }
+
+    private void EnterCheck()
+    {
+        if(Input.GetKeyDown(KeyCode.W))
+        {
+            Collider2D collider = Physics2D.OverlapCircle(transform.position, enterCheckRadius, whatIsDoor);
+            if(collider.GetComponent<IPlayerEnterable>() != null)
+            {
+                collider.GetComponent<IPlayerEnterable>().Enter(this);
+            }
+        }
     }
 
     public void SetHealthBarActiveChange()

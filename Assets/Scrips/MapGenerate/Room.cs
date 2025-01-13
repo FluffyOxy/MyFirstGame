@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
 
 
@@ -38,7 +39,6 @@ public class Room : MonoBehaviour
     {
         GenerateDecorations(_manager);
     }
-
     protected void GenerateDecorations(MapGenerateManager _manager)
     {
         int randomDecorationAmount = Random.Range(_manager.minDecorationAmount, _manager.maxDecorationAmount);
@@ -100,13 +100,10 @@ public class Room : MonoBehaviour
 
     protected virtual void GenerateNextRoom(MapGenerateManager _manager, Line _currentLine, int _index)
     {
-        Debug.Log(_index);
 
         Room newRoom = null;
         //判断下一个房间类型
         RoomType roomType = _currentLine.GetNextRoomType(_index, type);
-
-        Debug.Log(roomType);
 
         switch (roomType)
         {
@@ -122,6 +119,11 @@ public class Room : MonoBehaviour
             case RoomType.Reward:
                 newRoom = GetNewRoomByPrefabList(_manager.rewardRoomPrefabs);
                 break;
+            case RoomType.Branch:
+                newRoom = GetNewRoomByPrefabList(_manager.branchRoomPrefabs);
+                break;
+            default:
+                Assert.IsTrue(false, "未定义的房间类型： " + roomType); break;
         }
         newRoom.GenerateRoom(_manager, _currentLine, _index + 1);
     }

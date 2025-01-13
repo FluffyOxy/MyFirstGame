@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum RoomType
@@ -12,7 +13,8 @@ public enum RoomType
     Exit,
     Battle,
     Passage,
-    Reward
+    Reward,
+    Branch
 }
 
 [Serializable]
@@ -28,6 +30,7 @@ public class LineSlot
 {
     [Range(0, 100)][SerializeField] public float battleRoomRate;
     [Range(0, 100)][SerializeField] public float rewardRoomRate;
+    [Range(0, 100)][SerializeField] public float branchRoomRate;
 }
 
 [Serializable]
@@ -47,6 +50,13 @@ public class RewardSlot
 }
 
 [Serializable]
+public class BranchSlot
+{
+    [SerializeField] public bool isRandom;
+    [SerializeField] public Line branchLine = null;
+}
+
+[Serializable]
 public class Line
 {
     public RoomType lineEndRoomType;
@@ -54,6 +64,7 @@ public class Line
 
     public int battleIndex { get; private set; }
     public int rewardIndex { get; private set; }
+    public int branchIndex { get; private set; }
 
     [Header("Room Info")]
     public List<LineSlot> lineRooms;
@@ -65,13 +76,35 @@ public class Line
     public List<RewardSlot> rewards;
     public RewardSlot lineEndReward;
 
+    [Header("Branch Info")]
+    public List<BranchSlot> branches;
+
     public Line()
     {
         
     }
 
+    public Line GetClone()
+    {
+        Line newLine = new Line();
+
+        newLine.lineEndRoomType = lineEndRoomType;
+        newLine.lineRooms = lineRooms;
+        newLine.battles = battles;
+        newLine.rewards = rewards;
+        newLine.lineEndReward = lineEndReward;
+        newLine.branches = branches;
+
+        return newLine;
+    }
+
     public RoomType GetNextRoomType(int _currentRoomIndex, RoomType _currentRoomType)
     {
+        if(isEndRoom)
+        {
+            return RoomType.Exit;
+        }
+
         if(_currentRoomType == RoomType.Battle)
         {
             ++battleIndex;
@@ -80,9 +113,17 @@ public class Line
         {
             ++rewardIndex;
         }
+        if(_currentRoomType == RoomType.Branch)
+        {
+            ++branchIndex;
+        }
 
         if (_currentRoomIndex >= lineRooms.Count)
         {
+            if (branchIndex < branches.Count)
+            {
+                return RoomType.Branch;
+            }
             if (battleIndex < battles.Count)
             {
                 return RoomType.Battle;
@@ -95,7 +136,10 @@ public class Line
             return lineEndRoomType;
         }
 
-
+        if (branchIndex >= branches.Count)
+        {
+            lineRooms[_currentRoomIndex].branchRoomRate = 0;
+        }
         if (battleIndex >= battles.Count)
         {
             lineRooms[_currentRoomIndex].battleRoomRate = 0;
@@ -116,6 +160,10 @@ public class Line
         {
             return RoomType.Reward;
         }
+        else if(dice < (rate += lineRooms[_currentRoomIndex].branchRoomRate))
+        {
+            return RoomType.Branch;
+        }
         else
         {
             return RoomType.Passage;
@@ -133,9 +181,11 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public List<GameObject> battleRoomPrefabs;
     [SerializeField] public List<GameObject> passageRoomPrefabs;
     [SerializeField] public List<GameObject> rewardRoomPrefabs;
+    [SerializeField] public List<GameObject> branchRoomPrefabs;
 
     [Header("Line info")]
     [SerializeField] public Line mainLine = new Line();
+    [SerializeField] public List<Line> branchLines = new List<Line>();
 
     [Header("Map Info")]
     [SerializeField] private Transform startTransform;
@@ -154,6 +204,9 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public List<Sprite> decorations;
     [SerializeField] public int minDecorationAmount;
     [SerializeField] public int maxDecorationAmount;
+
+    [Header("Branch Info")]
+    [SerializeField] public float branchYOffset;
 
     private void Start()
     {
