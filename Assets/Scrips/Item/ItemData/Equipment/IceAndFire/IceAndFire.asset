@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0030604f8c71c7c43bb2ebb1e8f46e63, type: 3}
   m_Name: IceAndFire
   m_EditorClassIdentifier: 
+  itemId: cf7b72a694c6c2c4bb4c7f2e85e58a59
   icon: {fileID: -1943397117, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   itemName: "\u51B0\u4E0E\u706B\u4E4B\u6B4C"
   itemType: 1
   craftingMaterials: []
+  description: "\u4E00\u628A\u5F88\u51B7\uFF0C\u4E00\u628A\u5F88\u70ED"
   equipmentType: 0
   statsModifierData:
     strength: 0

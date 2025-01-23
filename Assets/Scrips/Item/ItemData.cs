@@ -22,6 +22,8 @@ public class ItemData : ScriptableObject
     [SerializeField] public string itemName;
     [SerializeField] public ItemType itemType;
     [SerializeField] public List<InventoryItem> craftingMaterials;
+    [TextArea]
+    [SerializeField] public string description;
 
     protected StringBuilder sb = new StringBuilder();
 

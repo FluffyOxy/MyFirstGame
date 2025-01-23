@@ -35,8 +35,9 @@ public class Entity : MonoBehaviour
     public int facingDir = 1;
     #endregion
 
-    [Header("Entity Name")]
+    [Header("Entity Base Info")]
     [SerializeField] public string entityName;
+    [SerializeField] public Sprite entityIcon;
 
     #region Fight
     [Header("Entity Fight Info")]

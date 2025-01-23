@@ -14,6 +14,7 @@ public class UI_ItemToolTip : MonoBehaviour
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemTypeText;
     [SerializeField] private TextMeshProUGUI itemEffectText;
+    [SerializeField] private TextMeshProUGUI itemDescriptionText;
     [SerializeField] private Image image;
 
     [Header("Stats UI")]
@@ -39,6 +40,7 @@ public class UI_ItemToolTip : MonoBehaviour
             }
 
             itemEffectText.text = _equipment.GetEffectText();
+            itemDescriptionText.text = _equipment.description;
         }
         gameObject.SetActive(true);
     }

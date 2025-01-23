@@ -13,5 +13,6 @@ public class EnemyBomberman_Animation : EnemyAnimation
     {
         Debug.Log("ExplodeFinishTrigger");
         enemy.stateMachine.changeState((enemy as Enemy_Bomberman).deadState);
+        (enemy as Enemy_Bomberman).EnterDeadState();
     }
 }

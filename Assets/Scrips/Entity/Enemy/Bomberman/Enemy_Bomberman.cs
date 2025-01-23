@@ -25,6 +25,7 @@ public class Enemy_Bomberman : Enemy
     [SerializeField] public Vector2 counterBackForce;
 
     [HideInInspector] public bool isExplode = false;
+    private bool isExplodeHolding = false;
 
     protected override void Awake()
     {
@@ -91,11 +92,16 @@ public class Enemy_Bomberman : Enemy
 
     public override void Die()
     {
-        if (!isDead)
+        if (!isDead && !isExplodeHolding)
         {
             stateMachine.changeState(explodeHoldingState);
-            base.Die();
+            isExplodeHolding = true;
         }
+    }
+
+    public void EnterDeadState()
+    {
+        base.Die();
     }
 
     public override void Flip()

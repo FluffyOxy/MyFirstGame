@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     [SerializeField] public Player player;
 
     public int currency;
+    public int coin;
 
     private void Awake()
     {
@@ -59,6 +60,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public void LoadData(GameData _data)
     {
         currency = _data.currency;
+        coin = _data.coin;
         player.isHealthBarActive = _data.isPlayerHealthBarActive;
         player.healthBar.SetActive(player.isHealthBarActive);
     }
@@ -66,6 +68,30 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     public void SaveData(ref GameData _data)
     {
         _data.currency = currency;
+        _data.coin = coin;
         _data.isPlayerHealthBarActive = player.isHealthBarActive;
+    }
+
+    public int GetCoinAmount()
+    {
+        return coin;
+    }
+
+    public bool TrySpendCoin(int _coin)
+    {
+        if (_coin <= coin)
+        {
+            coin -= _coin;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void AddCoin(int _coin)
+    {
+        coin += _coin;
     }
 }

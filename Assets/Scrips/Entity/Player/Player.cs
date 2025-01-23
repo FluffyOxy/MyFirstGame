@@ -10,10 +10,16 @@ public interface IPlayerEnterable
 {
     public void Enter(Player _player);
 }
+
+public interface IPlayerCommunicable
+{
+    public void Talk(Player _player);
+}
 public class Player : Entity
 {
     public bool isBusy { get; private set; }
     public bool isDashing = false;
+    public bool canInput = true;
 
     #region Move
     [Header("Move Info")]
@@ -137,16 +143,38 @@ public class Player : Entity
         }
         FlaskUseCheck();
         EnterCheck();
+        CommunicateCheck();
     }
 
     private void EnterCheck()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if(CheckInput_KeyDown(KeyCode.W))
         {
             Collider2D collider = Physics2D.OverlapCircle(transform.position, enterCheckRadius, whatIsDoor);
-            if(collider.GetComponent<IPlayerEnterable>() != null)
+            if(collider != null)
             {
-                collider.GetComponent<IPlayerEnterable>().Enter(this);
+                if (collider.GetComponent<IPlayerEnterable>() != null)
+                {
+                    collider.GetComponent<IPlayerEnterable>().Enter(this);
+                }
+            }
+        }
+    }
+
+    private void CommunicateCheck()
+    {
+        if (CheckInput_KeyDown(KeyCode.G))
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, enterCheckRadius);
+            foreach(Collider2D collider in colliders)
+            {
+                if (collider != null)
+                {
+                    if (collider.GetComponent<IPlayerCommunicable>() != null)
+                    {
+                        collider.GetComponent<IPlayerCommunicable>().Talk(this);
+                    }
+                }
             }
         }
     }
@@ -176,9 +204,9 @@ public class Player : Entity
     }
 
 
-    private static void CrystalInputCheck()
+    private void CrystalInputCheck()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if (CheckInput_KeyDown(KeyCode.F))
         {
             SkillManager.intance.crystal.TryUseSkill();
         }
@@ -195,7 +223,7 @@ public class Player : Entity
             return;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftShift) && !IsTouchWall() && skill.dash.TryUseSkill() && !isKnocked)
+        if(CheckInput_KeyDown(KeyCode.LeftShift) && !IsTouchWall() && skill.dash.TryUseSkill() && !isKnocked)
         {
             dashDir = Input.GetAxisRaw("Horizontal");
             if (dashDir == 0)
@@ -212,7 +240,7 @@ public class Player : Entity
 
     private void FlaskUseCheck()
     {
-        if(Input.GetKeyDown(KeyCode.R))
+        if(CheckInput_KeyDown(KeyCode.R))
         {
             Inventory.instance.TryUseFlask();
         }
@@ -330,5 +358,31 @@ public class Player : Entity
         float damage = (cs as PlayerStats).DoDamageTo_CounterAttack(_target);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.CounterAttack, _target, damage);
         Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
+    }
+
+    public void SetCanInput(bool _canInput) 
+    {
+        if(_canInput)
+        {
+            Invoke("SetCanInput_true", Time.deltaTime * 2);
+        }
+        else
+        {
+            CancelInvoke();
+            canInput = false;
+        }
+    }
+    private void SetCanInput_true()
+    {
+        canInput = true;
+    }
+
+    public bool CheckInput_KeyDown(KeyCode _keyCode)
+    {
+        if(canInput)
+        {
+            return Input.GetKeyDown(_keyCode);
+        }
+        return false;
     }
 }

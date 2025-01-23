@@ -22,7 +22,7 @@ public class PlayerGroundedState : PlayerState
     public override void Update()
     {
         base.Update();
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(player.CheckInput_KeyDown(KeyCode.Space))
         {
             stateMachine.ChangeState(player.jumpState);
         }
@@ -31,7 +31,7 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.fallState);
         }
         
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(player.CheckInput_KeyDown(KeyCode.Mouse0))
         {
             if (!player.IsSwordThrown())
             {
@@ -43,12 +43,12 @@ public class PlayerGroundedState : PlayerState
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && SkillManager.intance.counterAttack.isUnlocked_counterAttack && SkillManager.intance.counterAttack.TryUseSkill() && !player.isKnocked)
+        if(player.CheckInput_KeyDown(KeyCode.E) && SkillManager.intance.counterAttack.isUnlocked_counterAttack && SkillManager.intance.counterAttack.TryUseSkill() && !player.isKnocked)
         {
             stateMachine.ChangeState(player.counterAttackState);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse1) && SkillManager.intance.swordThrow.isUnlocked_sword)
+        if (player.CheckInput_KeyDown(KeyCode.Mouse1) && SkillManager.intance.swordThrow.isUnlocked_sword)
         {
             if(!player.IsSwordThrown())
             {
@@ -63,7 +63,7 @@ public class PlayerGroundedState : PlayerState
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && SkillManager.intance.blackHole.isUnlocked_blackHole && SkillManager.intance.blackHole.TryUseSkill())
+        if (player.CheckInput_KeyDown(KeyCode.Q) && SkillManager.intance.blackHole.isUnlocked_blackHole && SkillManager.intance.blackHole.TryUseSkill())
         {
             stateMachine.ChangeState(player.blackHoleState);
         }

@@ -13,6 +13,7 @@ public class UI : MonoBehaviour
     public UI_StatsDescriptionToolTip statsDescriptionToolTip;
     public UI_WarningToolTip warningToolTip;
     public UI_SkillToolTip skillToolTip;
+    public UI_SkillToolTip skillToolTipOuter;
     [Header("Windows")]
     public UI_CraftWindow craftWindow;
     [Header("UI")]
@@ -25,6 +26,15 @@ public class UI : MonoBehaviour
     [SerializeField] private UI_DarkScreen darkScreen;
     [SerializeField] private UI_DeadMessage deadMessage;
     [SerializeField] private float deadMessageDelay;
+
+    [Header("Communcation Block")]
+    [SerializeField] private UI_CommunicationBlock communicationBlock;
+    [SerializeField] private UI_SkillLearningBlock skillLearningBlock;
+
+    [Header("Trade Block")]
+    [SerializeField] private UI_TradeBlock tradeBlock;
+    [SerializeField] public UI_TradeWindowEquipment tradeWindowEquipment;
+    [SerializeField] public UI_MaterialDetail tradeWindowMaterial;
 
     private void Awake()
     {
@@ -69,6 +79,24 @@ public class UI : MonoBehaviour
         {
             SwitchTo(inGame);
         }
+    }
+
+    public UI_SkillToolTip GetSkillToolTip()
+    {
+        if(skillTreeUI.activeSelf)
+        {
+            return skillToolTip;
+        }
+        else
+        {
+            return skillToolTipOuter;
+        }
+    }
+
+    public void HideSkillToolTip()
+    {
+        skillToolTip.Hide();
+        skillToolTipOuter.Hide();
     }
 
     public void Die()
@@ -140,5 +168,57 @@ public class UI : MonoBehaviour
     {
         deadMessage.FadeOut();
         GameManager.instance.Invoke("RestartScene", deadMessage.fadeDuration);
+    }
+
+    public void Speak(Sentence _sentence)
+    {
+        if(!communicationBlock.gameObject.activeSelf)
+        {
+            communicationBlock.gameObject.SetActive(true);
+            PlayerManager.instance.player.SetCanInput(false);
+        }
+        communicationBlock.Setup(_sentence);
+    }
+
+    public void SpeakDone()
+    {
+        communicationBlock.gameObject.SetActive(false);
+        PlayerManager.instance.player.SetCanInput(true);
+    }
+
+    public bool TryShowSkillLearningBlock()
+    {
+        if(skillLearningBlock.TrySetup())
+        {
+            skillLearningBlock.gameObject.SetActive(true);
+            PlayerManager.instance.player.SetCanInput(false);
+            return true;
+        }
+        return false;
+    }
+
+    public void HideSkillLearningBlock()
+    {
+        skillLearningBlock.skillChooseFinish();
+        skillLearningBlock.gameObject.SetActive(false);
+        PlayerManager.instance.player.SetCanInput(true);
+    }
+
+    public bool IsSkillLearningBlockHide()
+    {
+        return !skillLearningBlock.gameObject.activeSelf;
+    }
+
+    public void ShowTradeBlock(List<Product> _products, List<Dialog> _successDialog, List<Dialog> _noCoinDialogs, List<Dialog> _fullBagDialogs)
+    {
+        tradeBlock.gameObject.SetActive(true);
+        PlayerManager.instance.player.SetCanInput(false);
+        tradeBlock.Setup(_products, _successDialog, _noCoinDialogs, _fullBagDialogs);
+    }
+
+    public void HideTradeBlock()
+    {
+        tradeBlock.gameObject?.SetActive(false);
+        PlayerManager.instance.player.SetCanInput(true);
     }
 }

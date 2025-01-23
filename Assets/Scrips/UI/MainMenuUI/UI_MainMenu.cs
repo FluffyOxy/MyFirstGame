@@ -28,8 +28,8 @@ public class UI_MainMenu : MonoBehaviour
 
     public void NewGame()
     {
+        SaveManager.instance.DeleteSaveData();
         StartCoroutine(LoadSceenWithFadeEffect(fadeScreen.fadeDuration));
-        SceneManager.LoadScene(sceneName);
     }
 
     private IEnumerator LoadSceenWithFadeEffect(float _delay)
@@ -41,7 +41,7 @@ public class UI_MainMenu : MonoBehaviour
 
     public void ExitGame()
     {
-        //Application.Quit();
+        Application.Quit();
     }
 
 }

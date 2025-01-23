@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0030604f8c71c7c43bb2ebb1e8f46e63, type: 3}
   m_Name: AmuletOfGod
   m_EditorClassIdentifier: 
+  itemId: 81ab45b7c5e236f428ee14c4458bfda4
   icon: {fileID: 1501868837, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   itemName: "\u795E\u4E4B\u62A4"
   itemType: 1
   craftingMaterials: []
+  description: "\u5E26\u4E86\u8FD9\u4E2A\u9879\u94FE\u7684\u4EBA\u7279\u522B\u5BB9\u6613\u88AB\u9759\u7535\u7535\u5230"
   equipmentType: 2
   statsModifierData:
     strength: 0

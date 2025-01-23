@@ -5,6 +5,12 @@ using UnityEngine;
 public class EnemyStateMachine
 {
     public EnemyState currentState { get; private set; }
+    public Enemy enemy { get; private set; }
+
+    public EnemyStateMachine(Enemy _enemy)
+    {
+        enemy = _enemy;
+    }
 
     public void Initialize(EnemyState state)
     {
@@ -14,6 +20,11 @@ public class EnemyStateMachine
 
     public void changeState(EnemyState state)
     {
+        if(enemy.isDead)
+        {
+            return;
+        }
+
         currentState.Exit();
         currentState = state;
         currentState.Enter();

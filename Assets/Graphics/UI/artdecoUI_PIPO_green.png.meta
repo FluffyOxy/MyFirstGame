@@ -187,7 +187,7 @@ TextureImporter:
         height: 185
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 23, y: 23, z: 23, w: 23}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -202,13 +202,13 @@ TextureImporter:
       name: artdecoUI_PIPO_green_3
       rect:
         serializedVersion: 2
-        x: 993
-        y: 713
+        x: 994
+        y: 708
         width: 176
         height: 153
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 44, y: 44, z: 44, w: 44}
+      border: {x: 21, y: 26, z: 21, w: 21}
       outline: []
       physicsShape: []
       tessellationDetail: 0

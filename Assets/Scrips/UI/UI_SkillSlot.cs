@@ -18,6 +18,8 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [Space]
     [SerializeField] private int skillPrice;
 
+    public UI_SkillSlot parentSlot = null;
+
     private void OnValidate()
     {
         gameObject.name = "Skill = " + skillName;
@@ -32,7 +34,7 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         skillIcon = GetComponent<Image>();
 
-        if(isUnlocked)
+        if(isUnlocked || parentSlot != null)
         {
             skillIcon.color = Color.white;
         }
@@ -40,6 +42,36 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             skillIcon.color = lockedSkillColor;
         }
+    }
+
+    public bool CanUnlock()
+    {
+        if (isUnlocked)
+        {
+            return false;
+        }
+
+        foreach (var skill in shouldBeUnlock)
+        {
+            if (!skill.isUnlocked)
+            {
+                return false;
+            }
+        }
+
+        foreach (var skill in shouldBeLocked)
+        {
+            if (skill.isUnlocked)
+            {
+                return false;
+            }
+        }
+
+        if (PlayerManager.instance.GetCurrencyAmount() >= skillPrice)
+        {
+            return true;
+        }
+        return false;
     }
 
     private bool TryUnlock()
@@ -70,7 +102,14 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         if(PlayerManager.instance.TrySpendMoney(skillPrice))
         {
             isUnlocked = true;
+            skillIcon = GetComponent<Image>();
             skillIcon.color = Color.white;
+            if(parentSlot != null)
+            {
+                parentSlot.gameObject.SetActive(true);
+                parentSlot.GetComponent<Button>().onClick.Invoke();
+                UI.instance.HideSkillLearningBlock();
+            }
             return true;
         }
         return false;
@@ -78,12 +117,12 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        UI.instance.skillToolTip.Setup(skillDescription, skillName, skillIcon.sprite);
+        UI.instance.GetSkillToolTip().Setup(skillDescription, skillName, skillIcon.sprite, skillPrice);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        UI.instance.skillToolTip.Hide();
+        UI.instance.HideSkillToolTip();
     }
 
     public void LoadData(GameData _data)

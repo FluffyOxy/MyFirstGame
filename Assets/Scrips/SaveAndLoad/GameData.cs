@@ -6,6 +6,7 @@ using UnityEngine;
 public class GameData
 {
     public int currency;
+    public int coin;
     public bool isNewGame;
 
     public SerializableDictionary<string, int> items;

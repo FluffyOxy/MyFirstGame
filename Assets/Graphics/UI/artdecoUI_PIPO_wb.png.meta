@@ -229,7 +229,7 @@ TextureImporter:
         height: 289
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 95, y: 95, z: 95, w: 95}
+      border: {x: 37, y: 37, z: 37, w: 37}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -354,7 +354,7 @@ TextureImporter:
         width: 48
         height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 14, y: 14, z: 14, w: 12}
       outline: []
       physicsShape: []
@@ -362,6 +362,48 @@ TextureImporter:
       bones: []
       spriteID: 97b1544f1f821ae47a81e4d647dbea75
       internalID: -1443866253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_wb_11
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 612
+        width: 172
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db31d9443a9e75b49b9f58620499b353
+      internalID: -1941824625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: artdecoUI_PIPO_wb_12
+      rect:
+        serializedVersion: 2
+        x: 992
+        y: 712
+        width: 178
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 45, y: 45, z: 45, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ec4e2698bf75a04d8112477872f144f
+      internalID: -1160035252
       vertices: []
       indices: 
       edges: []
@@ -380,6 +422,8 @@ TextureImporter:
       artdecoUI_PIPO_wb_0: -1762947064
       artdecoUI_PIPO_wb_1: -1146079874
       artdecoUI_PIPO_wb_10: -1443866253
+      artdecoUI_PIPO_wb_11: -1941824625
+      artdecoUI_PIPO_wb_12: -1160035252
       artdecoUI_PIPO_wb_2: -1037738256
       artdecoUI_PIPO_wb_3: 1395470138
       artdecoUI_PIPO_wb_4: -1959689534

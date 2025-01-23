@@ -23,17 +23,15 @@ public class RewardRoom : Room
             slot = _currentLine.rewards[_currentLine.rewardIndex];
         }
 
-        List<Drop> drops = null;
+        List<Drop> drops = new List<Drop>();
         if(Random.Range(0f, 100f) < slot.mimicRate)
         {
-            if(Random.Range(0f, 100f) < slot.mimicAdvancedRewardRate)
+            drops.AddRange(_manager.GetPrimaryRewards(slot.rewardAmount));
+            if (Random.Range(0f, 100f) < slot.mimicAdvancedRewardRate)
             {
-                drops = _manager.GetAdvancedRewards(slot.advancedAmount);
+                drops.AddRange(_manager.GetAdvancedRewards(slot.advancedAmount));
             }
-            else
-            {
-                drops = _manager.GetPrimaryRewards(slot.rewardAmount);
-            }
+
             Enemy_Mimic newMimic = 
                 Instantiate(
                     _manager.mimicChestPrefab, rewardTransform.position, Quaternion.identity
@@ -42,9 +40,10 @@ public class RewardRoom : Room
         }
         else
         {
-            if(Random.Range(0f, 100f) < slot.advancedRewardRate)
+            drops.AddRange(_manager.GetPrimaryRewards(slot.rewardAmount));
+            if (Random.Range(0f, 100f) < slot.advancedRewardRate)
             {
-                drops = _manager.GetAdvancedRewards(slot.advancedAmount);
+                drops.AddRange(_manager.GetAdvancedRewards(slot.advancedAmount));
                 Chest newChest =
                     Instantiate(
                         _manager.advancedRewardChestPrefab, rewardTransform.position, Quaternion.identity
@@ -53,7 +52,6 @@ public class RewardRoom : Room
             }
             else
             {
-                drops = _manager.GetPrimaryRewards(slot.rewardAmount);
                 Chest newChest =
                     Instantiate(
                         _manager.primaryRewardChestPrefab, rewardTransform.position, Quaternion.identity

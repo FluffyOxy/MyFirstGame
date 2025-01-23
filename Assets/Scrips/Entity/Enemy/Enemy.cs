@@ -71,7 +71,7 @@ public class Enemy : Entity
     {
         base.Awake();
 
-        stateMachine = new EnemyStateMachine();
+        stateMachine = new EnemyStateMachine(this);
         defaultSpeed = moveSpeed;
         defaulltBattleSpeed = battleMoveSpeed;
         dropItem = GetComponent<DropItem>();

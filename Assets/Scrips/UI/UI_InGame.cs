@@ -33,10 +33,12 @@ public class UI_InGame : MonoBehaviour
     [SerializeField] Image flaskCoolDown;
 
     [Header("Currency")]
-    [SerializeField] TextMeshProUGUI currencyAmountText;
+    [SerializeField] private TextMeshProUGUI currencyAmountText;
     [SerializeField] private float currencyAmount;
     [SerializeField] private float minIncreaseRate = 1000;
     [Range(1, 10)][SerializeField] private float increasedAlpha = 1.5f;
+    [SerializeField] private TextMeshProUGUI coinAmountText;
+    [SerializeField] private float coinAmount;
 
     private void Start()
     {
@@ -53,7 +55,8 @@ public class UI_InGame : MonoBehaviour
 
     private void Update()
     {
-        UpdateCurrency();
+        UpdateCurrency(currencyAmountText, ref currencyAmount, PlayerManager.instance.GetCurrencyAmount());
+        UpdateCurrency(coinAmountText, ref coinAmount, PlayerManager.instance.GetCoinAmount());
 
         if (skill.dash.isUnlocked_dash)
         {
@@ -88,22 +91,29 @@ public class UI_InGame : MonoBehaviour
         }
     }
 
-    private void UpdateCurrency()
+    private void UpdateCurrency(TextMeshProUGUI _text, ref float _currentCurrency, float _targetCurrency)
     {
-        if (currencyAmount < PlayerManager.instance.GetCurrencyAmount())
+        if (Mathf.Abs(_currentCurrency - _targetCurrency) > 10)
         {
-            float increaseRate = (PlayerManager.instance.GetCurrencyAmount() - currencyAmount) / increasedAlpha;
-            if(increaseRate < minIncreaseRate)
+            float increaseRate = (_targetCurrency - _currentCurrency) / increasedAlpha;
+            if(Mathf.Abs(increaseRate) < minIncreaseRate)
             {
-                increaseRate = minIncreaseRate;
+                if(_currentCurrency < _targetCurrency)
+                {
+                    increaseRate = minIncreaseRate;
+                }
+                else
+                {
+                    increaseRate = -minIncreaseRate;
+                }
             }
-            currencyAmount += increaseRate * Time.deltaTime;
+            _currentCurrency += increaseRate * Time.deltaTime;
         }
         else
         {
-            currencyAmount = PlayerManager.instance.GetCurrencyAmount();
+            _currentCurrency = _targetCurrency;
         }
-        currencyAmountText.text = ((int)currencyAmount).ToString("#,#");
+        _text.text = ((int)_currentCurrency).ToString("#,#");
     }
 
     private void UpdateHealthUI()
