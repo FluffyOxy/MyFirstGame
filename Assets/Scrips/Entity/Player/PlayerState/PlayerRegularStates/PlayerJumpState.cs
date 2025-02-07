@@ -23,11 +23,10 @@ public class PlayerJumpState : PlayerAirState
 
     public override void Update()
     {
-        base.Update();
-        if(rg.velocity.y < 0)
+        if (rg.velocity.y < 0)
         {
             stateMachine.ChangeState(player.fallState);
         }
-
+        base.Update();
     }
 }

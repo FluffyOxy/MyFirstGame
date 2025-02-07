@@ -30,6 +30,7 @@ public class PlayerWallSlideState : PlayerState
         {
             player.SetVelocity(rg.velocity.x, -player.wallSlideSpeed + yInput * player.wallSlideDownAdjustSpeed);
         }
+
         if (player.IsGrounded() || !player.IsTouchWall())
         {
             stateMachine.ChangeState(player.idleState);

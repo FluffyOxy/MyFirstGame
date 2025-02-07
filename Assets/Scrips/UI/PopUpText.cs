@@ -16,10 +16,20 @@ public class PopUpText : MonoBehaviour
 
     private float textTimer;
 
-    public void SetUp(string _text)
+    public void SetUp(string _text, float _lifeDuration = -1)
     {
+        if (_lifeDuration >= 0)
+        {
+            lifeDuration = _lifeDuration;
+        }
+
         myText.text = _text;
         textTimer = lifeDuration;
+    }
+
+    public void PopOut()
+    {
+        textTimer = 0;
     }
 
     void Update()

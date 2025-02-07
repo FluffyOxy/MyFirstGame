@@ -103,6 +103,8 @@ public class Enemy_Mimic : Enemy, IPlayerInteractive
 
     public void Interact()
     {
+        GetComponentInChildren<PopUpTextComponent>().FinishPopUpText();
+        Destroy(GetComponentInChildren<PopUpTextComponent>());
         if(isChest)
         {
             stateMachine.changeState(openState);

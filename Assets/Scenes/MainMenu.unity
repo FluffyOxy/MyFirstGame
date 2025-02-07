@@ -1356,7 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9f7ad9c118b61243baff4822e0b4f70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: MainScene
+  sceneName: PreGameRoomScene
   continueButton: {fileID: 528653951}
   fadeScreen: {fileID: 244702016}
 --- !u!1 &2075839901

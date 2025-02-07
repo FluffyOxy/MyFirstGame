@@ -138,6 +138,7 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
     protected override void Update()
     {
         base.Update();
+        
     }
 
     public void SetShadowStunCollider(bool _isShadow)

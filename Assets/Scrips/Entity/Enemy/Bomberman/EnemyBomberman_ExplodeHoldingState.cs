@@ -14,7 +14,6 @@ public class EnemyBomberman_ExplodeHoldingState : EnemyState
     {
         base.Enter();
         timer = enemy.holdingDuration;
-        Debug.Log("EnemyBomberman_ExplodeHoldingState");
     }
 
     public override void Exit()

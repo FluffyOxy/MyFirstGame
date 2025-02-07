@@ -6,6 +6,9 @@ public class Chest : MonoBehaviour
 {
     public void Open()
     {
+        GetComponentInChildren<PopUpTextComponent>().FinishPopUpText();
+        Destroy(GetComponentInChildren<PopUpTextComponent>());
+
         GetComponentInChildren<Animator>().SetTrigger("Open");
     }
 

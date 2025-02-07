@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myText: {fileID: 733028387858049070}
-  popInSpeed: 1
+  popInSpeed: 0.5
   popOutSpeed: 5
   popOutBeginAlpha: 50
   colorFadeSpeed: 3

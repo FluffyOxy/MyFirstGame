@@ -18,7 +18,6 @@ public class EnemyBomberman_DeadState : EnemyState
         enemy.cd.enabled = false;
 
         timer = enemy.deadAnimDuration;
-        Debug.Log("EnemyBomberman_DeadState");
     }
 
     public override void Exit()

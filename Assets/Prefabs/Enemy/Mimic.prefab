@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &551492445335671328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4918187620947642606}
+  m_Layer: 7
+  m_Name: PopTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4918187620947642606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551492445335671328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.648, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2830100811128772486}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &735186112432686511
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,6 +137,101 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2071576212615157784
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2830100811128772486}
+  - component: {fileID: 5727055776364438418}
+  - component: {fileID: 8729156261833181243}
+  m_Layer: 13
+  m_Name: PopTextTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2830100811128772486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071576212615157784}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4918187620947642606}
+  m_Father: {fileID: 5701895416466229145}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5727055776364438418
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071576212615157784}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.08753395, y: -0.43252516}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5653267, y: 2.3902593}
+  m_EdgeRadius: 0
+--- !u!114 &8729156261833181243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071576212615157784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0b03c1f6df0e34ba835fd6d64cdfd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popUpTextPrefab: {fileID: 2848268551794184684, guid: 2f6b878e1bf3405429910af082229043, type: 3}
+  message: "\u6309\u4E0B\u9F20\u6807\u5DE6\u952E\u4EE5\u6253\u5F00"
+  lifeDuration: 5
+  popTransform: {fileID: 4918187620947642606}
 --- !u!1 &2458864641701734668
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +580,7 @@ SpriteRenderer:
   m_SortingLayerID: -742685397
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 513177389, guid: 4b0322ed4b583564caa415184f23cf8b, type: 3}
+  m_Sprite: {fileID: -1789704655, guid: 652e4d6dbdd42f44eb7bec0e566f7716, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5408,6 +5534,7 @@ Transform:
   - {fileID: 4205919494468241990}
   - {fileID: 4222740725941467953}
   - {fileID: 5212476804963083301}
+  - {fileID: 2830100811128772486}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &4054708758425206750
@@ -5620,6 +5747,8 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 5769596048613520503, guid: b263c4ad0fdbdca4d82234882200d407, type: 3}
   maxDropVelocity: {x: 5, y: 5}
   minDropVelocity: {x: 10, y: 10}
+  coinPrefab: {fileID: 0}
+  coinAmount: 0
 --- !u!114 &1228537577647206286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5639,11 +5768,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 4061799906821579344}
   attackValidCheckRadius: 1.16
   isFacingLeft: 0
   facingDir: 1
   entityName: "\u62DF\u5F62\u602A"
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 5, y: 10}
   knockBackDirMapK: 0.5
   knockBackDuration: 0.07

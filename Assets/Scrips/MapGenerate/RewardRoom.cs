@@ -23,20 +23,29 @@ public class RewardRoom : Room
             slot = _currentLine.rewards[_currentLine.rewardIndex];
         }
 
-        List<Drop> drops = new List<Drop>();
-        if(Random.Range(0f, 100f) < slot.mimicRate)
+        float dice = Random.Range(0, 100);
+        float rate = 0;
+        if(dice < (rate += slot.witcherRate))
         {
-            drops.AddRange(_manager.GetPrimaryRewards(slot.rewardAmount));
-            if (Random.Range(0f, 100f) < slot.mimicAdvancedRewardRate)
-            {
-                drops.AddRange(_manager.GetAdvancedRewards(slot.advancedAmount));
-            }
+            Instantiate(_manager.witcherPrefab, rewardTransform.position, Quaternion.identity);
+        }
+        else if(dice < (rate += slot.traderRate))
+        {
+            Instantiate(_manager.traderPrefab, rewardTransform.position, Quaternion.identity);
+        }
+        else
+        {
+            GenerateRewardBox(_manager, slot);
+        }
+        
+    }
 
-            Enemy_Mimic newMimic = 
-                Instantiate(
-                    _manager.mimicChestPrefab, rewardTransform.position, Quaternion.identity
-                ).GetComponent<Enemy_Mimic>();
-            newMimic.SetDrops(drops);
+    private void GenerateRewardBox(MapGenerateManager _manager, RewardSlot slot)
+    {
+        List<Drop> drops = new List<Drop>();
+        if (Random.Range(0f, 100f) < slot.mimicRate)
+        {
+            GenerateMimic(_manager, slot, drops);
         }
         else
         {
@@ -59,5 +68,19 @@ public class RewardRoom : Room
                 newChest.SetDrops(drops);
             }
         }
+    }
+    private void GenerateMimic(MapGenerateManager _manager, RewardSlot slot, List<Drop> drops)
+    {
+        drops.AddRange(_manager.GetPrimaryRewards(slot.rewardAmount));
+        if (Random.Range(0f, 100f) < slot.mimicAdvancedRewardRate)
+        {
+            drops.AddRange(_manager.GetAdvancedRewards(slot.advancedAmount));
+        }
+
+        Enemy_Mimic newMimic =
+            Instantiate(
+                _manager.mimicChestPrefab, rewardTransform.position, Quaternion.identity
+            ).GetComponent<Enemy_Mimic>();
+        newMimic.SetDrops(drops);
     }
 }

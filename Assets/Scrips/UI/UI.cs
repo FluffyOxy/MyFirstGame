@@ -14,16 +14,19 @@ public class UI : MonoBehaviour
     public UI_WarningToolTip warningToolTip;
     public UI_SkillToolTip skillToolTip;
     public UI_SkillToolTip skillToolTipOuter;
+
     [Header("Windows")]
     public UI_CraftWindow craftWindow;
+
     [Header("UI")]
     [SerializeField] public GameObject charactorUI;
     [SerializeField] public GameObject skillTreeUI;
     [SerializeField] public GameObject craftUI;
     [SerializeField] public GameObject optionUI;
     [SerializeField] public GameObject inGame;
+
     [Header("FadeScreen")]
-    [SerializeField] private UI_DarkScreen darkScreen;
+    [SerializeField] public UI_DarkScreen darkScreen;
     [SerializeField] private UI_DeadMessage deadMessage;
     [SerializeField] private float deadMessageDelay;
 
@@ -35,6 +38,9 @@ public class UI : MonoBehaviour
     [SerializeField] private UI_TradeBlock tradeBlock;
     [SerializeField] public UI_TradeWindowEquipment tradeWindowEquipment;
     [SerializeField] public UI_MaterialDetail tradeWindowMaterial;
+
+    [Header("Scene Switch")]
+    [HideInInspector] public bool isSwitching = false;
 
     private void Awake()
     {

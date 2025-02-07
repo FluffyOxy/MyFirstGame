@@ -44,6 +44,8 @@ public class RewardSlot
 {
     [SerializeField] public int rewardAmount;
     [SerializeField] public int advancedAmount;
+    [Range(0, 100)][SerializeField] public float witcherRate;
+    [Range(0, 100)][SerializeField] public float traderRate;
     [Range(0, 100)][SerializeField] public float advancedRewardRate;
     [Range(0, 100)][SerializeField] public float mimicRate;
     [Range(0, 100)][SerializeField] public float mimicAdvancedRewardRate;
@@ -198,6 +200,8 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public GameObject primaryRewardChestPrefab;
     [SerializeField] public GameObject advancedRewardChestPrefab;
     [SerializeField] public GameObject mimicChestPrefab;
+    [SerializeField] public GameObject traderPrefab;
+    [SerializeField] public GameObject witcherPrefab;
 
     [Header("Room Decoration Info")]
     [SerializeField] public GameObject decorationPrefab;
@@ -211,7 +215,11 @@ public class MapGenerateManager : MonoBehaviour
     private void Start()
     {
         int startRoomIndex = UnityEngine.Random.Range(0, entryRoomPrefabs.Count);
-        Room startRoom = Instantiate(entryRoomPrefabs[startRoomIndex], startTransform.position, Quaternion.identity).GetComponent<Room>();
+
+        Room startRoomTemp = entryRoomPrefabs[startRoomIndex].GetComponent<Room>();
+        Vector3 startRoomLoc = startTransform.position - startRoomTemp.leftAccess.transform.position;
+
+        Room startRoom = Instantiate(entryRoomPrefabs[startRoomIndex], startRoomLoc, Quaternion.identity).GetComponent<Room>();
         startRoom.GenerateRoom(this, mainLine, 0);
     }
 

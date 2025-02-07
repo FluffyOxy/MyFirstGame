@@ -14,7 +14,6 @@ public class EnemyBomberman_ExplodeState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("EnemyBomberman_ExplodeState");
     }
 
     public override void Exit()

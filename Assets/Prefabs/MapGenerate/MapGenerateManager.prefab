@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 366608313794541253}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 79.31, y: -1.6, z: 0}
+  m_LocalPosition: {x: -10.34, y: -2.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -86,22 +86,30 @@ MonoBehaviour:
   - {fileID: 5519137933671674140, guid: 79363c42ae395f544a27a461d5eed25c, type: 3}
   rewardRoomPrefabs:
   - {fileID: 8287352890654296562, guid: 25c51610c3b3a044aa1239b7bca17612, type: 3}
+  branchRoomPrefabs:
+  - {fileID: 4416940893296855705, guid: a8c084bca0863ef479784722dfafcf6f, type: 3}
   mainLine:
     lineEndRoomType: 1
     isEndRoom: 0
     lineRooms:
     - battleRoomRate: 26.5
       rewardRoomRate: 10
+      branchRoomRate: 0
     - battleRoomRate: 65.4
       rewardRoomRate: 10
+      branchRoomRate: 0
     - battleRoomRate: 65.6
       rewardRoomRate: 10
+      branchRoomRate: 0
     - battleRoomRate: 26.8
       rewardRoomRate: 10
+      branchRoomRate: 0
     - battleRoomRate: 67.9
       rewardRoomRate: 10
+      branchRoomRate: 0
     - battleRoomRate: 39.4
       rewardRoomRate: 10
+      branchRoomRate: 0
     battles:
     - difficulty: 10
     - difficulty: 10
@@ -109,20 +117,85 @@ MonoBehaviour:
     rewards:
     - rewardAmount: 3
       advancedAmount: 1
+      witcherRate: 100
+      traderRate: 0
       advancedRewardRate: 10
       mimicRate: 30
       mimicAdvancedRewardRate: 50
     - rewardAmount: 3
       advancedAmount: 1
+      witcherRate: 0
+      traderRate: 100
       advancedRewardRate: 20
       mimicRate: 50
       mimicAdvancedRewardRate: 50
     lineEndReward:
       rewardAmount: 1
       advancedAmount: 1
+      witcherRate: 0
+      traderRate: 0
       advancedRewardRate: 100
       mimicRate: 0
       mimicAdvancedRewardRate: 0
+    branches:
+    - isRandom: 1
+      branchLine:
+        lineEndRoomType: 0
+        isEndRoom: 0
+        lineRooms: []
+        battles: []
+        rewards: []
+        lineEndReward:
+          rewardAmount: 0
+          advancedAmount: 0
+          witcherRate: 0
+          traderRate: 0
+          advancedRewardRate: 0
+          mimicRate: 0
+          mimicAdvancedRewardRate: 0
+        branches: []
+    - isRandom: 1
+      branchLine:
+        lineEndRoomType: 0
+        isEndRoom: 0
+        lineRooms: []
+        battles: []
+        rewards: []
+        lineEndReward:
+          rewardAmount: 0
+          advancedAmount: 0
+          witcherRate: 0
+          traderRate: 0
+          advancedRewardRate: 0
+          mimicRate: 0
+          mimicAdvancedRewardRate: 0
+        branches: []
+  branchLines:
+  - lineEndRoomType: 4
+    isEndRoom: 0
+    lineRooms:
+    - battleRoomRate: 44.8
+      rewardRoomRate: 0
+      branchRoomRate: 0
+    - battleRoomRate: 44.5
+      rewardRoomRate: 0
+      branchRoomRate: 0
+    - battleRoomRate: 41.7
+      rewardRoomRate: 0
+      branchRoomRate: 0
+    battles:
+    - difficulty: 30
+    - difficulty: 40
+    rewards: []
+    lineEndReward:
+      rewardAmount: 5
+      advancedAmount: 1
+      witcherRate: 0
+      traderRate: 0
+      advancedRewardRate: 20
+      mimicRate: 50
+      mimicAdvancedRewardRate: 60
+    branches: []
   startTransform: {fileID: 888917348166926060}
   enemyList:
   - {fileID: 5637944703504468775, guid: 7f169eb32812e984aba3b9fae1d72151, type: 3}
@@ -150,3 +223,29 @@ MonoBehaviour:
   primaryRewardChestPrefab: {fileID: 6913548843195122753, guid: 163721ae8dcceca488db042b2dc7d79b, type: 3}
   advancedRewardChestPrefab: {fileID: 6913548843195122753, guid: 507091d119ba8904aafdaf75e9fa1ca7, type: 3}
   mimicChestPrefab: {fileID: 6953725531051475293, guid: 9f6efcec2964bde438ab2ecf9f47ea86, type: 3}
+  traderPrefab: {fileID: 234054331011517859, guid: 12c11c641b9b6c4479d1e962c523f152, type: 3}
+  witcherPrefab: {fileID: 1567148331700328297, guid: fb104c8186e5fe04faf28e443b4a368c, type: 3}
+  decorationPrefab: {fileID: 153967504809312598, guid: 7eba192808eb38544bde108dbef1c545, type: 3}
+  decorations:
+  - {fileID: 21300000, guid: 9204943f0eacdb74baf3cba4d4bb8f4a, type: 3}
+  - {fileID: 21300000, guid: d9067e57fb155cb40a3d0f85e9f51544, type: 3}
+  - {fileID: 21300000, guid: 1e978af5c6e774446add94e8d0cf72bf, type: 3}
+  - {fileID: 21300000, guid: f33a2a1156e68494e98db1f223bfebdd, type: 3}
+  - {fileID: 21300000, guid: 6dafea31fe94dd149a8ce1a0ef196bab, type: 3}
+  - {fileID: 21300000, guid: 460556444a4e4a2498b0818c9a7dbb94, type: 3}
+  - {fileID: 21300000, guid: 550795fa2a3ca1145933d021eccf3a03, type: 3}
+  - {fileID: 21300000, guid: accff7572841ae643a6ec222d6856407, type: 3}
+  - {fileID: 21300000, guid: 75c47b8b553cd8f45927b73d1fdd0f78, type: 3}
+  - {fileID: 21300000, guid: aa92f6bbee238934181c8550e97b1beb, type: 3}
+  - {fileID: 21300000, guid: aa12eeb1e0526dc4181cbfd349eed568, type: 3}
+  - {fileID: 21300000, guid: 61529b5e56ddbe94e9ab642de5dd827a, type: 3}
+  - {fileID: 21300000, guid: 3a74581a34e06c44aab7a1b26f2ea5e3, type: 3}
+  - {fileID: 21300000, guid: 7c969826663c474488da130737a73252, type: 3}
+  - {fileID: 21300000, guid: 695ab07178d13d74c9094b2518e703c8, type: 3}
+  - {fileID: 21300000, guid: a4858fd0287087249bbd13755b620710, type: 3}
+  - {fileID: 21300000, guid: 71630e1e5bc9f4647994ca1c2427fbbe, type: 3}
+  - {fileID: 21300000, guid: bdd66e2978529184588fee9c6ddf0519, type: 3}
+  - {fileID: 21300000, guid: ba4c1f8304ae62f42ad0fdc9f69cf023, type: 3}
+  minDecorationAmount: 3
+  maxDecorationAmount: 6
+  branchYOffset: 100

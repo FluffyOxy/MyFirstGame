@@ -60,12 +60,11 @@ public class Entity : MonoBehaviour
 
     protected virtual void Awake()
     {
-        
+        ComponentSetUp();
     }
 
     protected virtual void Start()
     {
-        ComponentSetUp();
         canBeDamage = true;
     }
 

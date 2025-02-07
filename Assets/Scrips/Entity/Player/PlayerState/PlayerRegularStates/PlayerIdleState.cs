@@ -22,8 +22,8 @@ public class PlayerIdleState : PlayerGroundedState
 
     public override void Update()
     {
-        base.Update();
         player.SetVelocity(0, 0);
+        base.Update();
         if (xInput != 0 && !(xInput == player.facingDir && player.IsTouchWall()) && !player.isBusy)
         {
             stateMachine.ChangeState(player.moveState);
