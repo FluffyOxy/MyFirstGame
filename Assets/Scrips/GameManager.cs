@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour, ISaveManager
     public Vector3 playerRemainingPosition;
     public int playerLeftCurrency;
     [SerializeField] private GameObject playerRemainingPrefab;
-    
 
+    [SerializeField] private string preGameSceneName;
 
     private void Awake()
     {
@@ -34,34 +34,19 @@ public class GameManager : MonoBehaviour, ISaveManager
         
     }
 
-    public void RestartScene()
+    public void CheckPointLoad()
     {
-        SaveManager.instance.SaveGame();
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        checkPointArray = FindObjectsOfType<CheckPoint>();
+    }
+
+    public void RestartGame()
+    {
+        SaveManager.instance.DeleteSaveData();
+        SceneManager.LoadScene(preGameSceneName);
     }
 
     public void LoadData(GameData _data)
     {
-        foreach (CheckPoint checkpoint in checkPointArray)
-        {
-            if(_data.checkpoints.TryGetValue(checkpoint.id, out bool isCheck))
-            {
-                if(isCheck)
-                {
-                    checkpoint.Check();
-                }
-            }
-        }
-
-        foreach(CheckPoint checkpoint in checkPointArray)
-        {
-            if(_data.closestCheckpointId == checkpoint.id)
-            {
-                PlayerManager.instance.player.transform.position = checkpoint.transform.position;
-            }
-        }
-
         isPlayerRemainingExist = _data.isPlayerRemainingExist;
         playerLeftCurrency = _data.playerLeftCurrency;
         playerRemainingPosition = _data.playerRemainingPosition;
@@ -76,18 +61,6 @@ public class GameManager : MonoBehaviour, ISaveManager
 
     public void SaveData(ref GameData _data)
     {
-        _data.checkpoints.Clear();
-        foreach(CheckPoint checkpoint in checkPointArray)
-        {
-            _data.checkpoints.Add(checkpoint.id, checkpoint.isCheck);
-        }
-
-        CheckPoint closestCheckpoint = TryGetClosestCheckPointToPlayer();
-        if(closestCheckpoint != null)
-        {
-            _data.closestCheckpointId = closestCheckpoint.id;
-        }
-
         _data.isPlayerRemainingExist = isPlayerRemainingExist;
         _data.playerLeftCurrency = playerLeftCurrency;
         _data.playerRemainingPosition = playerRemainingPosition;

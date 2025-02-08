@@ -14,9 +14,6 @@ public class GameData
 
     public SerializableDictionary<string, bool> skillTree;
 
-    public SerializableDictionary<string, bool> checkpoints;
-    public string closestCheckpointId;
-
     public bool isPlayerRemainingExist;
     public Vector3 playerRemainingPosition;
     public int playerLeftCurrency;
@@ -27,6 +24,8 @@ public class GameData
     public float sfxVolume;
     public float envVolume;
 
+    public string currentSceneName;
+
     public GameData() 
     { 
         this.currency = 0;
@@ -34,8 +33,6 @@ public class GameData
         items = new SerializableDictionary<string, int>();
         equipment = new SerializableDictionary<string, int>();
         skillTree = new SerializableDictionary<string, bool>();
-        checkpoints = new SerializableDictionary<string, bool>();
-        closestCheckpointId = string.Empty;
 
         isPlayerRemainingExist = false;
 
@@ -44,5 +41,6 @@ public class GameData
         envVolume = 0.3688f;
 
         isPlayerHealthBarActive = false;
+        currentSceneName = string.Empty;
     }
 }

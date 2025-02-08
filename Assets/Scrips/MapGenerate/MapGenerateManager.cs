@@ -221,6 +221,8 @@ public class MapGenerateManager : MonoBehaviour
 
         Room startRoom = Instantiate(entryRoomPrefabs[startRoomIndex], startRoomLoc, Quaternion.identity).GetComponent<Room>();
         startRoom.GenerateRoom(this, mainLine, 0);
+
+        GameManager.instance.CheckPointLoad();
     }
 
     public List<Drop> GetPrimaryRewards(int _amount)

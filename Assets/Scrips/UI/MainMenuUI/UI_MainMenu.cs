@@ -3,21 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UI_MainMenu : MonoBehaviour
+public class UI_MainMenu : MonoBehaviour, ISaveManager
 {
-    [SerializeField] private string sceneName;
-    [SerializeField] private GameObject continueButton;
+    [SerializeField] private string defaultSeneName;
+    private string sceneName;
+    [SerializeField] private GameObject continueButton = null;
     [SerializeField] private UI_DarkScreen fadeScreen;
+    [SerializeField] private bool isHaveContinueButton = true;
 
     private void Start()
     {
-        if(!SaveManager.instance.HaveSaveData())
+        if(isHaveContinueButton)
         {
-            continueButton.gameObject.SetActive(false);
-        }
-        else
-        {
-            continueButton.gameObject.SetActive(true);
+            if (!SaveManager.instance.HaveSaveData())
+            {
+                continueButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                continueButton.gameObject.SetActive(true);
+            }
         }
     }
 
@@ -29,6 +34,8 @@ public class UI_MainMenu : MonoBehaviour
     public void NewGame()
     {
         SaveManager.instance.DeleteSaveData();
+        sceneName = defaultSeneName;
+
         StartCoroutine(LoadSceenWithFadeEffect(fadeScreen.fadeDuration));
     }
 
@@ -44,4 +51,16 @@ public class UI_MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void LoadData(GameData _data)
+    {
+        if(_data.currentSceneName != string.Empty)
+        {
+            sceneName = _data.currentSceneName;
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        
+    }
 }

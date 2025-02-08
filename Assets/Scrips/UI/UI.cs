@@ -170,10 +170,10 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void RestartScene()
+    public void RestartGame()
     {
         deadMessage.FadeOut();
-        GameManager.instance.Invoke("RestartScene", deadMessage.fadeDuration);
+        GameManager.instance.Invoke("RestartGame", deadMessage.fadeDuration);
     }
 
     public void Speak(Sentence _sentence)
