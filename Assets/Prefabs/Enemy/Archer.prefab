@@ -10155,7 +10155,7 @@ Transform:
   m_GameObject: {fileID: 5310387471894293747}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.543, y: -1.179, z: 0}
+  m_LocalPosition: {x: 0, y: -1.179, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10237,8 +10237,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.2535324, y: -0.07803011}
-  m_Size: {x: 1.7795787, y: 2.306541}
+  m_Offset: {x: 0.28307152, y: -0.07803011}
+  m_Size: {x: 2.02042, y: 2.306541}
   m_Direction: 0
 --- !u!50 &2789933463875563489
 Rigidbody2D:
@@ -10286,11 +10286,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 5744616982342011836}
   attackValidCheckRadius: 0
   isFacingLeft: 0
   facingDir: 1
   entityName: "\u5F13\u7BAD\u624B"
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 10, y: 10}
   knockBackDirMapK: 0.5
   knockBackDuration: 0.07
@@ -10322,11 +10326,10 @@ MonoBehaviour:
   pullBackSpeed: 4
   pullBackJumpCooldown: 2
   maxPullBackJumpForce: {x: 20, y: 10}
-  minPullBackJumpForce: {x: 5, y: 5}
-  pullBackJumpForce: {x: 0, y: 0}
+  minPullBackJumpForce: {x: 10, y: 5}
   pullBackJumpForceCulculateAlpha: 1
   lastPullBackJumpTime: -100
-  edgeCheckOffset: 2
+  pullBackJumpForce: {x: 1.85, y: 10}
   arrowPrefab: {fileID: 8135295240897547842, guid: e9cb5d5ad0ff8d540aee2136af32ba5b, type: 3}
   arrowSpeedReference: 20
   arrowSpeedReference_High: 5
@@ -10475,6 +10478,8 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 5769596048613520503, guid: b263c4ad0fdbdca4d82234882200d407, type: 3}
   maxDropVelocity: {x: 5, y: 5}
   minDropVelocity: {x: 10, y: 10}
+  coinPrefab: {fileID: 0}
+  coinAmount: 0
 --- !u!1 &6544564568083607964
 GameObject:
   m_ObjectHideFlags: 0

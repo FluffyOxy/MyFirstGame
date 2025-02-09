@@ -30,6 +30,10 @@ public class EnemyArcher_PullBackState : EnemyState
         {
             enemy.SetVelocity(enemy.pullBackSpeed * pullBackDir, enemy.rg.velocity.y);
         }
+        else
+        {
+            return;
+        }
 
         if (ShouldStopPullBack())
         {

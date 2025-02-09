@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -24,11 +25,11 @@ public class Enemy_Archer : Enemy
     [SerializeField] public float pullBackJumpCooldown;
     [SerializeField] public Vector2 maxPullBackJumpForce;
     [SerializeField] public Vector2 minPullBackJumpForce;
-    [HideInInspector] public Vector2 pullBackJumpForce;
     [SerializeField] public float pullBackJumpForceCulculateAlpha;
     [HideInInspector] public float lastPullBackJumpTime = -100;
-    [SerializeField] public float edgeCheckOffset = 2f;
 
+    [Header("Test")]
+    [SerializeField] public Vector2 pullBackJumpForce;
 
     [Header("Arrow")]
     [SerializeField] public GameObject arrowPrefab;
@@ -118,6 +119,19 @@ public class Enemy_Archer : Enemy
         base.OnDrawGizmos();
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(playerCheck.transform.position, pullBackRadius);
+
+        //Gizmos.color = Color.red;
+        //float jumpDuration = (2 * pullBackJumpForce.y) / (-Physics2D.gravity.y * rg.gravityScale);
+        //float moveDistance = pullBackJumpForce.x * jumpDuration;
+        //int pullBackDir = GetPullBackDir();
+        //Gizmos.DrawLine(
+        //    groundCheck.transform.position,
+        //    groundCheck.transform.position + new Vector3(pullBackDir * moveDistance, 0)
+        //);
+        //Gizmos.DrawLine(
+        //    groundCheck.transform.position + new Vector3(pullBackDir * moveDistance, 0),
+        //    groundCheck.transform.position + new Vector3(pullBackDir * moveDistance, -10)
+        //);
     }
 
     public int GetPullBackDir()
@@ -142,7 +156,7 @@ public class Enemy_Archer : Enemy
             while (true)
             {
                 float jumpDuration = (2 * pullBackJumpForce.y) / (-Physics2D.gravity.y * rg.gravityScale);
-                float moveDistance = pullBackJumpForce.x * jumpDuration * pullBackDir + edgeCheckOffset;
+                float moveDistance = pullBackJumpForce.x * jumpDuration;
 
                 bool haveGround = 
                     Physics2D.Raycast(
@@ -158,6 +172,10 @@ public class Enemy_Archer : Enemy
                         groundCheckDistance + moveDistance, 
                         whatIsGround
                     );
+
+                Debug.Log("HaveGround: " + haveGround);
+                Debug.Log("HaveWall: " + haveWall);
+                Debug.Log("/////////////////////////////////////");
 
                 if (haveGround && !haveWall)
                 {

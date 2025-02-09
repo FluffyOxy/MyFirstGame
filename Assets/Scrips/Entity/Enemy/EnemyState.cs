@@ -23,6 +23,7 @@ public class EnemyState
     {
         triggerCalled = false;
         enemyBase.anim.SetBool(animBoolName, true);
+        //Debug.Log(GetType().Name);
     }
 
     public virtual void Exit()

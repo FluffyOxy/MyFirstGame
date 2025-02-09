@@ -14,6 +14,7 @@ public class EnemyArcher_PullBackJumpState : EnemyState
     {
         base.Enter();
         enemy.SetVelocity(enemy.GetPullBackDir() * enemy.pullBackJumpForce.x, enemy.pullBackJumpForce.y);
+
     }
 
     public override void Exit()
