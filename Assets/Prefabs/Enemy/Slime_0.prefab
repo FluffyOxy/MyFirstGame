@@ -4969,7 +4969,7 @@ RectTransform:
   m_Father: {fileID: 2400024729470731686}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -0.0000076293945, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10051,11 +10051,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 3424978705003409059}
   attackValidCheckRadius: 1.58
   isFacingLeft: 1
   facingDir: -1
   entityName: "\u53F2\u83B1\u59C6"
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 10, y: 10}
   knockBackDirMapK: 0.5
   knockBackDuration: 0.07
@@ -10071,7 +10075,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerDetectRadius: 3.21
-  toAttackRadius: 0
+  toAttackRadius: 2
   minAttackCooldown: 1
   maxAttackCooldown: 2
   lastAttackTime: 0
@@ -10232,6 +10236,8 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 5769596048613520503, guid: b263c4ad0fdbdca4d82234882200d407, type: 3}
   maxDropVelocity: {x: 5, y: 5}
   minDropVelocity: {x: 10, y: 10}
+  coinPrefab: {fileID: 0}
+  coinAmount: 0
 --- !u!1 &3811252962932349129
 GameObject:
   m_ObjectHideFlags: 0

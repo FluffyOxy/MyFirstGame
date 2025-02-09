@@ -18,6 +18,8 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [Space]
     [SerializeField] private int skillPrice;
 
+    public bool canbeUnlocked = false;
+
     public UI_SkillSlot parentSlot = null;
 
     private void OnValidate()
@@ -81,6 +83,11 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             return true;
         }
 
+        if(!canbeUnlocked)
+        {
+            return false;
+        }
+
         foreach(var skill in shouldBeUnlock)
         {
             if(!skill.isUnlocked)
@@ -107,6 +114,7 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             if(parentSlot != null)
             {
                 parentSlot.gameObject.SetActive(true);
+                parentSlot.isUnlocked = true;
                 parentSlot.GetComponent<Button>().onClick.Invoke();
                 UI.instance.HideSkillLearningBlock();
             }

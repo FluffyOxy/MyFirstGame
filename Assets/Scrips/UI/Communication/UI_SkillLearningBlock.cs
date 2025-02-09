@@ -53,6 +53,7 @@ public class UI_SkillLearningBlock : MonoBehaviour
             GameObject newSkillChoice = Instantiate(randomSkills[i], newSlot.GetComponent<RectTransform>());
             newSkillChoice.GetComponent<RectTransform>().localPosition = Vector3.zero;
             newSkillChoice.GetComponent<UI_SkillSlot>().parentSlot = randomSkills[i].GetComponent<UI_SkillSlot>();
+            newSkillChoice.GetComponent<UI_SkillSlot>().canbeUnlocked = true;
         }
         return true;
     }

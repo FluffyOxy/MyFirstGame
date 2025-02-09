@@ -122,6 +122,9 @@ public class Room : MonoBehaviour
             case RoomType.Branch:
                 newRoom = GetNewRoomByPrefabList(_manager.branchRoomPrefabs);
                 break;
+            case RoomType.BranchExit:
+                newRoom = GetNewRoomByPrefabList(_manager.branchExitRoomPrefabs);
+                break;
             default:
                 Assert.IsTrue(false, "未定义的房间类型： " + roomType); break;
         }

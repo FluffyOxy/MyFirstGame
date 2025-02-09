@@ -14,7 +14,8 @@ public enum RoomType
     Battle,
     Passage,
     Reward,
-    Branch
+    Branch,
+    BranchExit
 }
 
 [Serializable]
@@ -63,6 +64,7 @@ public class Line
 {
     public RoomType lineEndRoomType;
     [HideInInspector] public bool isEndRoom = false;
+    [HideInInspector] public Door lineStartDoor = null;
 
     public int battleIndex { get; private set; }
     public int rewardIndex { get; private set; }
@@ -104,7 +106,7 @@ public class Line
     {
         if(isEndRoom)
         {
-            return RoomType.Exit;
+            return RoomType.BranchExit;
         }
 
         if(_currentRoomType == RoomType.Battle)
@@ -184,6 +186,7 @@ public class MapGenerateManager : MonoBehaviour
     [SerializeField] public List<GameObject> passageRoomPrefabs;
     [SerializeField] public List<GameObject> rewardRoomPrefabs;
     [SerializeField] public List<GameObject> branchRoomPrefabs;
+    [SerializeField] public List<GameObject> branchExitRoomPrefabs;
 
     [Header("Line info")]
     [SerializeField] public Line mainLine = new Line();

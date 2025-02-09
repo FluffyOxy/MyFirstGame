@@ -48,6 +48,7 @@ public class BranchRoom : Room
             {
                 newBranchLine = _currentLine.branches[_currentLine.branchIndex].branchLine.GetClone();
             }
+            newBranchLine.lineStartDoor = door;
 
             newBranchRoom.GenerateRoom(_manager, newBranchLine, 0);
         }

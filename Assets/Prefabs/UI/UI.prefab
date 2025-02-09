@@ -4702,6 +4702,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 600
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &595062116374013746
 GameObject:
@@ -5317,6 +5318,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 1000
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &739288205824644000
 GameObject:
@@ -7531,6 +7533,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 1200
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &1170388552996166270
 GameObject:
@@ -8543,6 +8546,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 200
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &1266285389799906720
 GameObject:
@@ -14767,6 +14771,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 500
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &2492858615827144045
 GameObject:
@@ -19417,6 +19422,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 1000
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &3385583657281105594
 GameObject:
@@ -19847,6 +19853,7 @@ MonoBehaviour:
   - {fileID: 6267050175559919141}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 600
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &3458674835417519531
 GameObject:
@@ -21631,6 +21638,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 500
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &3620663556303022797
 GameObject:
@@ -27671,6 +27679,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 1000
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &4918375578913457471
 GameObject:
@@ -31004,6 +31013,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 200
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &5494049533232047477
 GameObject:
@@ -31791,6 +31801,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 200
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &5649667726135763240
 GameObject:
@@ -32239,6 +32250,7 @@ MonoBehaviour:
   - {fileID: 2494982771048825895}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 1200
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &5765367174335650805
 GameObject:
@@ -35358,6 +35370,7 @@ MonoBehaviour:
   - {fileID: 2983493857725795730}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 500
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &6259627741686560418
 GameObject:
@@ -37475,6 +37488,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 300
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &6558919734784100536
 GameObject:
@@ -38250,6 +38264,7 @@ MonoBehaviour:
   - {fileID: 8235848894509966342}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 600
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &6734853481970723742
 GameObject:
@@ -39876,6 +39891,7 @@ MonoBehaviour:
   - {fileID: 1116714608478214390}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 800
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &6953755860941903560
 GameObject:
@@ -40790,6 +40806,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 1200
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &7095902001112540881
 GameObject:
@@ -41882,6 +41899,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 900
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &7280715051437067174
 GameObject:
@@ -43094,6 +43112,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 400
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &7494903742965772462
 GameObject:
@@ -43999,6 +44018,7 @@ MonoBehaviour:
   - {fileID: 6267050175559919141}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 600
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &7682350493660958593
 GameObject:
@@ -46155,6 +46175,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 800
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &7993400309849158078
 GameObject:
@@ -46928,6 +46949,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 500
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &8106591146903500240
 GameObject:
@@ -47985,6 +48007,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 500
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &8258226244373715383
 GameObject:
@@ -49214,6 +49237,7 @@ MonoBehaviour:
   shouldBeLocked: []
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 800
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &8344852223236363985
 GameObject:
@@ -49760,6 +49784,7 @@ MonoBehaviour:
   - {fileID: 5130021937172556688}
   lockedSkillColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 1}
   skillPrice: 800
+  canbeUnlocked: 0
   parentSlot: {fileID: 0}
 --- !u!1 &8440901198400697077
 GameObject:

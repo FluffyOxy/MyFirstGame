@@ -10051,11 +10051,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 3424978705003409059}
   attackValidCheckRadius: 0.68
   isFacingLeft: 1
   facingDir: -1
   entityName: "\u8FF7\u4F60\u53F2\u83B1\u59C6"
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 10, y: 10}
   knockBackDirMapK: 0.5
   knockBackDuration: 0.07
@@ -10071,7 +10075,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   playerDetectRadius: 3.65
-  toAttackRadius: 0
+  toAttackRadius: 0.9
   minAttackCooldown: 1
   maxAttackCooldown: 2
   lastAttackTime: 0
@@ -10232,6 +10236,8 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 5769596048613520503, guid: b263c4ad0fdbdca4d82234882200d407, type: 3}
   maxDropVelocity: {x: 5, y: 5}
   minDropVelocity: {x: 10, y: 10}
+  coinPrefab: {fileID: 0}
+  coinAmount: 0
 --- !u!1 &3811252962932349129
 GameObject:
   m_ObjectHideFlags: 0
