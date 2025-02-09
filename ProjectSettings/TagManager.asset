@@ -35,8 +35,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - Gamemap
+  - Minimap
   m_SortingLayers:
   - name: Default
     uniqueID: 0

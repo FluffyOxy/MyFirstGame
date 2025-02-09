@@ -7,7 +7,7 @@ public class MainSceneCameraManager : MonoBehaviour
 {
     public static MainSceneCameraManager instance;
 
-    public CinemachineVirtualCamera cam;
+    [HideInInspector] public CinemachineVirtualCamera cam;
 
     private void Awake()
     {

@@ -333,7 +333,7 @@ TextureImporter:
         width: 116
         height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 18, y: 18, z: 18, w: 18}
       outline: []
       physicsShape: []
@@ -341,6 +341,27 @@ TextureImporter:
       bones: []
       spriteID: ec08bbba22d60ce44bace7eb61f3a45f
       internalID: -972939994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UIartdeco_PIPO_pack2_white_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 547
+        width: 162
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 37, y: 37, z: 37, w: 37}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adea5060f7af4614689b3dab8464b89b
+      internalID: 2094791051
       vertices: []
       indices: 
       edges: []
@@ -358,6 +379,7 @@ TextureImporter:
     nameFileIdTable:
       UIartdeco_PIPO_pack2_white_0: 1968567152
       UIartdeco_PIPO_pack2_white_1: 2145175254
+      UIartdeco_PIPO_pack2_white_10: 2094791051
       UIartdeco_PIPO_pack2_white_2: 1130148863
       UIartdeco_PIPO_pack2_white_3: -250524588
       UIartdeco_PIPO_pack2_white_4: 713001298
