@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
+    public float HP;
     public int currency;
     public int coin;
     public bool isNewGame;
@@ -26,9 +27,10 @@ public class GameData
 
     public string currentSceneName;
 
-    public GameData() 
-    { 
-        this.currency = 0;
+    public GameData()
+    {
+        HP = -1;
+        currency = 0;
         isNewGame = true;
         items = new SerializableDictionary<string, int>();
         equipment = new SerializableDictionary<string, int>();

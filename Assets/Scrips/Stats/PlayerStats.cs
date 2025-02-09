@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class PlayerStats : CharacterStats
+public class PlayerStats : CharacterStats, ISaveManager
 {
     private Player player;
 
@@ -153,5 +153,22 @@ public class PlayerStats : CharacterStats
             return 0;
         }
         return _target.cs.TakeDamage(damageData, _cloneTransform);
+    }
+
+    public void LoadData(GameData _data)
+    {
+        if(_data.HP < 0)
+        {
+            SetCurrentHealth(getMaxHealthValue());
+        }
+        else
+        {
+            SetCurrentHealth(_data.HP);
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.HP = getCurrentHealthValue();
     }
 }

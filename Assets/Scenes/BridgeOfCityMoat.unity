@@ -15069,6 +15069,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1294898890}
     - target: {fileID: 4494448611205839163, guid: a62d2efb50180344ba6ff5776932a95c, type: 3}
+      propertyPath: isShowBoss
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4494448611205839163, guid: a62d2efb50180344ba6ff5776932a95c, type: 3}
       propertyPath: bossInitTransform
       value: 
       objectReference: {fileID: 1282552224}

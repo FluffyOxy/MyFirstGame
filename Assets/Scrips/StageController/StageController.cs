@@ -25,7 +25,6 @@ public class StageController : MonoBehaviour
     [SerializeField] private bool isShowBoss;
 
     [SerializeField] private Slider bossHealth;
-    
     void Start()
     {
         DisableAirWalls();

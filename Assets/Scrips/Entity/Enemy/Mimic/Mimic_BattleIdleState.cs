@@ -30,6 +30,7 @@ public class Mimic_BattleIdleState : Mimic_StateBase
     {
         base.Update();
 
+        enemy.FaceToPlayer();
         moveDir = enemy.GetPlayerDir();
 
         if (CanCatchPlayer() && !IsTooCloseToPlayer())

@@ -108,19 +108,24 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
         if(PlayerManager.instance.TrySpendMoney(skillPrice))
         {
-            isUnlocked = true;
-            skillIcon = GetComponent<Image>();
-            skillIcon.color = Color.white;
-            if(parentSlot != null)
+            Unlock();
+            if (parentSlot != null)
             {
                 parentSlot.gameObject.SetActive(true);
-                parentSlot.isUnlocked = true;
+                parentSlot.Unlock();
                 parentSlot.GetComponent<Button>().onClick.Invoke();
                 UI.instance.HideSkillLearningBlock();
             }
             return true;
         }
         return false;
+    }
+
+    public void Unlock()
+    {
+        isUnlocked = true;
+        skillIcon = GetComponent<Image>();
+        skillIcon.color = Color.white;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -149,6 +154,7 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             if(GetComponent<Button>() != null)
             {
+                Unlock();
                 GetComponent<Button>().onClick.Invoke();
             }
             else
