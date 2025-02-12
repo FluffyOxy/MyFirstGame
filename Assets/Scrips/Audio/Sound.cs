@@ -19,6 +19,8 @@ public class Sound : MonoBehaviour
 
     public void Play(Transform _soundSourceTransform)
     { 
+        soundDefalut.SetDefault(ref sound);
+
         if (_soundSourceTransform != null)
         {
             Transform player = PlayerManager.instance.player.transform;
@@ -27,6 +29,7 @@ public class Sound : MonoBehaviour
                 return;
             }
         }
+
         if (decreaseCoroutine != null)
         {
             StopCoroutine(decreaseCoroutine);
@@ -42,6 +45,19 @@ public class Sound : MonoBehaviour
                 sound.pitch + -SceneAudioManager.instance.pitchRandomRange
             );
         }
+
+        if (_soundSourceTransform != null)
+        {
+            Transform player = PlayerManager.instance.player.transform;
+            float sourceDistance = Vector2.Distance(_soundSourceTransform.position, player.position);
+            if (sourceDistance > SceneAudioManager.instance.minAudibleDistance && sourceDistance < SceneAudioManager.instance.maxAudibleDistance)
+            {
+                sound.volume *= 
+                    (SceneAudioManager.instance.maxAudibleDistance - sourceDistance) / 
+                    (SceneAudioManager.instance.maxAudibleDistance - SceneAudioManager.instance.minAudibleDistance);
+            }
+        }
+
         sound.Play();
     }
 
@@ -84,5 +100,10 @@ public class Sound : MonoBehaviour
     public bool IsPlaying()
     {
         return sound.isPlaying;
+    }
+
+    public void SetVolume(float _volume)
+    {
+        sound.volume = soundDefalut.volume * _volume;
     }
 }

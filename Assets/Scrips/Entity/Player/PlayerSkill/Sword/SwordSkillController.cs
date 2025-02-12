@@ -251,6 +251,8 @@ public class SwordSkillController : MonoBehaviour
         rg.constraints = RigidbodyConstraints2D.FreezeAll;
         swordHitFx.Play();
 
+        SceneAudioManager.instance.playerSFX.swordGround.Play(transform);
+
         if (!isBouncing)
         {
             anim.SetBool("Rotation", false);

@@ -20,6 +20,8 @@ public class PlayerAimSwordState : PlayerState
         base.Exit();
         SkillManager.intance.swordThrow.SetDotsActive(false);
         player.StartCoroutine("BusyFor", player.unmovebleDurationAfterThrowSword);
+
+        SceneAudioManager.instance.playerSFX.swordThrow.Play(player.transform);
     }
 
     public override void Update()

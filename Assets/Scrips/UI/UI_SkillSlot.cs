@@ -116,6 +116,8 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 parentSlot.GetComponent<Button>().onClick.Invoke();
                 UI.instance.HideSkillLearningBlock();
             }
+
+            SceneAudioManager.instance.uiSFX.upgrade.Play(null);
             return true;
         }
         return false;

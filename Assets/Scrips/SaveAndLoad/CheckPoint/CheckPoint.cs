@@ -30,6 +30,16 @@ public class CheckPoint : MonoBehaviour
     public void Check()
     {
         anim.SetBool("isCheck", true);
+
+        if (SceneAudioManager.instance != null)
+        {
+            if (!isCheck)
+            {
+                SceneAudioManager.instance.itemSFX.torchLighting.Play(transform);
+                GetComponentInChildren<AreaSound>().isActivate = true;
+            }
+        }
+
         isCheck = true;
     }
 }

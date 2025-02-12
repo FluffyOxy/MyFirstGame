@@ -15147,11 +15147,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 7335400897994170589}
   attackValidCheckRadius: 1.18
   isFacingLeft: 0
   facingDir: 1
   entityName: "\u9AB7\u9AC5"
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 10, y: 10}
   knockBackDirMapK: 0.5
   knockBackDuration: 0.07
@@ -15248,7 +15252,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: []
   maxHealth:
-    baseValue: 1000
+    baseValue: 100
     modifiers: []
   armor:
     baseValue: 0
@@ -15323,6 +15327,8 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 5769596048613520503, guid: b263c4ad0fdbdca4d82234882200d407, type: 3}
   maxDropVelocity: {x: 5, y: 5}
   minDropVelocity: {x: 10, y: 10}
+  coinPrefab: {fileID: 0}
+  coinAmount: 0
 --- !u!1 &7179523335780064708
 GameObject:
   m_ObjectHideFlags: 0

@@ -53,6 +53,7 @@ public class UI_CraftList : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     {
         SetupCraftList();
         GetComponent<Image>().color = pressColor;
+        SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
 
     public void OnPointerUp(PointerEventData eventData)

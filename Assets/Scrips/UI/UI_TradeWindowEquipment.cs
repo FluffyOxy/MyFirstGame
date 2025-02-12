@@ -29,6 +29,7 @@ public class UI_TradeWindowEquipment : MonoBehaviour
             {
                 Inventory.instance.TryAddItem(equipment);
                 GetComponentInParent<UI_TradeBlock>().TradeSuccess();
+                SceneAudioManager.instance.uiSFX.buy.Play(null);
             }
             else
             {

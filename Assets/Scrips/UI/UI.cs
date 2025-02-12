@@ -56,11 +56,26 @@ public class UI : MonoBehaviour
         ActivateAllUI();
     }
 
+    #region Test
+    [Header("Test")]
+    [SerializeField] private RectTransform skillParentSlot;
+    [SerializeField] private bool isSkillTesting;
+    #endregion
+
     void Start()
     {
         SwitchTo(inGame);
         itemToolTip.HideToolTip();
         statsDescriptionToolTip.HideToolTip();
+
+        if(isSkillTesting)
+        {
+            UI_SkillSlot[] skillsTemp = skillParentSlot.GetComponentsInChildren<UI_SkillSlot>();
+            foreach (var skill in skillsTemp)
+            {
+                skill.canbeUnlocked = true;
+            }
+        }
     }
 
     void Update()
@@ -156,6 +171,8 @@ public class UI : MonoBehaviour
                 GameManager.instance.SetPauseGame(false);
             }
         }
+
+        SceneAudioManager.instance.uiSFX?.buttonClick.Play(null);
     }
 
     private void SwitchWithKeyTo(GameObject _menu)
@@ -198,6 +215,8 @@ public class UI : MonoBehaviour
         {
             skillLearningBlock.gameObject.SetActive(true);
             PlayerManager.instance.player.SetCanInput(false);
+
+            SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
             return true;
         }
         return false;
@@ -208,6 +227,8 @@ public class UI : MonoBehaviour
         skillLearningBlock.skillChooseFinish();
         skillLearningBlock.gameObject.SetActive(false);
         PlayerManager.instance.player.SetCanInput(true);
+
+        SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
 
     public bool IsSkillLearningBlockHide()
@@ -220,6 +241,8 @@ public class UI : MonoBehaviour
         tradeBlock.gameObject.SetActive(true);
         PlayerManager.instance.player.SetCanInput(false);
         tradeBlock.Setup(_products, _successDialog, _noCoinDialogs, _fullBagDialogs);
+
+        SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
 
     public void HideTradeBlock()

@@ -44,6 +44,7 @@ public class UI_SkillLearningBlock : MonoBehaviour
 
         if(randomSkills.Count <= 0)
         {
+            skills.Clear();
             return false;
         }
 
@@ -55,6 +56,9 @@ public class UI_SkillLearningBlock : MonoBehaviour
             newSkillChoice.GetComponent<UI_SkillSlot>().parentSlot = randomSkills[i].GetComponent<UI_SkillSlot>();
             newSkillChoice.GetComponent<UI_SkillSlot>().canbeUnlocked = true;
         }
+
+        skills.Clear();
+
         return true;
     }
 
@@ -63,7 +67,10 @@ public class UI_SkillLearningBlock : MonoBehaviour
         RectTransform[] choices = choiceSlotsParent.GetComponentsInChildren<RectTransform>();
         foreach (var choice in choices)
         {
-            Destroy(choice.gameObject);
+            if(choice != choiceSlotsParent)
+            {
+                Destroy(choice.gameObject);
+            }
         }
     }
 

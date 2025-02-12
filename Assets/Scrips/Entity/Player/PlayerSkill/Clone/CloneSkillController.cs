@@ -47,7 +47,9 @@ public class CloneSkillController : MonoBehaviour
     {
         if (_canAttack)
         {
-            anim.SetInteger("AttackNumber", Random.Range(1, 3));
+            int randomAttackIndex = Random.Range(1, 4);
+            anim.SetInteger("AttackNumber", randomAttackIndex);
+            SceneAudioManager.instance.playerSFX.Attack(randomAttackIndex - 1, transform);
         }
         cloneTimer = _cloneDuration;
         transform.position = _newTransform.position + _offset;
@@ -57,6 +59,8 @@ public class CloneSkillController : MonoBehaviour
         duplicateSpawnOffset = _duplicateSpawnOffset;
         cloneDamageRate = _cloneDamageRate;
         FaceClosestTarget();
+
+
     }
 
     public void AnimFinishTrigger()

@@ -173,9 +173,9 @@ public class Enemy_Archer : Enemy
                         whatIsGround
                     );
 
-                Debug.Log("HaveGround: " + haveGround);
-                Debug.Log("HaveWall: " + haveWall);
-                Debug.Log("/////////////////////////////////////");
+                //Debug.Log("HaveGround: " + haveGround);
+                //Debug.Log("HaveWall: " + haveWall);
+                //Debug.Log("/////////////////////////////////////");
 
                 if (haveGround && !haveWall)
                 {

@@ -23109,6 +23109,8 @@ MonoBehaviour:
   tradeWindowEquipment: {fileID: 2134056405135304251}
   tradeWindowMaterial: {fileID: 7953643401045450195}
   isSwitching: 0
+  skillParentSlot: {fileID: 0}
+  isSkillTesting: 0
 --- !u!1 &4012445412872052387
 GameObject:
   m_ObjectHideFlags: 0

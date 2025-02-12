@@ -4,15 +4,18 @@ using UnityEngine;
 
 public enum EnvSoundType
 {
-    Wind
+    Wind,
+    Torch
 }
 public class EnvSoundManager : SoundManagerBase
 {
     #region EnvSounds
     [Header("Environment Sounds")]
     [SerializeField] private AudioSource wind_SS;
+    [SerializeField] private AudioSource torch_SS;
 
     private Sound wind;
+    private Sound torch;
     #endregion
 
     protected override void Awake()
@@ -23,6 +26,7 @@ public class EnvSoundManager : SoundManagerBase
     private void Start()
     {
         wind = GetSound(wind_SS, false);
+        torch = GetSound(torch_SS, false);
     }
 
     public Sound GetEnvSoundByType(EnvSoundType _type)
@@ -30,6 +34,7 @@ public class EnvSoundManager : SoundManagerBase
         switch (_type)
         {
             case EnvSoundType.Wind: return wind;
+            case EnvSoundType.Torch: return torch;
             default: return null;
         }
     }

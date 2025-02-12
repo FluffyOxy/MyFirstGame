@@ -62,11 +62,13 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         {
             Inventory.instance.EquipItem(item.data);
             ui.itemToolTip.HideToolTip();
+            SceneAudioManager.instance.uiSFX.equip.Play(null);
         }
         else if(eventData.button == PointerEventData.InputButton.Right)
         {
             Inventory.instance.DropItem(item.data);
             ui.itemToolTip.HideToolTip();
+            SceneAudioManager.instance.uiSFX.discardInventory.Play(null);
         }
     }
     private bool canEquip()

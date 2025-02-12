@@ -55,8 +55,8 @@ public class Entity : MonoBehaviour
 
     public System.Action onFlipped;
 
-    private bool canBeDamage_current;
-    private bool canBeDamage;
+    public bool canBeDamage_current;
+    public bool canBeDamage;
 
     protected virtual void Awake()
     {
@@ -65,6 +65,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Start()
     {
+        canBeDamage_current = true;
         canBeDamage = true;
     }
 

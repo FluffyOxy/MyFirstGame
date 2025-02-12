@@ -58,23 +58,38 @@ public class PlayerStats : CharacterStats, ISaveManager
 
     protected override bool TryAvoidAttack(in DamageData _damageData)
     {
-
+        bool canAvoid;
         if(SkillManager.intance.dodge.CanDodge())
         {
             SkillManager.intance.dodge.SetAttackSource(_damageData._damageSource as Enemy);
             if(SkillManager.intance.dodge.TryUseSkill())
             {
-                return true;
+                canAvoid = true;
             }
-            return false;
+            canAvoid = false;
         }
         else
         {
-            return base.TryAvoidAttack(_damageData);
+            canAvoid = base.TryAvoidAttack(_damageData);
         }
+
+        if(canAvoid)
+        {
+            SceneAudioManager.instance.playerSFX.evasionSuccess.Play(null);
+        }
+
+        return canAvoid;
     }
 
-
+    public override float DoDamageTo_PrimaryAttack(Entity _target)
+    {
+        float realDamage = base.DoDamageTo_PrimaryAttack(_target);
+        if(realDamage > 0)
+        {
+            SceneAudioManager.instance.playerSFX.swordHit.Play(null);
+        }
+        return realDamage;
+    }
     public float DoDamageTo_Sword(Entity _target, float swordDamageRate, Transform _swordTransform)
     {
         DamageData damageData = new DamageData();
@@ -94,7 +109,10 @@ public class PlayerStats : CharacterStats, ISaveManager
         {
             return 0;
         }
-        return _target.GetStats().TakeDamage(damageData, _swordTransform);
+
+        float realDamage = _target.GetStats().TakeDamage(damageData, _swordTransform);
+
+        return realDamage;
     }
     public float DoDamageTo_CounterAttack(Entity _target)
     {

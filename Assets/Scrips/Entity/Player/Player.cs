@@ -76,6 +76,7 @@ public class Player : Entity
     #region Component
     public SkillManager skill { get; private set; }
     public GameObject swordThrown;
+    public PlayerEnemyCheck playerEnemyCheck { get; private set; }
     #endregion
 
     [Header("Health Bar")]
@@ -109,6 +110,8 @@ public class Player : Entity
         deadState = new PlayerDeadState(stateMachine, this, "Dead");
 
         isHealthBarActive = healthBar.activeSelf;
+
+        playerEnemyCheck = GetComponent<PlayerEnemyCheck>();
     }
 
     override protected void Start()

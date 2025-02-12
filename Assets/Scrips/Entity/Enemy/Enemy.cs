@@ -149,6 +149,10 @@ public class Enemy : Entity
         RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer);
         if(hit && !hit.collider.GetComponent<Player>().isDead && CanSeePlayer())
         {
+            if(hit)
+            {
+                PlayerManager.instance.player.playerEnemyCheck.SetIsBattle(true);
+            }
             return hit;
         }
         else
@@ -160,7 +164,14 @@ public class Enemy : Entity
     public bool IsPlayerDetected()
     {
         Transform player = PlayerManager.instance.player.transform;
-        return !PlayerManager.instance.player.isDead && Vector2.Distance(player.position, transform.position) < playerDetectRadius && CanSeePlayer();
+        bool isDetect =
+            !PlayerManager.instance.player.isDead && 
+            Vector2.Distance(player.position, transform.position) < playerDetectRadius && CanSeePlayer();
+        if(isDetect)
+        {
+            PlayerManager.instance.player.playerEnemyCheck.SetIsBattle(true);
+        }
+        return isDetect;
     }
 
     override public void OnDrawGizmos()

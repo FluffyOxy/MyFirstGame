@@ -34,6 +34,7 @@ public class UI_MaterialDetail : MonoBehaviour
             {
                 Inventory.instance.TryAddItem(itemData);
                 GetComponentInParent<UI_TradeBlock>().TradeSuccess();
+                SceneAudioManager.instance.uiSFX.buy.Play(null);
             }
             else
             {

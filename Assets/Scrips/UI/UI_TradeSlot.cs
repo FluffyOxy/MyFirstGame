@@ -27,6 +27,7 @@ public class UI_TradeSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             UI.instance.tradeWindowMaterial.Setup(itemData, coinAmount);
         }
         GetComponent<Image>().color = pressColor;
+        SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
 
     public void OnPointerUp(PointerEventData eventData)

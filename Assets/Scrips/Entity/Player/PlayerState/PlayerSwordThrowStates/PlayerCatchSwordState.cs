@@ -22,6 +22,8 @@ public class PlayerCatchSwordState : PlayerState
         player.SetVelocityWithoutFlip(feedback * -player.facingDir, rg.velocity.y);
         (player.fx as PlayerFX).SwordCatchFx();
         player.fx.ScreenShake(player.fx.shakePower_sword);
+
+        SceneAudioManager.instance.playerSFX.swordCatch.Play(null);
     }
 
     public override void Exit()

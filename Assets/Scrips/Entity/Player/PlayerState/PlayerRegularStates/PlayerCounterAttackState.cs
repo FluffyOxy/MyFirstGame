@@ -12,6 +12,8 @@ public class PlayerCounterAttackState : PlayerState
     {
         base.Enter();
         timer = player.counterAttackDuration;
+
+        SceneAudioManager.instance.playerSFX.counterAttack.Play(null);
     }
 
     public override void Exit()

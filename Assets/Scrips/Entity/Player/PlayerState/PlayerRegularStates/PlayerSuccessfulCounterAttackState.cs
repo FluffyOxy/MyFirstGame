@@ -13,6 +13,8 @@ public class PlayerSuccessfulCounterAttackState : PlayerState
         base.Enter();
         SkillManager.intance.counterAttack.TryCreateClone_CounterAttack();
         SkillManager.intance.counterAttack.TryRecoverHealth_CounterAttack();
+
+        SceneAudioManager.instance.playerSFX.counterAttackSuccess.Play(null);
     }
 
     public override void Exit()

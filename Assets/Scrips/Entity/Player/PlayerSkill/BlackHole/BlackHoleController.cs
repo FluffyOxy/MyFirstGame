@@ -42,6 +42,7 @@ public class BlackHoleController : MonoBehaviour
         smallDelayAfterAbilityFinish = _smallDelayAfterAbilityFinish;
         targetTimer = _targetWindow;
         isTargetTimerValid = true;
+        SceneAudioManager.instance.playerSFX.blackHoleLoop.Play(null);
     }
 
     public void SetUpHotKey(GameObject _hotKeyPrefab, List<KeyCode> _hotKeyCodeList, float _hotKeyLabelYOffset)
@@ -115,14 +116,19 @@ public class BlackHoleController : MonoBehaviour
 
         if(!isBeginAttack && canGrow)
         {
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(maxSize, maxSize), growSpeed * Time.deltaTime);
+            transform.localScale = 
+                Vector2.Lerp(transform.localScale, new Vector2(maxSize, maxSize), growSpeed * Time.deltaTime);
+            SceneAudioManager.instance.playerSFX.blackHoleLoop.SetVolume(transform.localScale.x / maxSize);
         }
 
         if(!isBeginAttack && !canGrow)
         {
-            transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0, 0), shrinkSpeed * Time.deltaTime);
-            if(transform.localScale.x < 0.1)
+            transform.localScale = 
+                Vector2.Lerp(transform.localScale, new Vector2(0, 0), shrinkSpeed * Time.deltaTime);
+            SceneAudioManager.instance.playerSFX.blackHoleLoop.SetVolume(transform.localScale.x / maxSize);
+            if (transform.localScale.x < 0.1)
             {
+                SceneAudioManager.instance.playerSFX.blackHoleLoop.Stop();
                 Destroy(gameObject);
             }
         }

@@ -12,6 +12,12 @@ public class AudioSourceDefault
         pitch = _source.pitch;
         volume = _source.volume;
     }
+
+    public void SetDefault(ref AudioSource _target)
+    {
+        _target.volume = volume;
+        _target.pitch = pitch;
+    }
 }
 
 public class SceneAudioManager : MonoBehaviour
@@ -19,6 +25,7 @@ public class SceneAudioManager : MonoBehaviour
     public static SceneAudioManager instance;
     [SerializeField] public GameObject soundPrfab;
     [SerializeField] public float maxAudibleDistance;
+    [SerializeField] public float minAudibleDistance;
     [SerializeField] public float pitchRandomRange;
 
     #region Sounds
@@ -26,6 +33,8 @@ public class SceneAudioManager : MonoBehaviour
     public EnvSoundManager env { get; private set; }
     public PlayerSFX playerSFX { get; private set; }
     public SkeletonSFX skeletonSFX { get; private set; }
+    public ItemSFX itemSFX { get; private set; }
+    public UISFX uiSFX { get; private set; }
     #endregion
 
     private void Awake()
@@ -46,5 +55,7 @@ public class SceneAudioManager : MonoBehaviour
         env = GetComponent<EnvSoundManager>();
         playerSFX = GetComponent<PlayerSFX>();
         skeletonSFX = GetComponent<SkeletonSFX>();
+        itemSFX = GetComponent<ItemSFX>();
+        uiSFX = GetComponent<UISFX>();
     }
 }

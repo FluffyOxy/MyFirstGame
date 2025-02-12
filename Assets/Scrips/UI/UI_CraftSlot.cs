@@ -30,6 +30,7 @@ public class UI_CraftSlot : UI_ItemSlot, IPointerUpHandler
     {
         UI.instance.craftWindow.Setup(item.data as ItemData_Equipment);
         GetComponent<Image>().color = pressColor;
+        SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
     public void OnPointerUp(PointerEventData eventData)
     {

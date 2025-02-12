@@ -82,6 +82,8 @@ public class CrystalSkill : Skill
                     Vector2 playerPos = player.transform.position;
                     player.transform.position = currentCrystal.transform.position;
                     currentCrystal.transform.position = playerPos;
+
+                    SceneAudioManager.instance.playerSFX.crystalFlashBack.Play(null);
                 }
                 currentCrystal.GetComponent<CrystalController>().FinishCrystal();
             }

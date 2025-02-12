@@ -45,10 +45,7 @@ public class UI_CraftWindow : MonoBehaviour
     }
     public void Craft()
     {
-        if (this.equipment == null)
-        {
-            return;
-        }
+        SceneAudioManager.instance.uiSFX.craft.Play(null);
 
         if (equipment != null)
         {

@@ -370,7 +370,10 @@ public class CharacterStats : MonoBehaviour
         {
             return 0;
         }
-        return _target.GetStats().TakeDamage(damageData, transform);
+
+        float realDamage = _target.GetStats().TakeDamage(damageData, transform);
+        
+        return realDamage;
     }
     protected virtual void CalculatePhysicalDamage(DamageData _damageData)
     {
@@ -440,11 +443,11 @@ public class CharacterStats : MonoBehaviour
 
     public virtual float TakeDamage(in DamageData _damageData, Transform _damageDirection)
     {
-        if(!entity.CanBeDamage())
+        if (!entity.CanBeDamage())
         {
             return 0f;
         }
-
+       
         float finalPhysicalDamage = CalculatePhysicalDamageTake(_damageData);
         float finalMagicalDamage = CalculateMagicalDamageTake(_damageData);
 

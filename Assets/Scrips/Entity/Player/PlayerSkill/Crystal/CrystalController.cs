@@ -37,6 +37,11 @@ public class CrystalController : MonoBehaviour
 
         anim = GetComponent<Animator>();
         cd = GetComponent<CircleCollider2D>();
+
+        if(!canMove)
+        {
+            SceneAudioManager.instance.playerSFX.crystalPlace.Play(null);
+        }
     }
 
     public void SetUpTestInfo(float _smallDistance_CrystalExpolde, float _smallDistance_CrystalCreateClone)
@@ -90,6 +95,8 @@ public class CrystalController : MonoBehaviour
             canGrow = true;
             anim.SetBool("Explode", true);
             canMove = false;
+
+            SceneAudioManager.instance.playerSFX.crystalExplode.Play(transform);
         }
         else
         {
