@@ -11,6 +11,7 @@ public class PlayerEnemyCheck : MonoBehaviour
     private Coroutine exitBattleStateRoutine = null;
 
     [Header("Test")]
+    public bool isInBossFight = false;
     [SerializeField] private bool isBattle = false;
     [SerializeField] private float bgmVolume = 1;
 
@@ -53,7 +54,7 @@ public class PlayerEnemyCheck : MonoBehaviour
     {
         if (isBattle && exitBattleStateRoutine == null)
         {
-            if(!IsEnemyNearBy())
+            if(!IsEnemyNearBy() && !isInBossFight)
             {
                 ExitBattleStateAfterDelay();
             }

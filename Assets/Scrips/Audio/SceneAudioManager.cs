@@ -32,9 +32,15 @@ public class SceneAudioManager : MonoBehaviour
     public BGMManager bgm { get; private set; }
     public EnvSoundManager env { get; private set; }
     public PlayerSFX playerSFX { get; private set; }
-    public SkeletonSFX skeletonSFX { get; private set; }
     public ItemSFX itemSFX { get; private set; }
     public UISFX uiSFX { get; private set; }
+    public SkeletonSFX skeletonSFX { get; private set; }
+    public ArcherSFX archerSFX { get; private set; }
+    public BombermanSFX bombermanSFX { get; private set; }
+    public MimicSFX mimicSFX { get; private set; }
+    public NecromancerSFX necromancerSFX { get; private set; }
+    public SlimeSFX slimeSFX { get; private set; }
+    public DeathBrinerSFX deathBrinerSFX { get; private set; }
     #endregion
 
     private void Awake()
@@ -54,8 +60,14 @@ public class SceneAudioManager : MonoBehaviour
         bgm = GetComponent<BGMManager>();
         env = GetComponent<EnvSoundManager>();
         playerSFX = GetComponent<PlayerSFX>();
-        skeletonSFX = GetComponent<SkeletonSFX>();
         itemSFX = GetComponent<ItemSFX>();
         uiSFX = GetComponent<UISFX>();
+        skeletonSFX = GetComponent<SkeletonSFX>();
+        archerSFX = GetComponent<ArcherSFX>();
+        bombermanSFX = GetComponent<BombermanSFX>();
+        mimicSFX = GetComponent<MimicSFX>();
+        necromancerSFX = GetComponent<NecromancerSFX>();
+        slimeSFX = GetComponent<SlimeSFX>();
+        deathBrinerSFX = GetComponent<DeathBrinerSFX>();
     }
 }

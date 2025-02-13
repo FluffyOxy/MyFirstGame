@@ -5415,7 +5415,7 @@ Transform:
   m_GameObject: {fileID: 3994694600825234655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -28.119999, y: -0.78, z: 0}
+  m_LocalPosition: {x: 0.17, y: 0.77, z: 0}
   m_LocalScale: {x: 0.84000003, y: 0.84000003, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15443,16 +15443,22 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 4263728164493425660}
   attackValidCheckRadius: 0
   isFacingLeft: 0
   facingDir: 1
   entityName: "\u6B7B\u7075\u6CD5\u5E08"
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 0, y: 0}
   knockBackDirMapK: 0.5
   knockBackDuration: 0.07
   isKnocked: 0
   selfDestroyAfterDead: 10
+  canBeDamage_current: 0
+  canBeDamage: 0
   difficulty: 15
   moveSpeed: 1
   maxIdleDuration: 4
@@ -15627,3 +15633,5 @@ MonoBehaviour:
   itemObjectPrefab: {fileID: 5769596048613520503, guid: b263c4ad0fdbdca4d82234882200d407, type: 3}
   maxDropVelocity: {x: 5, y: 5}
   minDropVelocity: {x: 10, y: 10}
+  coinPrefab: {fileID: 0}
+  coinAmount: 0

@@ -189,6 +189,7 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
             {
                 stateMachine.changeState(deadState);
                 base.Die();
+                PlayerManager.instance.player.enemyCheck.isInBossFight = false;
             }
         }
         else
@@ -297,6 +298,8 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
             Instantiate(deathHandPrefab, PlayerManager.instance.player.transform.position, Quaternion.identity)
             .GetComponent<DeathHandController_Enemy>();
         newDeathHand.Setup(this);
+
+        SceneAudioManager.instance.deathBrinerSFX.remote.Play(transform);
     }
 
     public bool IsMoveSafe(int _moveDir, float _moveDistance)
@@ -318,5 +321,23 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
         return haveGround && !haveWall;
     }
 
+    public override RaycastHit2D IsDetectPlayerFront()
+    {
+        RaycastHit2D res = base.IsDetectPlayerFront();
+        if(res)
+        {
+            PlayerManager.instance.player.enemyCheck.isInBossFight = true;
+        }
+        return res;
+    }
 
+    public override bool IsPlayerDetected()
+    {
+        bool res = base.IsPlayerDetected();
+        if (res)
+        {
+            PlayerManager.instance.player.enemyCheck.isInBossFight = true;
+        }
+        return res;
+    }
 }

@@ -18,6 +18,8 @@ public class EnemySlime_IdleState : EnemySlime_GroundedState
     public override void Exit()
     {
         base.Exit();
+
+        SceneAudioManager.instance.slimeSFX.roar.Play(enemy.transform);
     }
 
     public override void Update()

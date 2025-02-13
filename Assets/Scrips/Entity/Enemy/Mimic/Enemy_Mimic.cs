@@ -105,14 +105,19 @@ public class Enemy_Mimic : Enemy, IPlayerInteractive
     {
         GetComponentInChildren<PopUpTextComponent>()?.FinishPopUpText();
         Destroy(GetComponentInChildren<PopUpTextComponent>());
+
         if(isChest)
         {
             stateMachine.changeState(openState);
+
+            SceneAudioManager.instance.mimicSFX.open.Play(transform);
         }
         else
         {
             stateMachine.changeState(battleIdleState);
             enemyUI.SetActive(true);
+
+            SceneAudioManager.instance.mimicSFX.roar.Play(transform);
         }
     }
 }

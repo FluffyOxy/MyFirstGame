@@ -15,5 +15,6 @@ public class EnemyArcher_Animation : EnemyAnimation
             enemy.Flip();
         }
         GetComponentInParent<Enemy_Archer>().ShootAnArrowToPlayer();
+        SceneAudioManager.instance.archerSFX.attack.Play(enemy.transform);
     }
 }

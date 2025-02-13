@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Mimic_IdleState : Mimic_StateBase
 {
@@ -18,6 +19,8 @@ public class Mimic_IdleState : Mimic_StateBase
     public override void Exit()
     {
         base.Exit();
+
+        SceneAudioManager.instance.mimicSFX.roar.Play(enemy.transform);
     }
 
     public override void Update()

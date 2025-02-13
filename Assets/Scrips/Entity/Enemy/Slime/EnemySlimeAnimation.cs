@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class EnemySlimeAnimation : EnemyAnimation
 {
-    
+    protected override void AttackTrigger()
+    {
+        base.AttackTrigger();
+
+        SceneAudioManager.instance.slimeSFX.attack.Play(enemy.transform);
+    }
 }

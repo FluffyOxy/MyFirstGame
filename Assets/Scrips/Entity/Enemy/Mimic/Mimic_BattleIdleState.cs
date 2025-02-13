@@ -17,8 +17,6 @@ public class Mimic_BattleIdleState : Mimic_StateBase
         player = PlayerManager.instance.player.transform;
         timer = enemy.battleDuration;
         enemy.SetVelocity(0, enemy.rg.velocity.y);
-
-        Debug.Log("BattleIdle");
     }
 
     public override void Exit()

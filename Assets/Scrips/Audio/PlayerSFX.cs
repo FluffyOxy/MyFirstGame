@@ -24,6 +24,7 @@ public class PlayerSFX : SoundManagerBase
     [SerializeField] private AudioSource crystalFlashBack_SS;
     [SerializeField] private AudioSource crystalExplode_SS;
     [SerializeField] private AudioSource evasionSuccess_SS;
+    [SerializeField] private AudioSource playerHit_SS;
     [SerializeField] private AudioSource swordHit_SS;
 
 
@@ -41,6 +42,7 @@ public class PlayerSFX : SoundManagerBase
     public Sound crystalFlashBack { get; private set; }
     public Sound crystalExplode { get; private set; }
     public Sound evasionSuccess { get; private set; }
+    public Sound playerHit { get; private set; }
     public Sound swordHit { get; private set; }
 
 
@@ -69,6 +71,7 @@ public class PlayerSFX : SoundManagerBase
         crystalFlashBack = GetSound(crystalFlashBack_SS, true);
         crystalExplode = GetSound(crystalExplode_SS, true);
         evasionSuccess = GetSound(evasionSuccess_SS, true);
+        playerHit = GetSound(playerHit_SS, true);
         swordHit = GetSound(swordHit_SS, true);
     }
 

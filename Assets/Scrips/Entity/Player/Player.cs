@@ -76,7 +76,7 @@ public class Player : Entity
     #region Component
     public SkillManager skill { get; private set; }
     public GameObject swordThrown;
-    public PlayerEnemyCheck playerEnemyCheck { get; private set; }
+    public PlayerEnemyCheck enemyCheck { get; private set; }
     #endregion
 
     [Header("Health Bar")]
@@ -111,7 +111,7 @@ public class Player : Entity
 
         isHealthBarActive = healthBar.activeSelf;
 
-        playerEnemyCheck = GetComponent<PlayerEnemyCheck>();
+        enemyCheck = GetComponent<PlayerEnemyCheck>();
     }
 
     override protected void Start()

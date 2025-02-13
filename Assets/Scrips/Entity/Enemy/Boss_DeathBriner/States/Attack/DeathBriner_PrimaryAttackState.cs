@@ -60,5 +60,7 @@ public class DeathBriner_PrimaryAttackState : DeathBriner_AttackStateBase
                 float damage = enemy.cs.DoDamageTo_PrimaryAttack(hit.GetComponent<Player>());
             }
         }
+
+        SceneAudioManager.instance.deathBrinerSFX.attack.Play(enemy.transform);
     }
 }

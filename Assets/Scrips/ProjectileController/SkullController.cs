@@ -123,6 +123,8 @@ public class SkullController : MonoBehaviour, IDeflectableProjectile
             state = SkullState.Explode;
             anim.SetTrigger("Explode");
             trail.Stop();
+
+            SceneAudioManager.instance.necromancerSFX.skullExplode.Play(transform);
         }
     }
 

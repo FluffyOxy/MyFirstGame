@@ -144,14 +144,14 @@ public class Enemy : Entity
         return false;
     }
 
-    public RaycastHit2D IsDetectPlayerFront()
+    public virtual RaycastHit2D IsDetectPlayerFront()
     {
         RaycastHit2D hit = Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer);
         if(hit && !hit.collider.GetComponent<Player>().isDead && CanSeePlayer())
         {
             if(hit)
             {
-                PlayerManager.instance.player.playerEnemyCheck.SetIsBattle(true);
+                PlayerManager.instance.player.enemyCheck.SetIsBattle(true);
             }
             return hit;
         }
@@ -161,7 +161,7 @@ public class Enemy : Entity
         }
     }
 
-    public bool IsPlayerDetected()
+    public virtual bool IsPlayerDetected()
     {
         Transform player = PlayerManager.instance.player.transform;
         bool isDetect =
@@ -169,7 +169,7 @@ public class Enemy : Entity
             Vector2.Distance(player.position, transform.position) < playerDetectRadius && CanSeePlayer();
         if(isDetect)
         {
-            PlayerManager.instance.player.playerEnemyCheck.SetIsBattle(true);
+            PlayerManager.instance.player.enemyCheck.SetIsBattle(true);
         }
         return isDetect;
     }

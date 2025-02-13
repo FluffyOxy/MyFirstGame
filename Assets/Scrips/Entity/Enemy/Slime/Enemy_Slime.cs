@@ -58,6 +58,7 @@ public class Enemy_Slime : Enemy
         {
             return;
         }
+
         for (int i = 0; i < selfSplitAmount; ++i)
         {
             Enemy_Slime newSlime = Instantiate(splitSlimePrefab, transform.position, Quaternion.identity).
@@ -69,8 +70,9 @@ public class Enemy_Slime : Enemy
                 Random.Range(minSplitForce.y, maxSplitForce.y)
             );
             newSlime.Invoke("CancelKonckBack", 0.5f);
-
         }
+
+        SceneAudioManager.instance.slimeSFX.roar.Play(transform);
     }
     private void CancelKonckBack() => isKnocked = false;
 

@@ -8,4 +8,11 @@ public class Mimic_Animation : EnemyAnimation
     {
         enemy.DropItem();
     }
+
+    protected override void AttackTrigger()
+    {
+        base.AttackTrigger();
+
+        SceneAudioManager.instance.mimicSFX.attack.Play(enemy.transform);
+    }
 }

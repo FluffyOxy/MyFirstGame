@@ -20,6 +20,7 @@ public class DeathBriner_IdleState : DeathBriner_StateBase
     public override void Exit()
     {
         base.Exit();
+        SceneAudioManager.instance.deathBrinerSFX.roar.Play(enemy.transform);
     }
 
     public override void Update()

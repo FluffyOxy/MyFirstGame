@@ -20,6 +20,12 @@ public class PlayerStats : CharacterStats, ISaveManager
         float getDamage = base.TakeDamage(_damageData, _damageDirection);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.TakeDamage, _damageData._damageSource, getDamage);
         Inventory.instance.TryGetEquipmentByType(EquipmentType.Armor)?.ExcuteItemEffect(data);
+
+        if(getDamage > 0)
+        {
+            SceneAudioManager.instance.playerSFX.playerHit.Play(null);
+        }
+
         return getDamage;
     }
 

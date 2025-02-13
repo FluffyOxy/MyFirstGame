@@ -12,6 +12,8 @@ public class DeathBrinerAnimation : EnemyAnimation
     protected void FlashOutTrigger()
     {
         (enemy as EnemyBoss_DeathBriner).isFlashOut = true;
+
+        SceneAudioManager.instance.deathBrinerSFX.flash.Play(enemy.transform);
     }
 
     protected void FlashInTrigger()
@@ -22,6 +24,8 @@ public class DeathBrinerAnimation : EnemyAnimation
     protected void DashStartTrigger()
     {
         (enemy as EnemyBoss_DeathBriner).isDashing = true;
+
+        SceneAudioManager.instance.deathBrinerSFX.dash.Play(enemy.transform);
     }
     protected void DashEndTrigger()
     {

@@ -79,10 +79,14 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
                         if (isEscape)
                         {
                             state = ShadowState.Leave;
+
+                            SceneAudioManager.instance.deathBrinerSFX.flashAttack.Play(enemy.transform);
                         }
                         else
                         {
                             state = ShadowState.Attack;
+
+                            SceneAudioManager.instance.deathBrinerSFX.flashAttack.Play(enemy.transform);
                         }
                     }
                     break;
@@ -115,6 +119,8 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
                     {
                         state = ShadowState.Leave;
                         enemy.SetVelocity(0, enemy.shadowIdleMoveUpSpeed);
+
+                        SceneAudioManager.instance.deathBrinerSFX.flashAttack.Play(enemy.transform);
                     }
                     break;
                 }
@@ -159,6 +165,8 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
                     {
                         state = ShadowState.Attack;
                         enemy.SetVelocity(0, enemy.shadowIdleMoveUpSpeed);
+
+                        SceneAudioManager.instance.deathBrinerSFX.flashAttack.Play(enemy.transform);
                     }
                     break;
                 }

@@ -7,5 +7,7 @@ public class NecroMancer_Animation : EnemyAnimation
     protected override void AttackTrigger()
     {
         GetComponentInParent<Enemy_Necromancer>().throwSkullToPlayer();
+
+        SceneAudioManager.instance.necromancerSFX.attack.Play(transform);
     }
 }
