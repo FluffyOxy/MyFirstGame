@@ -14,6 +14,7 @@ public class IceAndFireStrike_EffectController : MonoBehaviour
         damageData = _damageData;
         moveSpeed = _moveSpeed;
         Invoke("SelfDestroy", _duration);
+        SceneAudioManager.instance.itemSFX.iceAndFire.Play(null);
     }
     private void SelfDestroy()
     {

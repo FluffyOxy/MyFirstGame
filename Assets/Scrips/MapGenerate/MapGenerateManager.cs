@@ -209,8 +209,6 @@ public class MapGenerateManager : MonoBehaviour
     [Header("Room Decoration Info")]
     [SerializeField] public GameObject decorationPrefab;
     [SerializeField] public List<Sprite> decorations;
-    [SerializeField] public int minDecorationAmount;
-    [SerializeField] public int maxDecorationAmount;
 
     [Header("Branch Info")]
     [SerializeField] public float branchYOffset;
@@ -268,5 +266,66 @@ public class MapGenerateManager : MonoBehaviour
         }
 
         return rewards;
+    }
+
+    public void GenerateRewardBySlot(RewardSlot _slot, Transform _rewardTransform)
+    {
+        float dice = UnityEngine.Random.Range(0, 100);
+        float rate = 0;
+        if (dice < (rate += _slot.witcherRate))
+        {
+            Instantiate(witcherPrefab, _rewardTransform.position, Quaternion.identity);
+        }
+        else if (dice < (rate += _slot.traderRate))
+        {
+            Instantiate(traderPrefab, _rewardTransform.position, Quaternion.identity);
+        }
+        else
+        {
+            GenerateRewardBox(_slot, _rewardTransform);
+        }
+    }
+    private void GenerateRewardBox(RewardSlot slot, Transform _rewardTransform)
+    {
+        List<Drop> drops = new List<Drop>();
+        if (UnityEngine.Random.Range(0f, 100f) < slot.mimicRate)
+        {
+            GenerateMimic(slot, drops, _rewardTransform);
+        }
+        else
+        {
+            drops.AddRange(GetPrimaryRewards(slot.rewardAmount));
+            if (UnityEngine.Random.Range(0f, 100f) < slot.advancedRewardRate)
+            {
+                drops.AddRange(GetAdvancedRewards(slot.advancedAmount));
+                Chest newChest =
+                    Instantiate(
+                        advancedRewardChestPrefab, _rewardTransform.position, Quaternion.identity
+                    ).GetComponent<Chest>();
+                newChest.SetDrops(drops);
+            }
+            else
+            {
+                Chest newChest =
+                    Instantiate(
+                        primaryRewardChestPrefab, _rewardTransform.position, Quaternion.identity
+                    ).GetComponent<Chest>();
+                newChest.SetDrops(drops);
+            }
+        }
+    }
+    private void GenerateMimic(RewardSlot slot, List<Drop> drops, Transform _rewardTransform)
+    {
+        drops.AddRange(GetPrimaryRewards(slot.rewardAmount));
+        if (UnityEngine.Random.Range(0f, 100f) < slot.mimicAdvancedRewardRate)
+        {
+            drops.AddRange(GetAdvancedRewards(slot.advancedAmount));
+        }
+
+        Enemy_Mimic newMimic =
+            Instantiate(
+                mimicChestPrefab, _rewardTransform.position, Quaternion.identity
+            ).GetComponent<Enemy_Mimic>();
+        newMimic.SetDrops(drops);
     }
 }

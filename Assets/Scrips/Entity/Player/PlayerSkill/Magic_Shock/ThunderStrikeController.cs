@@ -69,6 +69,7 @@ public class ThunderStrikeController : MonoBehaviour
     {
         target.DamageSourceNotice(thunderSource);
         target.GetStats().TakeDamage(damage, transform);
+        SceneAudioManager.instance.itemSFX.lightningAttack.Play(null);
     }
 
     private void OnDrawGizmos()

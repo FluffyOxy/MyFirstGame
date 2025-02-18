@@ -12,6 +12,7 @@ public class UISFX : SoundManagerBase
     [SerializeField] private AudioSource buy_SS;
     [SerializeField] private AudioSource upgrade_SS;
     [SerializeField] private AudioSource discardInventory_SS;
+    [SerializeField] private AudioSource communicating_SS;
 
     public Sound buttonClick { get; private set; }
     public Sound craft { get; private set; }
@@ -19,6 +20,7 @@ public class UISFX : SoundManagerBase
     public Sound buy { get; private set; }
     public Sound upgrade { get; private set; }
     public Sound discardInventory { get; private set; }
+    public Sound communicating { get; private set; }
 
     protected override void Awake()
     {
@@ -33,5 +35,6 @@ public class UISFX : SoundManagerBase
         buy = GetSound(buy_SS, true);
         upgrade = GetSound(upgrade_SS, true);
         discardInventory = GetSound(discardInventory_SS, true);
+        communicating = GetSound(communicating_SS, true);
     }
 }

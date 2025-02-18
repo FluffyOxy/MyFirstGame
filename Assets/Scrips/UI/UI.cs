@@ -201,6 +201,7 @@ public class UI : MonoBehaviour
             PlayerManager.instance.player.SetCanInput(false);
         }
         communicationBlock.Setup(_sentence);
+        SceneAudioManager.instance.uiSFX.communicating.Play(null);
     }
 
     public void SpeakDone()

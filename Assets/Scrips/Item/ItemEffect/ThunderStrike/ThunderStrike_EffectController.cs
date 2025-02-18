@@ -11,6 +11,7 @@ public class ThunderStrike_EffectController : MonoBehaviour
     {
         target = _target;
         damage = _damage;
+        SceneAudioManager.instance.itemSFX.thunderAttack.Play(null);
     }
 
     public void AnimFinishTrigger()

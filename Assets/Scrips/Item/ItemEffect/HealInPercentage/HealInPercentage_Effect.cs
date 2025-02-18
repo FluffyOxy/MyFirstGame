@@ -11,5 +11,6 @@ public class HealInPercentage_Effect : ItemEffect
     {
         Player player = PlayerManager.instance.player;
         player.cs.Heal(percentage * player.cs.getMaxHealthValue());
+        SceneAudioManager.instance.itemSFX.heal.Play(null);
     }
 }

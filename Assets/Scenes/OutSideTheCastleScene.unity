@@ -532,6 +532,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   exitDuration: 1
+  isActivate: 1
 --- !u!4 &283593685
 Transform:
   m_ObjectHideFlags: 0
@@ -747,6 +748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   exitDuration: 1
+  isActivate: 1
 --- !u!4 &863535434
 Transform:
   m_ObjectHideFlags: 0
@@ -1077,13 +1079,73 @@ PrefabInstance:
       value: MapGenerateManager
       objectReference: {fileID: 0}
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchYOffset
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: battleRoomPrefabs.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchRoomPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: passageRoomPrefabs.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: battleRoomPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 9122924721718098285, guid: 6656f63593c474648b6ef75098a97c45, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: battleRoomPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 9122924721718098285, guid: 62ba07624ed2e5a4fa0b0d4ee983578e, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: battleRoomPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 9122924721718098285, guid: 66261d78b9f17c147a433cf2e42a58f8, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: battleRoomPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 9122924721718098285, guid: 53fd1369574eed143a9227bb1e114002, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchRoomPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4416940893296855705, guid: 309b67c7d37a346479ebe4f0f4188f7c, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchRoomPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5519137933671674140, guid: 5c465e5e81d6a8b40a91e184c71fc061, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: branchRoomPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 5519137933671674140, guid: f68a26d8207ad464abc78382f321603d, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: branchExitRoomPrefabs.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: passageRoomPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 5519137933671674140, guid: 5c465e5e81d6a8b40a91e184c71fc061, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: passageRoomPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 5519137933671674140, guid: f68a26d8207ad464abc78382f321603d, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: branchExitRoomPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 6217563819945910790, guid: 007a083367703c245b8e8895e3bf1596, type: 3}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: mainLine.battles.Array.data[0].difficulty
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
+      propertyPath: mainLine.battles.Array.data[1].difficulty
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4678375902910632755, guid: 2ecd30b1204b4cb469e69c7a07346512, type: 3}
       propertyPath: mainLine.rewards.Array.data[0].traderRate
       value: 10

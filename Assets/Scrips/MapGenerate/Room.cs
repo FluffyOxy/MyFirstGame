@@ -10,12 +10,12 @@ public class Room : MonoBehaviour
     protected RoomType type;
 
     [Header("Room Info")]
-    [SerializeField] public float height;
-    [SerializeField] public float width;
     [SerializeField] public Access upperAccess;
     [SerializeField] public Access lowerAccess;
     [SerializeField] public Access leftAccess;
     [SerializeField] public Access rightAccess;
+    [SerializeField] public int minDecorationAmount;
+    [SerializeField] public int maxDecorationAmount;
 
     [Header("Room Element Generate Info")]
     [SerializeField] protected Tilemap groundTilemap;
@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
     }
     protected virtual void PreGenerateRoom(MapGenerateManager _manager, Line _currentLine, int _index)
     {
-        flatPositions = GetFlatPositionsInRoomByRadius(1);
+        flatPositions = GetFlatPositionsInRoomByRadius(2);
         usedFlatPositionIndexEnd = 0;
     }
 
@@ -41,7 +41,7 @@ public class Room : MonoBehaviour
     }
     protected void GenerateDecorations(MapGenerateManager _manager)
     {
-        int randomDecorationAmount = Random.Range(_manager.minDecorationAmount, _manager.maxDecorationAmount);
+        int randomDecorationAmount = Random.Range(minDecorationAmount, maxDecorationAmount);
         int currentDecorationAmount = 0;
 
         while (currentDecorationAmount < randomDecorationAmount)
@@ -176,24 +176,23 @@ public class Room : MonoBehaviour
         Vector3Int lowerLeftCoo = groundTilemap.cellBounds.min;
 
         //遍历房间内的每个瓦片位置
-        for (int x = lowerLeftCoo.x + _flatRadius; x < (this.height + lowerLeftCoo.x - _flatRadius); x++)
+        for (int x = lowerLeftCoo.x + _flatRadius; x < (groundTilemap.cellBounds.size.x + lowerLeftCoo.x - _flatRadius); x++)
         {
-            for (int y = lowerLeftCoo.y; y < (this.width + lowerLeftCoo.y - 1); y++)//最高层上面必然没有方块，不需要判断
+            for (int y = lowerLeftCoo.y; y < (groundTilemap.cellBounds.size.y + lowerLeftCoo.y - 1); y++)//最高层上面必然没有方块，不需要判断
             {
-                
-
                 //若一个瓦片位置及其两侧flatRadius宽内的所有瓦片位置都符合条件：此处有瓦片且此处上方没有瓦片
                 //则，此处是一个平坦位置
                 bool isSuit = true;
                 for(int flatCheckX = x - _flatRadius; flatCheckX <= x + _flatRadius; flatCheckX++)
                 {
-                    if (groundTilemap.GetTile(new Vector3Int(x, y, 0)) == null 
-                        || groundTilemap.GetTile(new Vector3Int(x, y + 1, 0)) != null
+                    if (groundTilemap.GetTile(new Vector3Int(flatCheckX, y, 0)) == null 
+                        || groundTilemap.GetTile(new Vector3Int(flatCheckX, y + 1, 0)) != null
                         )//如果此处不为空方块
                     {
                         isSuit = false;
                     }
                 }
+
                 if(isSuit)
                 {
                     flatPositions.Add((Vector2)groundTilemap.CellToWorld(new Vector3Int(x, y)));
