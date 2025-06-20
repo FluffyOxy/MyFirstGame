@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1457955249167077035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5746074672425902985}
+  - component: {fileID: 4554873058660911601}
+  m_Layer: 0
+  m_Name: SwordClusterSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5746074672425902985
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457955249167077035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -66.216805, y: -1.0515097, z: -0.015784852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4554873058660911601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457955249167077035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21c0859a29e10524cbcc51e6870e0d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swordCount: 10
+  swordLaunchCooldown: 0.1
+  swordFadeOutTime: 3
+  swordLifetime: 5
+  spawnRadius: 1
+  swordUnitPrefab: {fileID: 7789723222822827140, guid: ef7766ee6012cd04b8809909b2adc73f, type: 3}
+  swordUnits: []
+  launchingSwordInfo:
+    nearRadius: 4
+    collisionRadius: 3
+    minVelocity: 1
+    maxVelocity: 20
+    velocityMatchingArg: 5
+    centerTargetingArg: 1
+    collisionPreventingArg: 20
+    mouseTargetingArg: 2
+    velocityLerpArg: 0.05
+    scaleArg: 0.5
+  flyingSwordInfo:
+    nearRadius: 2
+    collisionRadius: 1
+    minVelocity: 1
+    maxVelocity: 20
+    velocityMatchingArg: 5
+    centerTargetingArg: 1
+    collisionPreventingArg: 15
+    mouseTargetingArg: 10
+    velocityLerpArg: 0.01
+    scaleArg: 0.5
+  launchingDuration: 0.5
+  currentSwordInfo:
+    nearRadius: 0
+    collisionRadius: 0
+    minVelocity: 0
+    maxVelocity: 0
+    velocityMatchingArg: 0
+    centerTargetingArg: 0
+    collisionPreventingArg: 0
+    mouseTargetingArg: 0
+    velocityLerpArg: 0
+    scaleArg: 0
+  mousePos: {x: 0, y: 0}

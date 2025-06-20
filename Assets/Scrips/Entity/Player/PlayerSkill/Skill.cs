@@ -8,7 +8,7 @@ public class Skill : MonoBehaviour
     [Header("Base Skill Info")]
     [SerializeField] protected float cooldown;
     protected float cooldownTimer;
-    [SerializeField] private string cooldownWarningText = "¿‰»¥÷–";
+    [SerializeField] protected string cooldownWarningText = "¿‰»¥÷–";
 
     protected Player player;
 

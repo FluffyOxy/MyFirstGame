@@ -43,6 +43,7 @@ public class UI_MainMenu : MonoBehaviour, ISaveManager
     {
         fadeScreen.FadeOut();
         yield return new WaitForSeconds(_delay);
+        SaveManager.instance.SaveGame();
         SceneManager.LoadScene(sceneName);
     }
 

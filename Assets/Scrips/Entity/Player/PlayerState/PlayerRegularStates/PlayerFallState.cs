@@ -17,6 +17,7 @@ public class PlayerFallState : PlayerAirState
     public override void Exit()
     {
         base.Exit();
+        player.SetVelocity(0, 0);
     }
 
     public override void Update()

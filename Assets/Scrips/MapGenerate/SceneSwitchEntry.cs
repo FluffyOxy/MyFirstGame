@@ -27,6 +27,7 @@ public class SceneSwitchEntry : MonoBehaviour, IPlayerEnterable
     {
         UI.instance.darkScreen.FadeOut();
         yield return new WaitForSeconds(_delay);
+        SaveManager.instance.SaveGame();
         SceneManager.LoadScene(sceneName);
     }
 

@@ -10059,15 +10059,24 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlatform:
+    serializedVersion: 2
+    m_Bits: 0
   attackValidCheck: {fileID: 6360147213613475324}
   attackValidCheckRadius: 1
   isFacingLeft: 0
   facingDir: 1
+  entityName: 
+  entityIcon: {fileID: 0}
   knockBackDir: {x: 5, y: 9}
-  knockBackDirAlpha: 10
+  knockBackDirMapK: 0.5
   knockBackDuration: 0.07
+  isKnocked: 0
   selfDestroyAfterDead: 10
+  canBeDamage_current: 0
+  canBeDamage: 0
   isDashing: 0
+  canInput: 1
   moveSpeed: 8
   jumpSpeed: 15
   moveInAirSpeed: 6.4
@@ -10092,6 +10101,10 @@ MonoBehaviour:
   swordThrown: {fileID: 0}
   healthBar: {fileID: 8779407805219848448}
   isHealthBarActive: 0
+  enterCheckRadius: 2
+  whatIsDoor:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &4781800932110031375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10106,6 +10119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitMat: {fileID: 2100000, guid: 9217734ed79ec624a870731ed90d5c0c, type: 2}
   fleshDuration: 0.3
+  originalMat: {fileID: 0}
   stunBlinkRate: 0
   chillColor: {r: 0.5411765, g: 0.8431373, b: 1, a: 1}
   igniteColor:
@@ -15563,7 +15577,7 @@ Transform:
   m_GameObject: {fileID: 9153453830721088086}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.182, z: 0}
+  m_LocalPosition: {x: 0.15, y: -1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

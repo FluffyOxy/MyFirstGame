@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,7 @@ public class SwordSkill : Skill
     [SerializeField] private UI_SkillSlot unlockButton_bounce;
     [SerializeField] private UI_SkillSlot unlockButton_pierce;
     [SerializeField] private UI_SkillSlot unlockButton_spin;
+    [SerializeField] private UI_SkillSlot unlockButton_swordCluster;
     [Space]
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private Vector2 launchSpeed;
@@ -65,6 +67,13 @@ public class SwordSkill : Skill
 
     private Vector2 finalDir;
 
+    [Header("Sword Cluster Info")] 
+    [SerializeField] private GameObject swordClusterSpawnerPrefab;
+    [SerializeField] public bool isUnlocked_swordCluster;
+    [SerializeField] private float swordClusterCooldown;
+    private SwordClusterSpawner swordClusterSpawner = null;
+    private float swordClusterCooldownTimer;
+
     protected override void Start()
     {
         base.Start();
@@ -77,6 +86,7 @@ public class SwordSkill : Skill
         unlockButton_spin.GetComponent<Button>().onClick.AddListener(() => { if (unlockButton_spin.isUnlocked) { swordType = SwordType.Spin; } });
         unlockButton_swordTimeStop.GetComponent<Button>().onClick.AddListener(() => { isUnlocked_swordTimeStop = unlockButton_swordTimeStop.isUnlocked; });
         unlockButton_swordEnhencemnet.GetComponent<Button>().onClick.AddListener(() => { isUnlocked_swordEnhencemnet = unlockButton_swordEnhencemnet.isUnlocked; });
+        unlockButton_swordCluster.GetComponent<Button>().onClick.AddListener(() => { isUnlocked_swordCluster = unlockButton_swordCluster.isUnlocked; });
     }
 
     protected override void Update()
@@ -93,6 +103,42 @@ public class SwordSkill : Skill
             {
                 dots[i].transform.position = GetPositionByTime(i * betweenDotSpace);
             }
+        }
+
+        swordClusterCooldownTimer -= Time.deltaTime;
+        if (isUnlocked_swordCluster && Input.GetKeyDown(KeyCode.T) && (swordClusterSpawner == null || swordClusterSpawner.IsDestroyed()))
+        {
+            if (swordClusterCooldownTimer > 0)
+            {
+                player.fx.CreatePopUpText(cooldownWarningText);
+            }
+            else
+            {
+                GameObject spawnerGameObject = Instantiate(swordClusterSpawnerPrefab,
+                    PlayerManager.instance.player.transform.position, Quaternion.identity);
+                swordClusterSpawner = spawnerGameObject.GetComponent<SwordClusterSpawner>();
+                if (isUnlocked_swordEnhencemnet)
+                {
+                    swordClusterSpawner.Launch(enhenceDamageRate);
+                }
+                else
+                {
+                    swordClusterSpawner.Launch(minDamageRate);
+                }
+                swordClusterCooldownTimer = swordClusterCooldown;
+            }
+        }
+    }
+
+    public float GetSwordClusterCoolDownPercentage()
+    {
+        if (swordClusterCooldownTimer > 0)
+        {
+            return swordClusterCooldownTimer / swordClusterCooldown;
+        }
+        else
+        {
+            return 0;
         }
     }
 

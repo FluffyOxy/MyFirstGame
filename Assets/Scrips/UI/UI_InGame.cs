@@ -31,6 +31,10 @@ public class UI_InGame : MonoBehaviour
     [Space]
     [SerializeField] Image flaskIcon;
     [SerializeField] Image flaskCoolDown;
+    [Space] 
+    [SerializeField] Image swordClusterIcon;
+    [SerializeField] Image swordClusterCooldown;
+
 
     [Header("Currency")]
     [SerializeField] private TextMeshProUGUI currencyAmountText;
@@ -51,6 +55,7 @@ public class UI_InGame : MonoBehaviour
         blackHoleIcon.gameObject.SetActive(skill.blackHole.isUnlocked_blackHole);
         swordThrowIcon.gameObject.SetActive(skill.swordThrow.isUnlocked_sword);
         flaskIcon.gameObject.SetActive(Inventory.instance.TryGetEquipmentByType(EquipmentType.Flask) != null);
+        swordClusterIcon.gameObject.SetActive(skill.swordThrow.isUnlocked_swordCluster);
     }
 
     private void Update()
@@ -88,6 +93,12 @@ public class UI_InGame : MonoBehaviour
         {
             flaskIcon.gameObject.SetActive(true);
             flaskCoolDown.fillAmount = Inventory.instance.GetFlaskCooldownPercentage();
+        }
+
+        if (skill.swordThrow.isUnlocked_swordCluster)
+        {
+            swordClusterIcon.gameObject.SetActive(true);
+            swordClusterCooldown.fillAmount = skill.swordThrow.GetSwordClusterCoolDownPercentage();
         }
     }
 
