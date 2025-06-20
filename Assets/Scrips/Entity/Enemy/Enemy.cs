@@ -83,7 +83,7 @@ public class Enemy : Entity
         counterImage.SetActive(false);
     }
 
-    override protected void Update()
+    protected override void Update()
     {
         base.Update();
 
@@ -293,5 +293,12 @@ public class Enemy : Entity
         {
             return player.isFacingLeft;
         }
+    }
+
+    public float CheckDistanceToPlayer()
+    {
+        Vector2 playerPos = PlayerManager.instance.player.transform.position;
+        Vector2 enemyPos = transform.position;
+        return Vector2.Distance(playerPos, enemyPos);
     }
 }

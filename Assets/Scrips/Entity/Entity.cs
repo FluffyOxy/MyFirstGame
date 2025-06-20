@@ -184,7 +184,7 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public void FlipCheck(float _x)
+    public virtual void FlipCheck(float _x)
     {
         if (_x < 0 && !isFacingLeft)
         {
@@ -198,7 +198,7 @@ public class Entity : MonoBehaviour
     #endregion
 
     #region Velocity
-    public void SetVelocity(float _xVelocity, float _yVelocity)
+    public virtual void SetVelocity(float _xVelocity, float _yVelocity)
     {
         if (isKnocked)
         {
@@ -207,7 +207,7 @@ public class Entity : MonoBehaviour
         rg.velocity = new Vector2(_xVelocity, _yVelocity);
         FlipCheck(_xVelocity);
     }
-    public void SetVelocityWithoutFlip(float _xVelocity, float _yVelocity)
+    public virtual void SetVelocityWithoutFlip(float _xVelocity, float _yVelocity)
     {
         if (isKnocked)
         {
@@ -215,7 +215,7 @@ public class Entity : MonoBehaviour
         }
         rg.velocity = new Vector2(_xVelocity, _yVelocity);
     }
-    public void SetVelocityWhenKnockBack(float _xVelocity, float _yVelocity)
+    public virtual void SetVelocityWhenKnockBack(float _xVelocity, float _yVelocity)
     {
         rg.velocity = new Vector2(_xVelocity, _yVelocity);
     }
@@ -226,7 +226,7 @@ public class Entity : MonoBehaviour
         rg.gravityScale = defaultGravity;
     }
 
-    public virtual void makeTransprent(bool _isTransprent)
+    public virtual void MakeTransprent(bool _isTransprent)
     {
         if(_isTransprent)
         {

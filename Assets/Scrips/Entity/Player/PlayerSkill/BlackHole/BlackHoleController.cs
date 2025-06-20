@@ -96,7 +96,7 @@ public class BlackHoleController : MonoBehaviour
                 {
                     if(!SkillManager.intance.clone.isUsingCrystalInsteadOfClone())
                     {
-                        PlayerManager.instance.player.makeTransprent(true);
+                        PlayerManager.instance.player.MakeTransprent(true);
                     }
                     int randomIndex = Random.Range(0, enemyTargeted.Count);
                     float xOffset;
@@ -137,7 +137,7 @@ public class BlackHoleController : MonoBehaviour
     private void FinishBlackHoleAbility()
     {
         canPlayerExitState = true;
-        PlayerManager.instance.player.makeTransprent(false);
+        PlayerManager.instance.player.MakeTransprent(false);
         isBeginAttack = false;
         canGrow = false;
     }

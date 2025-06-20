@@ -188,9 +188,9 @@ public class Player : Entity
         healthBar.SetActive(isHealthBarActive);
     }
 
-    public override void makeTransprent(bool _isTransprent)
+    public override void MakeTransprent(bool _isTransprent)
     {
-        base.makeTransprent(_isTransprent);
+        base.MakeTransprent(_isTransprent);
         if (_isTransprent)
         {
             healthBar.SetActive(false);

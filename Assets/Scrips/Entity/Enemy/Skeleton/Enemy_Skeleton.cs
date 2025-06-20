@@ -67,9 +67,4 @@ public class Enemy_Skeleton : Enemy
             base.Die();
         }
     }
-
-    public override void Flip()
-    {
-        base.Flip();
-    }
 }
