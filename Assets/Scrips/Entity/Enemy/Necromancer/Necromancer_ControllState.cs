@@ -28,13 +28,13 @@ public class Necromancer_ControllState : NecromancerStateBase
         if (enemy.currentSkull.IsDestroyed() || enemy.currentSkull.state != SkullState.Flying)
         {
             enemy.currentSkull = null;
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else if(enemy.isTakingDamage)
         {
             enemy.currentSkull.Explode();
             enemy.currentSkull = null;
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 }

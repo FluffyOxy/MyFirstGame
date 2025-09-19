@@ -37,13 +37,13 @@ public class EnemyArcher_PullBackState : EnemyState
 
         if (ShouldStopPullBack())
         {
-            enemy.stateMachine.changeState(enemy.battleState);
+            enemy.stateMachine.ChangeState(enemy.battleState);
         }
         else if (Vector2.Distance(enemy.transform.position, PlayerManager.instance.player.transform.position) < enemy.toAttackRadius)
         {
             if (enemy.CanAttack())
             {
-                stateMachine.changeState(enemy.attackState);
+                stateMachine.ChangeState(enemy.attackState);
             }
         }
 

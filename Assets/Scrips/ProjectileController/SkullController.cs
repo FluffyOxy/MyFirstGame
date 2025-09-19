@@ -94,23 +94,23 @@ public class SkullController : MonoBehaviour, IDeflectableProjectile
             }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D _collision)
     {
         if(target is Player)
         {
-            if(collision.GetComponent<Player>() != null)
+            if(_collision.GetComponent<Player>() != null)
             {
                 Explode();
             }
         }
         else if(target is Enemy)
         {
-            if (collision.GetComponent<Enemy>() != null)
+            if (_collision.GetComponent<Enemy>() != null)
             {
                 Explode();
             }
         }
-        else if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if (_collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             Explode();
         }

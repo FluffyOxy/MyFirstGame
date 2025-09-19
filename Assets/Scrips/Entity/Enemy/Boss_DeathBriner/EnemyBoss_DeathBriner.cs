@@ -163,7 +163,7 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
             {
                 shadowAttackState.BeStunned();
             }
-            stateMachine.changeState(stunState);
+            stateMachine.ChangeState(stunState);
             return true;
         }
         return false;
@@ -187,7 +187,7 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
         {
             if (!isDead)
             {
-                stateMachine.changeState(deadState);
+                stateMachine.ChangeState(deadState);
                 base.Die();
                 PlayerManager.instance.player.enemyCheck.isInBossFight = false;
             }
@@ -203,7 +203,7 @@ public class EnemyBoss_DeathBriner : Enemy, IStageEntity
 
             currentAttackState = shadowAttackState;
             shadowAttackState.isEscape = true;
-            stateMachine.changeState(shadowAttackState);
+            stateMachine.ChangeState(shadowAttackState);
         }
     }
     private void LoadStageInfo(DeathBrinerStageInfo _info)

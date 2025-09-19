@@ -9,11 +9,11 @@ public class TranslatePair
     public string from;
     public string to;
 }
-public class Translater : MonoBehaviour
+public class Translator : MonoBehaviour
 {
-    public static Translater instance;
+    public static Translator instance;
     [SerializeField] private List<TranslatePair> translateInfo;
-     Dictionary<string, string> dictionary = new Dictionary<string, string>();
+    Dictionary<string, string> dictionary = new Dictionary<string, string>();
 
     private void Awake()
     {

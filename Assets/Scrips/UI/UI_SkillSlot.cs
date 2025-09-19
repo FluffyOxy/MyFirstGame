@@ -130,12 +130,12 @@ public class UI_SkillSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         skillIcon.color = Color.white;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _eventData)
     {
         UI.instance.GetSkillToolTip().Setup(skillDescription, skillName, skillIcon.sprite, skillPrice);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData _eventData)
     {
         UI.instance.HideSkillToolTip();
     }

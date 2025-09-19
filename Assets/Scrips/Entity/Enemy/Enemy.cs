@@ -129,7 +129,7 @@ public class Enemy : Entity
         counterImage.SetActive(false);
     }
 
-    public bool canBeStunned()
+    public bool CanBeStunned()
     {
         return canBeStuuned;
     }
@@ -208,9 +208,9 @@ public class Enemy : Entity
         lastAnimBoolName = _animBoolName;
     }
 
-    public override void slowEntityBy(float _slowPercent, float _slowDuration)
+    public override void SlowEntityBy(float _slowPercent, float _slowDuration)
     {
-        base.slowEntityBy(_slowPercent, _slowDuration);
+        base.SlowEntityBy(_slowPercent, _slowDuration);
         moveSpeed *= (1 - _slowPercent);
         battleMoveSpeed *= (1 - _slowPercent);
         Invoke("ResetDefaultSpeed", _slowDuration);

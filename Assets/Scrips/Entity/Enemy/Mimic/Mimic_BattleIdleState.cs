@@ -33,7 +33,7 @@ public class Mimic_BattleIdleState : Mimic_StateBase
 
         if (CanCatchPlayer() && !IsTooCloseToPlayer())
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
 
         if (enemy.IsDetectPlayerFront())
@@ -43,7 +43,7 @@ public class Mimic_BattleIdleState : Mimic_StateBase
             {
                 if (enemy.CanAttack())
                 {
-                    stateMachine.changeState(enemy.attackState);
+                    stateMachine.ChangeState(enemy.attackState);
                 }
             }
         }
@@ -51,7 +51,7 @@ public class Mimic_BattleIdleState : Mimic_StateBase
         {
             if (timer < 0)
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
     }

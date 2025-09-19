@@ -13,7 +13,7 @@ public class EnemyBomberman_Animation : EnemyAnimation
 
     public void ExplodeFinishTrigger()
     {
-        enemy.stateMachine.changeState((enemy as Enemy_Bomberman).deadState);
+        enemy.stateMachine.ChangeState((enemy as Enemy_Bomberman).deadState);
         (enemy as Enemy_Bomberman).EnterDeadState();
     }
 

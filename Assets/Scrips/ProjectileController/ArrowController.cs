@@ -80,27 +80,27 @@ public class ArrowController : MonoBehaviour, IDeflectableProjectile
         return arrowVelocity;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
-        if (collision.GetComponent<Player>() != null)
+        if (_collision.GetComponent<Player>() != null)
         {
             if(targetType == EntityType.Player)
             {
-                collision.GetComponent<Player>().cs.TakeDamage(damageData.GetDamageData(), transform);
-                StuckInto(collision);
+                _collision.GetComponent<Player>().cs.TakeDamage(damageData.GetDamageData(), transform);
+                StuckInto(_collision);
             }
         }
-        else if (collision.GetComponent<Enemy>() != null)
+        else if (_collision.GetComponent<Enemy>() != null)
         {
             if (targetType == EntityType.Enemy)
             {
-                collision.GetComponent<Enemy>().cs.TakeDamage(damageData.GetDamageData(), transform);
-                StuckInto(collision);
+                _collision.GetComponent<Enemy>().cs.TakeDamage(damageData.GetDamageData(), transform);
+                StuckInto(_collision);
             }
         }
-        else if(collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        else if(_collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            StuckInto(collision);
+            StuckInto(_collision);
         }
     }
     private void StuckInto(Collider2D collision)

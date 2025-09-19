@@ -37,11 +37,11 @@ public class Witcher_SpellState : WitcherStateBase
         {
             if(UI.instance.IsSkillLearningBlockHide())
             {
-                stateMachine.changeState(npc.afterSpellState);
+                stateMachine.ChangeState(npc.afterSpellState);
             }
             else if(Input.GetKeyDown(KeyCode.Escape))
             {
-                stateMachine.changeState(npc.idleState);
+                stateMachine.ChangeState(npc.idleState);
             }
         }
         else
@@ -56,7 +56,7 @@ public class Witcher_SpellState : WitcherStateBase
                 else
                 {
                     UI.instance.SpeakDone();
-                    stateMachine.changeState(npc.finishState);
+                    stateMachine.ChangeState(npc.finishState);
                 }
             }
         }

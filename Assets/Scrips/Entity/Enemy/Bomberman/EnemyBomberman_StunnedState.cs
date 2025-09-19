@@ -30,7 +30,7 @@ public class EnemyBomberman_StunnedState : EnemyState
         base.Update();
         if (timer < 0)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 }

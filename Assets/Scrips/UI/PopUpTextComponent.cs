@@ -11,9 +11,9 @@ public class PopUpTextComponent : MonoBehaviour
     [SerializeField] private Transform popTransform;
     private PopUpText popUpText = null;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
-        if (collision.GetComponent<Player>() != null)
+        if (_collision.GetComponent<Player>() != null)
         {
             CreatePopUpText();
         }
@@ -25,9 +25,9 @@ public class PopUpTextComponent : MonoBehaviour
         popUpText.SetUp(message, lifeDuration);
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D _collision)
     {
-        if (collision.GetComponent<Player>() != null)
+        if (_collision.GetComponent<Player>() != null)
         {
             FinishPopUpText();
         }

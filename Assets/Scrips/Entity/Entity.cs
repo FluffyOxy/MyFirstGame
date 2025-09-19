@@ -106,7 +106,7 @@ public class Entity : MonoBehaviour
         
     }
 
-    public virtual void slowEntityBy(float _slowPercent, float _slowDuration)
+    public virtual void SlowEntityBy(float _slowPercent, float _slowDuration)
     {
         anim.speed *= (1 - _slowPercent);
     }
@@ -184,13 +184,13 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public virtual void FlipCheck(float _x)
+    public virtual void FlipCheck(float _xVelocity)
     {
-        if (_x < 0 && !isFacingLeft)
+        if (_xVelocity < 0 && !isFacingLeft)
         {
             Flip();
         }
-        else if (_x > 0 && isFacingLeft)
+        else if (_xVelocity > 0 && isFacingLeft)
         {
             Flip();
         }

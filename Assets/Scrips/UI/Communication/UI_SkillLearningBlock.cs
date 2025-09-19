@@ -62,7 +62,7 @@ public class UI_SkillLearningBlock : MonoBehaviour
         return true;
     }
 
-    public void skillChooseFinish()
+    public void SkillChooseFinish()
     {
         RectTransform[] choices = choiceSlotsParent.GetComponentsInChildren<RectTransform>();
         foreach (var choice in choices)

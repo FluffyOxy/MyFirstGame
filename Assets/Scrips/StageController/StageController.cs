@@ -34,7 +34,7 @@ public class StageController : MonoBehaviour
 
     private void Update()
     {
-        bossHealth.value = bossEntity.cs.getCurrentHealthValue() / bossEntity.cs.GetStatByType(StatType.MaxHealth);
+        bossHealth.value = bossEntity.cs.GetCurrentHealthValue() / bossEntity.cs.GetStatByType(StatType.MaxHealth);
     }
 
     public void ActivateAirWalls()
@@ -52,9 +52,9 @@ public class StageController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
-        if(collision.GetComponent<Player>() != null)
+        if(_collision.GetComponent<Player>() != null)
         {
             (bossEntity as IStageEntity).StageChangeFinish();
             bossHealth.GetComponentInChildren<TextMeshProUGUI>().text = bossEntity.entityName;

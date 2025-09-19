@@ -94,7 +94,7 @@ public class BlackHoleController : MonoBehaviour
                 }
                 else
                 {
-                    if(!SkillManager.intance.clone.isUsingCrystalInsteadOfClone())
+                    if(!SkillManager.intance.clone.IsUsingCrystalInsteadOfClone())
                     {
                         PlayerManager.instance.player.MakeTransprent(true);
                     }

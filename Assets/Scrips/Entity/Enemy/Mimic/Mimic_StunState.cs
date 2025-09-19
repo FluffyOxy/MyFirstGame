@@ -31,7 +31,7 @@ public class Mimic_StunState : Mimic_StateBase
 
         if (timer < 0)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 }

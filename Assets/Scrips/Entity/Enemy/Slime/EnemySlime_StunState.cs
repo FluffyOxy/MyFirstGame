@@ -40,7 +40,7 @@ public class EnemySlime_StunState : EnemyState
         if(triggerCalled)
         {
             enemy.anim.ResetTrigger("StunTimeOut");
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 }

@@ -26,13 +26,13 @@ public class UI_CraftSlot : UI_ItemSlot, IPointerUpHandler
         itemText.text = _data.itemName;
     }
 
-    public override void OnPointerDown(PointerEventData eventData)
+    public override void OnPointerDown(PointerEventData _eventData)
     {
         UI.instance.craftWindow.Setup(item.data as ItemData_Equipment);
         GetComponent<Image>().color = pressColor;
         SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData _eventData)
     {
         GetComponent<Image>().color = Color.white;
     }

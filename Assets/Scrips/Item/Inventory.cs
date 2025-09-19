@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using Unity.VisualScripting;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -37,9 +39,16 @@ public class Inventory : MonoBehaviour, ISaveManager
     [SerializeField] private Vector2 minDropVelocity;
     [SerializeField] private Vector2 maxDropVelocity;
 
-    [Header("Flask Use Info")]
-    [SerializeField] private float flaskCoolDownDuration;
+    [Header("Equipment Cooldown")]
+    private float armorCoolDownDuration;
+    private float armorCoolDownTimer;
+    private float amuletCoolDownDuration;
+    private float amuletCoolDownTimer;
+    private float weaponCoolDownDuration;
+    private float weaponCoolDownTimer;
+    private float flaskCoolDownDuration;
     private float flaskCoolDownTimer;
+
 
     [Header("Database")]
     [SerializeField] private List<InventoryItem> loadedItems_item = new List<InventoryItem>();
@@ -82,6 +91,9 @@ public class Inventory : MonoBehaviour, ISaveManager
     private void Update()
     {
         flaskCoolDownTimer -= Time.deltaTime;
+        armorCoolDownTimer -= Time.deltaTime;
+        amuletCoolDownTimer -= Time.deltaTime;
+        weaponCoolDownTimer -= Time.deltaTime;
     }
 
     private void AddStartItems()
@@ -147,6 +159,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
             RemoveItem(itemToEquip);
             AddEquipment(itemToEquip);
+            SetEquipmentCooldown(itemToEquip);
 
             UpdateEquipmentUI();
         }
@@ -193,6 +206,40 @@ public class Inventory : MonoBehaviour, ISaveManager
             }
         }
         return null;
+    }
+    private void SetEquipmentCooldown(ItemData_Equipment _equipment)
+    {
+        switch (_equipment.equipmentType)
+        {
+            case EquipmentType.Weapon: weaponCoolDownDuration = _equipment.cooldown; break;
+            case EquipmentType.Armor: armorCoolDownDuration = _equipment.cooldown; break;
+            case EquipmentType.Amulet: amuletCoolDownDuration = _equipment.cooldown; break;
+            case EquipmentType.Flask: flaskCoolDownDuration = _equipment.cooldown; break;
+            default: break;
+        }
+    }
+
+    public bool IsEquipmentCooldownFinish(EquipmentType _type)
+    {
+        switch(_type)
+        {
+            case EquipmentType.Weapon: return weaponCoolDownTimer < 0;
+            case EquipmentType.Flask:  return flaskCoolDownTimer < 0;
+            case EquipmentType.Amulet: return amuletCoolDownTimer < 0;
+            case EquipmentType.Armor:  return armorCoolDownTimer < 0;
+            default:                   return false;
+        }
+    }
+    public void CooldownEquipment(EquipmentType _type)
+    {
+        switch (_type)
+        {
+            case EquipmentType.Weapon: weaponCoolDownTimer = weaponCoolDownDuration; break;
+            case EquipmentType.Armor: armorCoolDownTimer = armorCoolDownDuration; break;
+            case EquipmentType.Amulet: amuletCoolDownTimer = amuletCoolDownDuration; break;
+            case EquipmentType.Flask: flaskCoolDownTimer = flaskCoolDownDuration; break;
+            default: break;
+        }
     }
 
     private void UpdateEquipmentUI()
@@ -242,17 +289,17 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
     }
 
-    public bool TryAddItem(ItemData _item, int count = 1)
+    public bool TryAddItem(ItemData _item, int _count = 1)
     {
-        if(CanAddItem(_item, count))
+        if(CanAddItem(_item, _count))
         {
             if (_item.itemType == ItemType.Material)
             {
-                AddToStash(_item, count);
+                AddToStash(_item, _count);
             }
             else if (_item.itemType == ItemType.Equipment)
             {
-                AddToInventory(_item, count);
+                AddToInventory(_item, _count);
             }
             UpdateSlotUI();
             return true;
@@ -262,44 +309,44 @@ public class Inventory : MonoBehaviour, ISaveManager
             return false;
         }
     }
-    private void AddToInventory(ItemData _item, int count)
+    private void AddToInventory(ItemData _item, int _count)
     {
         if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
         {
-            value.AddStack(count);
+            value.AddStack(_count);
         }
         else
         {
             InventoryItem newItem = new InventoryItem(_item);
             inventory.Add(newItem);
             inventoryDictionary.Add(_item, newItem);
-            newItem.stackSize = count;
+            newItem.stackSize = _count;
         }
     }
-    private void AddToStash(ItemData _item, int count)
+    private void AddToStash(ItemData _item, int _count)
     {
         if (stashDictionary.TryGetValue(_item, out InventoryItem value))
         {
-            value.AddStack(count);
+            value.AddStack(_count);
         }
         else
         {
             InventoryItem newItem = new InventoryItem(_item);
             stash.Add(newItem);
             stashDictionary.Add(_item, newItem);
-            newItem.stackSize = count;
+            newItem.stackSize = _count;
         }
     }
 
-    public void RemoveItem(ItemData _item, int count = 1)
+    public void RemoveItem(ItemData _item, int _count = 1)
     {
         if (_item.itemType == ItemType.Material)
         {
-            RemoveFromStash(_item, count);
+            RemoveFromStash(_item, _count);
         }
         else if (_item.itemType == ItemType.Equipment)
         {
-            RemoveFromInventory(_item, count);
+            RemoveFromInventory(_item, _count);
         }
         else
         {
@@ -308,11 +355,11 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         UpdateSlotUI();
     }
-    private void RemoveFromInventory(ItemData _item, int count)
+    private void RemoveFromInventory(ItemData _item, int _count)
     {
         if (inventoryDictionary.TryGetValue(_item, out InventoryItem value))
         {
-            value.RemoveStack(count);
+            value.RemoveStack(_count);
             if (value.stackSize <= 0)
             {
                 inventory.Remove(value);
@@ -324,11 +371,11 @@ public class Inventory : MonoBehaviour, ISaveManager
             Assert.IsTrue(inventoryDictionary.ContainsKey(_item), "_item don't exist in inventory!");
         }
     }
-    private void RemoveFromStash(ItemData _item, int count)
+    private void RemoveFromStash(ItemData _item, int _count)
     {
         if (stashDictionary.TryGetValue(_item, out InventoryItem value))
         {
-            value.RemoveStack(count);
+            value.RemoveStack(_count);
             if (value.stackSize <= 0)
             {
                 stash.Remove(value);
@@ -441,17 +488,17 @@ public class Inventory : MonoBehaviour, ISaveManager
     public bool TryUseFlask()
     {
         ItemData_Equipment flask = TryGetEquipmentByType(EquipmentType.Flask);
-        if (flask != null && flaskCoolDownTimer < 0)
+        if (flask != null && (PlayerManager.instance.player.GetStats() as PlayerStats).IsFlaskUsable())
         {
             EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.UseFlask);
-            flask.ExcuteItemEffect(data);
-            flaskCoolDownTimer = flaskCoolDownDuration;
-            return true;
-        }
-        else
-        {
+            if(flask.TryExcuteItemEffect(data))
+            {
+                (PlayerManager.instance.player.GetStats() as PlayerStats).ReduceFlaskUsageTime(1);
+                return true;
+            }
             return false;
         }
+        return false;
     }
 
     public bool CanAddItem(ItemData _item, int count = 1)

@@ -16,6 +16,7 @@ public class ItemData_Equipment : ItemData
     [SerializeField] public EquipmentType equipmentType;
     [SerializeField] public StatsModifierData statsModifierData;
     [SerializeField] public List<ItemEffect> effects;
+    [SerializeField] public float cooldown;
 
     public void AddModifiers()
     {
@@ -27,18 +28,32 @@ public class ItemData_Equipment : ItemData
         PlayerManager.instance.player.cs.RemoveModifier(statsModifierData);
     }
 
-    public void ExcuteItemEffect(EffectExcuteData _target)
+    public bool TryExcuteItemEffect(EffectExcuteData _target)
     {
-        foreach (var effect in effects)
+        if(Inventory.instance.IsEquipmentCooldownFinish(equipmentType))
         {
-            effect.ExcuteEffect(_target);
+            foreach (var effect in effects)
+            {
+                effect.ExcuteEffect(_target);
+            }
+            Inventory.instance.CooldownEquipment(equipmentType);
+            return true;
         }
+        return false;
     }
 
     public override string GetEffectText()
     {
         sb.Clear();
-        foreach(var effect in effects)
+        if(cooldown > 0)
+        {
+            sb.Append("--");
+            sb.Append("装备冷却时间：");
+            sb.Append(cooldown.ToString());
+            sb.Append("--");
+            sb.AppendLine();
+        }
+        foreach (var effect in effects)
         {
             AddItemEffectText(effect);
         }

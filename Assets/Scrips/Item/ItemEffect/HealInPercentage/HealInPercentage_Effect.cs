@@ -10,7 +10,7 @@ public class HealInPercentage_Effect : ItemEffect
     public override void ExcuteEffect(EffectExcuteData _target)
     {
         Player player = PlayerManager.instance.player;
-        player.cs.Heal(percentage * player.cs.getMaxHealthValue());
+        player.cs.Heal(percentage * player.cs.GetMaxHealthValue());
         SceneAudioManager.instance.itemSFX.heal.Play(null);
     }
 }

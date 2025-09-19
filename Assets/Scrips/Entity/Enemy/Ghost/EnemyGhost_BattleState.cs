@@ -37,13 +37,13 @@ public class EnemyGhost_BattleState : EnemyGhost_StateBase
             ResetBattleStateTimer();
             if (attackCooldownTimer < 0)
             {
-                stateMachine.changeState(enemy.attackState);
+                stateMachine.ChangeState(enemy.attackState);
                 ResetAttackCooldownTimer();
             }
         }
         else if (battleStateTimer < 0)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 

@@ -80,7 +80,7 @@ public class Enemy_Slime : Enemy
     {
         if (base.TryToBeStuuned())
         {
-            stateMachine.changeState(stunnedState);
+            stateMachine.ChangeState(stunnedState);
             return true;
         }
         return false;
@@ -93,7 +93,7 @@ public class Enemy_Slime : Enemy
             Player player = _damageSource as Player;
             if (player != null && stateMachine.currentState == idleState || stateMachine.currentState == moveState)
             {
-                stateMachine.changeState(battleState);
+                stateMachine.ChangeState(battleState);
             }
         }
     }
@@ -103,7 +103,7 @@ public class Enemy_Slime : Enemy
         if (!isDead)
         {
             SelfSplit();
-            stateMachine.changeState(deadState);
+            stateMachine.ChangeState(deadState);
             base.Die();
         }
     }

@@ -21,18 +21,32 @@ MonoBehaviour:
   equipmentType: 2
   statsModifierData:
     strength: 0
-    agility: 5
+    agility: 2
     intelligence: 0
     vitality: 0
     maxHealth: 0
     armor: 0
     evasion: 0
     magicResistance: 0
+    maxFlaskUsageTime: 0
+    flaskUsageRecover: 0
     damage: 0
     critChance: 0
     critPower: 0
+    attackSpeed: 0
     fireDamage: 0
     iceDamage: 0
-    lightningDamage: 10
+    lightningDamage: 5
+    fireDuration: 0
+    iceDuration: 0
+    lightningDuration: 0
+    fireDamageSpeed: 0
+    fireDamageTransform: 0
+    chillArmorReduce: 0
+    chillSlowRate: 0
+    shockAccuracyReduce: 0
+    thunderStrikeCount: 0
+    thunderStrikeRate: 0
   effects:
   - {fileID: 11400000, guid: c4c09122feb9af445a0fdc2a0ec50ee7, type: 2}
+  cooldown: 0

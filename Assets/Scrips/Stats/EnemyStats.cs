@@ -35,10 +35,22 @@ public class EnemyStats : CharacterStats
         Modify(damage);
         Modify(critChance);
         Modify(critPower);
+        Modify(attackSpeed);
 
         Modify(fireDamage);
         Modify(iceDamage);
         Modify(lightningDamage);
+        Modify(fireDuration);
+        Modify(iceDuration);
+        Modify(lightningDuration);
+
+        Modify(fireDamageCooldown);
+        Modify(fireDamageTransform);
+        Modify(chillArmorReduce);
+        Modify(chillSlowRate);
+        Modify(shockAccuracyReduce);
+        Modify(thunderStrikeCount);
+        Modify(thunderStrikeRate);
 
         Modify(currencyDropAmount);
 

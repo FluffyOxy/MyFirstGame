@@ -11,14 +11,14 @@ public class UI_TradeWindowEquipment : MonoBehaviour
     private int coinAmount;
     private ItemData_Equipment equipment;
 
-    public void Setup(ItemData_Equipment _itemdata, int _coinAmount)
+    public void Setup(ItemData_Equipment _itemData, int _coinAmount)
     {
         gameObject.SetActive(true);
-        itemDetail.ShowToolTip(_itemdata);
+        itemDetail.ShowToolTip(_itemData);
         coinAmountText.text = _coinAmount.ToString();
 
         coinAmount = _coinAmount;
-        equipment = _itemdata;
+        equipment = _itemData;
     }
 
     public void Purchase()

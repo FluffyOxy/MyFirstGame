@@ -32,14 +32,14 @@ public class SaveTorch : MonoBehaviour, ISaveManager
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
         if(isLighting)
         {
             return;
         }
 
-        Player player = collision.GetComponent<Player>();
+        Player player = _collision.GetComponent<Player>();
         if(player != null)
         {
             backAnim.SetTrigger("Fire");

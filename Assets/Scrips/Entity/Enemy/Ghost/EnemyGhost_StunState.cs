@@ -32,7 +32,7 @@ public class EnemyGhost_StunState : EnemyGhost_StateBase
 
         if (timer < 0)
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
     }
 }

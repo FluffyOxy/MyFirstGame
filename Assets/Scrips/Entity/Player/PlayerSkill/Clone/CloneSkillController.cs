@@ -59,8 +59,6 @@ public class CloneSkillController : MonoBehaviour
         duplicateSpawnOffset = _duplicateSpawnOffset;
         cloneDamageRate = _cloneDamageRate;
         FaceClosestTarget();
-
-
     }
 
     public void AnimFinishTrigger()

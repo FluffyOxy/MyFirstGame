@@ -38,13 +38,13 @@ public class EnemySlime_IdleState : EnemySlime_GroundedState
             }
             else
             {
-                stateMachine.changeState(enemy.battleState);
+                stateMachine.ChangeState(enemy.battleState);
             }
 
         }
         if (timer < 0)
         {
-            stateMachine.changeState(enemy.moveState);
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
 }

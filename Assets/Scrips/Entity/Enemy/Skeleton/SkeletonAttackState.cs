@@ -27,7 +27,7 @@ public class SkeletonAttackState : EnemyState
         enemy.SetVelocity(0, 0);
         if (triggerCalled)
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

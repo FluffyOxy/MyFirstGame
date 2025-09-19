@@ -51,11 +51,11 @@ public class DeathBriner_RunMoveState : DeathBriner_MoveStateBase
 
         if(enemy.currentAttackState.CanAttack())
         {
-            stateMachine.changeState(enemy.currentAttackState as DeathBriner_AttackStateBase);
+            stateMachine.ChangeState(enemy.currentAttackState as DeathBriner_AttackStateBase);
         }
         else if (timer < 0 || (enemy.IsTouchWall() && moveDir == enemy.facingDir) || (!enemy.IsGrounded() && moveDir == enemy.facingDir))
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 

@@ -27,11 +27,11 @@ public class EnemyGhost_FlyState : EnemyGhost_WanderState
 
     public override void Update()
     {
-        if (!enemy.IsDestinationValid())
+        if (!enemy.IsDestinationValid_LastFrame())
         {
             if (currentDestinationSearchingTime < 0)
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
             else
             {

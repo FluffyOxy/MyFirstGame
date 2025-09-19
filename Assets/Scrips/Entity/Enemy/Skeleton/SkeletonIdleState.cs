@@ -37,13 +37,13 @@ public class SkeletonIdleState : SkeletonGroundedState
             }
             else
             {
-                stateMachine.changeState(enemy.battleState);
+                stateMachine.ChangeState(enemy.battleState);
             }
             
         }
         if (timer < 0)
         {
-            stateMachine.changeState(enemy.moveState);
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
 }

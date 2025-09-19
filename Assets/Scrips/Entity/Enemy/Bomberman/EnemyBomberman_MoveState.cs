@@ -33,7 +33,7 @@ public class EnemyBomberman_MoveState : EnemyState
         }
         else if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else
         {
@@ -42,7 +42,7 @@ public class EnemyBomberman_MoveState : EnemyState
 
         if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

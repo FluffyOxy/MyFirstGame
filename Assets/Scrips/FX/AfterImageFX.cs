@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//冲刺后的分身
 public class AfterImageFX : MonoBehaviour
 {
     private SpriteRenderer sr;
     private float colorLooseSpeed;
 
-    public void Setup(float _looseSpeed, Sprite _image, bool isFacingLeft)
+    public void Setup(float _looseSpeed, Sprite _image, bool _isFacingLeft)
     {
         sr = GetComponent<SpriteRenderer>();
         sr.sprite = _image;
         colorLooseSpeed = _looseSpeed;
-        if(isFacingLeft)
+        if(_isFacingLeft)
         {
             transform.Rotate(0, 180, 0);
         }

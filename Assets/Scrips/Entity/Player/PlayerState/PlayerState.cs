@@ -15,10 +15,10 @@ public class PlayerState
     protected float timer;
     protected bool isAnimFinish;
 
-    public PlayerState(PlayerStateMachine _stateMachine, Player _Player, string _animBoolName)
+    public PlayerState(PlayerStateMachine _stateMachine, Player _player, string _animBoolName)
     {
         this.stateMachine = _stateMachine;
-        this.player = _Player;
+        this.player = _player;
         animBoolName = _animBoolName;
     }
 

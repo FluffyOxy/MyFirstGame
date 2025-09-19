@@ -29,7 +29,7 @@ public class Necromancer_MoveState : NecromancerStateBase
 
         if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
         else if (enemy.IsTouchWall())
         {
@@ -37,7 +37,7 @@ public class Necromancer_MoveState : NecromancerStateBase
         }
         else if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else
         {

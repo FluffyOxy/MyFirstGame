@@ -23,9 +23,9 @@ public class EnemyArcher_IdleState : EnemyArcher_GroundedState
     public override void Update()
     {
         base.Update();
-        if (enemy.shouldPullBack())
+        if (enemy.ShouldPullBack())
         {
-            stateMachine.changeState(enemy.pullBackState);
+            stateMachine.ChangeState(enemy.pullBackState);
         }
         else if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
@@ -42,19 +42,19 @@ public class EnemyArcher_IdleState : EnemyArcher_GroundedState
                 {
                     if (enemy.CanAttack())
                     {
-                        stateMachine.changeState(enemy.attackState);
+                        stateMachine.ChangeState(enemy.attackState);
                     }
                 }
             }
             else
             {
-                stateMachine.changeState(enemy.battleState);
+                stateMachine.ChangeState(enemy.battleState);
             }
 
         }
         else if (timer < 0)
         {
-            stateMachine.changeState(enemy.moveState);
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
 }

@@ -15,9 +15,22 @@ public enum StatType
     Damage,
     CritChance,
     CritPower,
+    AttackSpeed,
     FireDamage,
     IceDamage,
-    LightningDamage
+    LightningDamage,
+    FireDuration,
+    IceDuration,
+    LightningDuration,
+    FireDamageCooldown,
+    FireDamageTransform,
+    ChillArmorReduce,
+    ChillSlowRate,
+    ShockAccuracyReduce,
+    ThunderStrikeCount,
+    ThunderStrikeRate,
+    MaxFlaskUsageTime,
+    FlaskUsageRecover
 }
 public class DamageData
 {
@@ -51,9 +64,9 @@ public class DamageData
 
 
 
-    public void SetDamageSource(Entity damageSource)
+    public void SetDamageSource(Entity _damageSource)
     {
-        _damageSource = damageSource;
+        this._damageSource = _damageSource;
     }
     public void SetShouldPlayAnim(bool _shouldPlay)
     {
@@ -164,38 +177,69 @@ public class StatsModifierData
     public float armor;
     public float evasion;
     public float magicResistance;
+    public float maxFlaskUsageTime;
+    public float flaskUsageRecover;
 
 
     [Header("Offensive Stats")]
     public float damage;
     public float critChance;
-    public float critPower;        
+    public float critPower;
+    public float attackSpeed;
 
 
     [Header("Magic Stats")]
     public float fireDamage;
     public float iceDamage;
     public float lightningDamage;
+    public float fireDuration;
+    public float iceDuration;
+    public float lightningDuration;
+    public float fireDamageSpeed;
+    public float fireDamageTransform;
+    public float chillArmorReduce;
+    public float chillSlowRate;
+    public float shockAccuracyReduce;
+    public float thunderStrikeCount;
+    public float thunderStrikeRate;
 
     public float GetStatByType(StatType _type)
     {
         switch (_type)
         {
-            case StatType.Strength: return strength;
-            case StatType.Agility: return agility;
-            case StatType.Intelligence: return intelligence;
-            case StatType.Vitality: return vitality;
-            case StatType.MaxHealth: return maxHealth;
-            case StatType.Armor: return armor;
-            case StatType.Evasion: return evasion;
-            case StatType.MagicResistance: return magicResistance;
-            case StatType.Damage: return damage;
-            case StatType.CritChance: return critChance;
-            case StatType.CritPower: return critPower;
-            case StatType.FireDamage: return fireDamage;
-            case StatType.IceDamage: return iceDamage;
-            case StatType.LightningDamage: return lightningDamage;
-            default: return -1;
+            case StatType.Strength:              return strength;
+            case StatType.Agility:               return agility;
+            case StatType.Intelligence:          return intelligence;
+            case StatType.Vitality:              return vitality;
+                                                 
+            case StatType.MaxHealth:             return maxHealth;
+            case StatType.Armor:                 return armor;
+            case StatType.Evasion:               return evasion;
+            case StatType.MagicResistance:       return magicResistance;
+            case StatType.MaxFlaskUsageTime:     return maxFlaskUsageTime;
+            case StatType.FlaskUsageRecover: return flaskUsageRecover;
+                                                 
+            case StatType.Damage:                return damage;
+            case StatType.CritChance:            return critChance;
+            case StatType.CritPower:             return critPower;
+            case StatType.AttackSpeed:           return attackSpeed;
+                                                 
+            case StatType.FireDamage:            return fireDamage;
+            case StatType.IceDamage:             return iceDamage;
+            case StatType.LightningDamage:       return lightningDamage;
+            case StatType.FireDuration:          return fireDuration;
+            case StatType.IceDuration:           return iceDuration;
+            case StatType.LightningDuration:     return lightningDuration;
+
+            case StatType.FireDamageCooldown:       return fireDamageSpeed;
+            case StatType.FireDamageTransform:   return fireDamageTransform;
+            case StatType.ChillArmorReduce:      return chillArmorReduce;
+            case StatType.ChillSlowRate:         return chillSlowRate;
+            case StatType.ShockAccuracyReduce:   return shockAccuracyReduce;
+            case StatType.ThunderStrikeCount:    return thunderStrikeCount;
+            case StatType.ThunderStrikeRate:     return thunderStrikeRate;
+
+            default:                             return -1;
         }
     }
 }
@@ -216,19 +260,32 @@ public class CharacterStats : MonoBehaviour
     public Stat maxHealth;                  
     public Stat armor;                      
     public Stat evasion;                    
-    public Stat magicResistance;            
+    public Stat magicResistance;
+    public Stat maxFlaskUsageTime;
+    public Stat flaskUsageRecover;
                                             
                                             
     [Header("Offensive Stats")]             
     public Stat damage;                     
     public Stat critChance;                 
     public Stat critPower;                  // default value => 150%
+    public Stat attackSpeed;
 
 
     [Header("Magic Stats")]
     public Stat fireDamage;      
     public Stat iceDamage;       
-    public Stat lightningDamage; 
+    public Stat lightningDamage;
+    public Stat fireDuration;
+    public Stat iceDuration;
+    public Stat lightningDuration;
+    public Stat fireDamageCooldown;
+    public Stat fireDamageTransform;
+    public Stat chillArmorReduce;
+    public Stat chillSlowRate;
+    public Stat shockAccuracyReduce;
+    public Stat thunderStrikeCount;
+    public Stat thunderStrikeRate;
 
     [Header("Default Info")]
     [SerializeField] protected float defaultCritPower = 150f;
@@ -241,27 +298,18 @@ public class CharacterStats : MonoBehaviour
     [SerializeField] protected float agility_critChance = 1.0f;
     [SerializeField] protected float intelligence_magicDamage = 1.0f;
     [SerializeField] protected float intelligence_magicResistance = 3.0f;
+    [SerializeField] protected float intelligence_magicDuration = 0.5f; 
     [SerializeField] protected float vitality_maxHealth = 3.0f;
 
 
     [Header("Magic Effect")]
-    [SerializeField] protected float igniteDuration = 4.0f;
-    [SerializeField] protected float ignite_damageCooldown = 0.3f;
-    [SerializeField] protected float rateFireDamageTransformToIgniteDamage = 20f;
     protected float ignitedTimer;
     protected float igniteDamageTimer;
     [Space]
-    [SerializeField] protected float chillDuration = 4.0f;
-    [SerializeField] protected float chill_reduceArmorPer = 20f;
-    [SerializeField] protected float chillSlowPercentage = 20f;
     protected float chillTimer;
     [Space]
-    [SerializeField] protected float shockDuration = 4.0f;
-    [SerializeField] protected float shock_reduceAccuracy = 20f;
     [SerializeField] protected GameObject thunderAttackPrefab;
     [SerializeField] protected float thunderStrikeRadius = 25f;
-    [SerializeField] protected float thunderStrikeRate = 50f;
-    [SerializeField] protected int thunderStrikerCounter = 4;
     protected float shockTimer;
 
 
@@ -277,16 +325,18 @@ public class CharacterStats : MonoBehaviour
     [Space]
     [SerializeField] public bool isShock;   // reduce accuracy
     protected float shockReduceAccuracyPercentage;
+    [Space]
+    [SerializeField] protected float minFireDamageCooldown = 0.1f;
 
     public System.Action onCurrentHealthChange;
 
 
-    public float getMaxHealthValue()
+    public float GetMaxHealthValue()
     {
         return GetStatByType(StatType.MaxHealth);
     }
 
-    public float getCurrentHealthValue()
+    public float GetCurrentHealthValue()
     {
         return currentHealth;
     }
@@ -306,7 +356,7 @@ public class CharacterStats : MonoBehaviour
         entityFX = GetComponent<EntityFX>();
 
         critPower.SetDefaultValue(defaultCritPower);
-        SetCurrentHealth(getMaxHealthValue());
+        SetCurrentHealth(GetMaxHealthValue());
     }
 
     protected virtual void Update()
@@ -428,15 +478,15 @@ public class CharacterStats : MonoBehaviour
 
         if (ignite)
         {
-            _damageData.SetIgnite(igniteDamageCooldown, igniteDuration, rateFireDamageTransformToIgniteDamage * 0.01f * fireDamage.GetValue());
+            _damageData.SetIgnite(GetStatByType(StatType.FireDamageCooldown), GetStatByType(StatType.FireDuration), GetStatByType(StatType.FireDamageTransform) * 0.01f * fireDamage.GetValue());
         }
         if(chill)
         {
-            _damageData.SetChill(chillSlowPercentage, chillDuration, chill_reduceArmorPer);
+            _damageData.SetChill(GetStatByType(StatType.ChillSlowRate), GetStatByType(StatType.IceDuration), GetStatByType(StatType.ChillArmorReduce));
         }
         if(shock)
         {
-            _damageData.SetShock(shockDuration, thunderStrikeRadius, thunderStrikeRate, thunderStrikerCounter, shock_reduceAccuracy);
+            _damageData.SetShock(GetStatByType(StatType.LightningDuration), thunderStrikeRadius, GetStatByType(StatType.ThunderStrikeRate), (int)GetStatByType(StatType.ThunderStrikeCount), GetStatByType(StatType.ShockAccuracyReduce));
         }
     }
 
@@ -538,7 +588,7 @@ public class CharacterStats : MonoBehaviour
             chillTimer = _damageData._chillDuration;
             chillReduceArmorPercentage = _damageData._chillReduceArmorPer;
             entityFX.ChillFX(_damageData._chillDuration);
-            entity.slowEntityBy(_damageData._chillSlowPercentage * 0.01f, _damageData._chillDuration);
+            entity.SlowEntityBy(_damageData._chillSlowPercentage * 0.01f, _damageData._chillDuration);
         }
         if (isShock)
         {
@@ -587,7 +637,7 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void AddModifier(StatsModifierData _modifierData)
     {
-        float currentHealthPer = currentHealth / getMaxHealthValue();
+        float currentHealthPer = currentHealth / GetMaxHealthValue();
 
         strength.AddModifier(_modifierData.strength);
         agility.AddModifier(_modifierData.agility);
@@ -597,21 +647,35 @@ public class CharacterStats : MonoBehaviour
         damage.AddModifier(_modifierData.damage);
         critChance.AddModifier(_modifierData.critChance);
         critPower.AddModifier(_modifierData.critPower);
+        attackSpeed.AddModifier(_modifierData.attackSpeed);
 
         maxHealth.AddModifier(_modifierData.maxHealth);
         armor.AddModifier(_modifierData.armor);
         evasion.AddModifier(_modifierData.evasion);
         magicResistance.AddModifier(_modifierData.magicResistance);
+        flaskUsageRecover.AddModifier(_modifierData.flaskUsageRecover);
+        maxFlaskUsageTime.AddModifier(_modifierData.maxFlaskUsageTime);
 
         fireDamage.AddModifier(_modifierData.fireDamage);
         iceDamage.AddModifier(_modifierData.iceDamage);
         lightningDamage.AddModifier(_modifierData.lightningDamage);
+        fireDuration.AddModifier(_modifierData.fireDuration);
+        iceDuration.AddModifier(_modifierData.iceDuration);
+        lightningDuration.AddModifier(_modifierData.lightningDuration);
 
-        SetCurrentHealth(currentHealthPer * getMaxHealthValue());
+        fireDamageCooldown.AddModifier(_modifierData.fireDamageSpeed);
+        fireDamageTransform.AddModifier(_modifierData.fireDamageTransform);
+        chillArmorReduce.AddModifier(_modifierData.chillArmorReduce);
+        chillSlowRate.AddModifier(_modifierData.chillSlowRate);
+        shockAccuracyReduce.AddModifier(_modifierData.shockAccuracyReduce);
+        thunderStrikeCount.AddModifier(_modifierData.thunderStrikeCount);
+        thunderStrikeRate.AddModifier(_modifierData.thunderStrikeRate);
+
+        SetCurrentHealth(currentHealthPer * GetMaxHealthValue());
     }
     public virtual void RemoveModifier(StatsModifierData _modifierData)
     {
-        float currentHealthPer = currentHealth / getMaxHealthValue();
+        float currentHealthPer = currentHealth / GetMaxHealthValue();
 
         strength.RemoveModifier(_modifierData.strength);
         agility.RemoveModifier(_modifierData.agility);
@@ -621,25 +685,39 @@ public class CharacterStats : MonoBehaviour
         damage.RemoveModifier(_modifierData.damage);
         critChance.RemoveModifier(_modifierData.critChance);
         critPower.RemoveModifier(_modifierData.critPower);
+        attackSpeed.RemoveModifier(_modifierData.attackSpeed);
 
         maxHealth.RemoveModifier(_modifierData.maxHealth);
         armor.RemoveModifier(_modifierData.armor);
         evasion.RemoveModifier(_modifierData.evasion);
         magicResistance.RemoveModifier(_modifierData.magicResistance);
+        flaskUsageRecover.RemoveModifier(_modifierData.flaskUsageRecover);
+        maxFlaskUsageTime.RemoveModifier(_modifierData.maxFlaskUsageTime);
 
         fireDamage.RemoveModifier(_modifierData.fireDamage);
         iceDamage.RemoveModifier(_modifierData.iceDamage);
         lightningDamage.RemoveModifier(_modifierData.lightningDamage);
+        fireDuration.RemoveModifier(_modifierData.fireDuration);
+        iceDuration.RemoveModifier(_modifierData.iceDuration);
+        lightningDuration.RemoveModifier(_modifierData.lightningDuration);
 
-        SetCurrentHealth(currentHealthPer * getMaxHealthValue());
+        fireDamageCooldown.RemoveModifier(_modifierData.fireDamageSpeed);
+        fireDamageTransform.RemoveModifier(_modifierData.fireDamageTransform);
+        chillArmorReduce.RemoveModifier(_modifierData.chillArmorReduce);
+        chillSlowRate.RemoveModifier(_modifierData.chillSlowRate);
+        shockAccuracyReduce.RemoveModifier(_modifierData.shockAccuracyReduce);
+        thunderStrikeCount.RemoveModifier(_modifierData.thunderStrikeCount);
+        thunderStrikeRate.RemoveModifier(_modifierData.thunderStrikeRate);
+
+        SetCurrentHealth(currentHealthPer * GetMaxHealthValue());
     }
 
     public void Heal(float _health)
     {
         currentHealth += _health;
-        if(currentHealth > getMaxHealthValue())
+        if(currentHealth > GetMaxHealthValue())
         {
-            currentHealth = getMaxHealthValue();
+            currentHealth = GetMaxHealthValue();
         }
         if (onCurrentHealthChange != null)
         {
@@ -647,10 +725,10 @@ public class CharacterStats : MonoBehaviour
         }
     }
 
-    public IEnumerator ModifyStatsInDurationCoroutine(StatsModifierData _modifierData, float buffDuration)
+    public IEnumerator ModifyStatsInDurationCoroutine(StatsModifierData _modifierData, float _buffDuration)
     {
         PlayerManager.instance.player.cs.AddModifier(_modifierData);
-        yield return new WaitForSeconds(buffDuration);
+        yield return new WaitForSeconds(_buffDuration);
         PlayerManager.instance.player.cs.RemoveModifier(_modifierData);
     }
 
@@ -658,23 +736,37 @@ public class CharacterStats : MonoBehaviour
     {
         switch (_type)
         {
-            case StatType.Strength        : return strength.GetValue();
-            case StatType.Agility         : return agility.GetValue();
-            case StatType.Intelligence    : return intelligence.GetValue();
-            case StatType.Vitality        : return vitality.GetValue();
+            case StatType.Strength              : return strength.GetValue();
+            case StatType.Agility               : return agility.GetValue();
+            case StatType.Intelligence          : return intelligence.GetValue();
+            case StatType.Vitality              : return vitality.GetValue();
+                                                
+            case StatType.MaxHealth             : return maxHealth.GetValue() + vitality.GetValue() * vitality_maxHealth;
+            case StatType.Armor                 : return armor.GetValue() * (1 - chillReduceArmorPercentage * 0.01f);
+            case StatType.Evasion               : return evasion.GetValue() + agility.GetValue() * agility_evasion;
+            case StatType.MagicResistance       : return intelligence.GetValue() * intelligence_magicResistance + magicResistance.GetValue();
+            case StatType.MaxFlaskUsageTime     : return maxFlaskUsageTime.GetValue() > 0 ? maxFlaskUsageTime.GetValue() : 0;
+            case StatType.FlaskUsageRecover     : return flaskUsageRecover.GetValue() > 0 ? flaskUsageRecover.GetValue() : 0;
+                                                
+            case StatType.Damage                : return damage.GetValue() + strength.GetValue() * strength_damage;
+            case StatType.CritChance            : return critChance.GetValue() + agility.GetValue() * agility_critChance;
+            case StatType.CritPower             : return critPower.GetValue() + strength.GetValue() * strength_critPower;
+            case StatType.AttackSpeed           : return attackSpeed.GetValue();
+                                                
+            case StatType.FireDamage            : return fireDamage.GetValue() + intelligence.GetValue() * intelligence_magicDamage;
+            case StatType.IceDamage             : return iceDamage.GetValue() + intelligence.GetValue() * intelligence_magicDamage;
+            case StatType.LightningDamage       : return lightningDamage.GetValue() + intelligence.GetValue() * intelligence_magicDamage;
+            case StatType.FireDuration          : return fireDuration.GetValue() + intelligence.GetValue() * intelligence_magicDuration;
+            case StatType.IceDuration           : return iceDuration.GetValue() + intelligence.GetValue() * intelligence_magicDuration;
+            case StatType.LightningDuration     : return lightningDuration.GetValue() + intelligence.GetValue() * intelligence_magicDuration;
 
-            case StatType.MaxHealth       : return maxHealth.GetValue() + vitality.GetValue() * vitality_maxHealth;
-            case StatType.Armor           : return armor.GetValue() * (1 - chillReduceArmorPercentage * 0.01f);
-            case StatType.Evasion         : return evasion.GetValue() + agility.GetValue() * agility_evasion;
-            case StatType.MagicResistance : return intelligence.GetValue() * intelligence_magicResistance + magicResistance.GetValue();
-
-            case StatType.Damage          : return damage.GetValue() + strength.GetValue() * strength_damage;
-            case StatType.CritChance      : return critChance.GetValue() + agility.GetValue() * agility_critChance;
-            case StatType.CritPower       : return critPower.GetValue() + strength.GetValue() * strength_critPower;
-
-            case StatType.FireDamage      : return fireDamage.GetValue() + intelligence.GetValue() * intelligence_magicDamage;
-            case StatType.IceDamage       : return iceDamage.GetValue() + intelligence.GetValue() * intelligence_magicDamage;
-            case StatType.LightningDamage : return lightningDamage.GetValue() + intelligence.GetValue() * intelligence_magicDamage;
+            case StatType.FireDamageCooldown    : return fireDamageCooldown.GetValue() > minFireDamageCooldown ? fireDamageCooldown.GetValue() : minFireDamageCooldown;
+            case StatType.FireDamageTransform   : return fireDamageTransform.GetValue();
+            case StatType.ChillArmorReduce      : return chillArmorReduce.GetValue();
+            case StatType.ChillSlowRate         : return chillSlowRate.GetValue();
+            case StatType.ShockAccuracyReduce   : return shockAccuracyReduce.GetValue();
+            case StatType.ThunderStrikeCount    : return thunderStrikeCount.GetValue();
+            case StatType.ThunderStrikeRate     : return thunderStrikeRate.GetValue();
 
             default                       : Assert.IsTrue(false, "Undefine StatType!"); return -1;
         }                 

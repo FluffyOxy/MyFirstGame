@@ -65,3 +65,6 @@ TagManager:
   - name: FX
     uniqueID: 967101993
     locked: 0
+  - name: CameraSortingLayer
+    uniqueID: 3212437993
+    locked: 0

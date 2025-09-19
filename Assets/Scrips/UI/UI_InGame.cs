@@ -31,6 +31,7 @@ public class UI_InGame : MonoBehaviour
     [Space]
     [SerializeField] Image flaskIcon;
     [SerializeField] Image flaskCoolDown;
+    [SerializeField] TextMeshProUGUI flaskUsageTime;
     [Space] 
     [SerializeField] Image swordClusterIcon;
     [SerializeField] Image swordClusterCooldown;
@@ -93,6 +94,7 @@ public class UI_InGame : MonoBehaviour
         {
             flaskIcon.gameObject.SetActive(true);
             flaskCoolDown.fillAmount = Inventory.instance.GetFlaskCooldownPercentage();
+            flaskUsageTime.text = (playerStats as PlayerStats).CheckFlaskUsageTimeInInt().ToString(); 
         }
 
         if (skill.swordThrow.isUnlocked_swordCluster)
@@ -130,6 +132,6 @@ public class UI_InGame : MonoBehaviour
     private void UpdateHealthUI()
     {
         slider.maxValue = playerStats.GetStatByType(StatType.MaxHealth);
-        slider.value = playerStats.getCurrentHealthValue();
+        slider.value = playerStats.GetCurrentHealthValue();
     }
 }

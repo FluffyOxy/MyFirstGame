@@ -18,7 +18,7 @@ public class NPCStateMachine : MonoBehaviour
         currentState.Enter();
     }
 
-    public void changeState(NPCState _state)
+    public void ChangeState(NPCState _state)
     {
         currentState.Exit();
         currentState = _state;

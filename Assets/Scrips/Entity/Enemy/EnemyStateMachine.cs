@@ -12,13 +12,13 @@ public class EnemyStateMachine
         enemy = _enemy;
     }
 
-    public void Initialize(EnemyState state)
+    public void Initialize(EnemyState _state)
     {
-        currentState = state;
+        currentState = _state;
         currentState.Enter();
     }
 
-    public void changeState(EnemyState state)
+    public void ChangeState(EnemyState _state)
     {
         if(enemy.isDead)
         {
@@ -26,7 +26,7 @@ public class EnemyStateMachine
         }
 
         currentState.Exit();
-        currentState = state;
+        currentState = _state;
         currentState.Enter();
     }
 }

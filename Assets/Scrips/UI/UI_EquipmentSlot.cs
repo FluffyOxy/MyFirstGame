@@ -7,7 +7,7 @@ public class UI_EquipmentSlot : UI_ItemSlot
 {
     public EquipmentType equipmentType;
 
-    public override void OnPointerDown(PointerEventData eventData)
+    public override void OnPointerDown(PointerEventData _eventData)
     {
         if(item == null || item.data == null)
         {

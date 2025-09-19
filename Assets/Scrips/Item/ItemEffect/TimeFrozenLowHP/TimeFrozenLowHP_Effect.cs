@@ -6,7 +6,7 @@ using UnityEngine;
 public class TimeFrozenLowHP_Effect : ItemEffect
 {
     [Range(0f, 1f)]
-    [SerializeField] private float LowHPPercentage;
+    [SerializeField] private float lowHpPercentage;
     [SerializeField] private float coolDownDuration;
     [SerializeField] private float timeFrozenRadius;
     [SerializeField] private float timeFrozenDuration;
@@ -21,7 +21,7 @@ public class TimeFrozenLowHP_Effect : ItemEffect
     public override void ExcuteEffect(EffectExcuteData _target)
     {
         Player player = PlayerManager.instance.player;
-        if (player.cs.getCurrentHealthValue() / player.cs.getMaxHealthValue() < LowHPPercentage && !IsInCoolDown())
+        if (player.cs.GetCurrentHealthValue() / player.cs.GetMaxHealthValue() < lowHpPercentage && !IsInCoolDown())
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(player.transform.position, timeFrozenRadius);
             foreach(Collider2D hit in colliders)

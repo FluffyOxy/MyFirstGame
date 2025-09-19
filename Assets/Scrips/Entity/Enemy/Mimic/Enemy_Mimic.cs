@@ -68,7 +68,7 @@ public class Enemy_Mimic : Enemy, IPlayerInteractive
     {
         if (base.TryToBeStuuned())
         {
-            stateMachine.changeState(stunState);
+            stateMachine.ChangeState(stunState);
             return true;
         }
         return false;
@@ -81,7 +81,7 @@ public class Enemy_Mimic : Enemy, IPlayerInteractive
             Player player = _damageSource as Player;
             if (player != null && ((stateMachine.currentState == chestState && !isChest) || stateMachine.currentState == watchState))
             {
-                stateMachine.changeState(battleIdleState);
+                stateMachine.ChangeState(battleIdleState);
                 enemyUI.SetActive(true);
             }
         }
@@ -91,7 +91,7 @@ public class Enemy_Mimic : Enemy, IPlayerInteractive
     {
         if (!isDead)
         {
-            stateMachine.changeState(deadState);
+            stateMachine.ChangeState(deadState);
             base.Die();
         }
     }
@@ -108,13 +108,13 @@ public class Enemy_Mimic : Enemy, IPlayerInteractive
 
         if(isChest)
         {
-            stateMachine.changeState(openState);
+            stateMachine.ChangeState(openState);
 
             SceneAudioManager.instance.mimicSFX.open.Play(transform);
         }
         else
         {
-            stateMachine.changeState(battleIdleState);
+            stateMachine.ChangeState(battleIdleState);
             enemyUI.SetActive(true);
 
             SceneAudioManager.instance.mimicSFX.roar.Play(transform);

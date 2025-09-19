@@ -193,7 +193,7 @@ public class DeathBriner_ShadowAttack : DeathBriner_AttackStateBase
 
         if (triggerCalled)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 

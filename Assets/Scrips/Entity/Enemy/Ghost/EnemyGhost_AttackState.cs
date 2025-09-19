@@ -27,7 +27,7 @@ public class EnemyGhost_AttackState : EnemyGhost_StateBase
 
         if (triggerCalled)
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
     }
 }

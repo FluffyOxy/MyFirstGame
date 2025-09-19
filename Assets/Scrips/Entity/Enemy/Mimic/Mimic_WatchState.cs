@@ -23,7 +23,7 @@ public class Mimic_WatchState : Mimic_StateBase
         base.Update();
         if(triggerCalled)
         {
-            stateMachine.changeState(enemy.chestState);
+            stateMachine.ChangeState(enemy.chestState);
         }
     }
 }

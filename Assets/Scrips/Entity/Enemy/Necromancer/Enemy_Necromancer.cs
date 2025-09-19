@@ -67,7 +67,7 @@ public class Enemy_Necromancer : Enemy
             Player player = _damageSource as Player;
             if (player != null && stateMachine.currentState == idleState || stateMachine.currentState == moveState)
             {
-                stateMachine.changeState(battleState);
+                stateMachine.ChangeState(battleState);
             }
         }
     }
@@ -80,7 +80,7 @@ public class Enemy_Necromancer : Enemy
     {
         if (!isDead)
         {
-            stateMachine.changeState(deadState);
+            stateMachine.ChangeState(deadState);
             base.Die();
         }
     }
@@ -106,7 +106,7 @@ public class Enemy_Necromancer : Enemy
         return false;
     }
 
-    public bool shouldPullBack(bool _isCurrentPullback)
+    public bool ShouldPullBack(bool _isCurrentPullback)
     {
         Transform player = PlayerManager.instance.player.transform;
         if(!_isCurrentPullback)
@@ -119,7 +119,7 @@ public class Enemy_Necromancer : Enemy
         }
     }
 
-    public void throwSkullToPlayer()
+    public void ThrowSkullToPlayer()
     {
         currentSkull = Instantiate(skullPrefab, skullThrowPosition.position, Quaternion.identity).GetComponent<SkullController>();
         currentSkull.Setup(PlayerManager.instance.player, this);

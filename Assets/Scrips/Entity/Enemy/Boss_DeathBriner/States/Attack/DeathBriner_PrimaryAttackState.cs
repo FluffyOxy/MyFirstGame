@@ -28,11 +28,11 @@ public class DeathBriner_PrimaryAttackState : DeathBriner_AttackStateBase
             if(enemy.attackCounter > 1)
             {
                 --enemy.attackCounter;
-                stateMachine.changeState(this);
+                stateMachine.ChangeState(this);
             }
             else
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
     }

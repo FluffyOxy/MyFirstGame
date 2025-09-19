@@ -27,7 +27,7 @@ public class UI_StatsSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void Start()
     {
-        statName = Translater.instance.Translate(statName);
+        statName = Translator.instance.Translate(statName);
         statNameText.text = statName + ":";
         ui = GetComponentInParent<UI>();
     }
@@ -69,12 +69,12 @@ public class UI_StatsSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         gameObject.SetActive(true);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _eventData)
     {
         ui.statsDescriptionToolTip.ShowToolTip(type, statDescription);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData _eventData)
     {
         ui.statsDescriptionToolTip.HideToolTip();
     }

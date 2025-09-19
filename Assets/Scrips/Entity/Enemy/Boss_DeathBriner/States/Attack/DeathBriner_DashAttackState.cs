@@ -89,7 +89,7 @@ public class DeathBriner_DashAttackState : DeathBriner_AttackStateBase
         
         if(triggerCalled || enemy.IsTouchWall() || !enemy.IsGrounded())
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 }

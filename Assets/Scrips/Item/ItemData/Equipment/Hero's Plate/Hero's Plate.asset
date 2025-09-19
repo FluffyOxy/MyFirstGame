@@ -31,8 +31,20 @@ MonoBehaviour:
     damage: 0
     critChance: 0
     critPower: 0
+    attackSpeed: 0
     fireDamage: 0
     iceDamage: 0
     lightningDamage: 0
+    fireDuration: 0
+    iceDuration: 0
+    lightningDuration: 0
+    fireDamageSpeed: 0
+    fireDamageTransform: 0
+    chillArmorReduce: 0
+    chillSlowRate: 0
+    shockAccuracyReduce: 0
+    thunderStrikeCount: 0
+    thunderStrikeRate: 0
   effects:
   - {fileID: 11400000, guid: 415a361d10e9fd04a97d00f015a7f320, type: 2}
+  cooldown: 60

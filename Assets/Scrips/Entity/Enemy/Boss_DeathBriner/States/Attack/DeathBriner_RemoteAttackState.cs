@@ -39,18 +39,18 @@ public class DeathBriner_RemoteAttackState : DeathBriner_AttackStateBase
         enemy.SetVelocity(0, 0);
         if(enemy.isTakingDamage)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else if (triggerCalled)
         {
             if (enemy.attackCounter > 1)
             {
                 --enemy.attackCounter;
-                stateMachine.changeState(this);
+                stateMachine.ChangeState(this);
             }
             else
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
     }

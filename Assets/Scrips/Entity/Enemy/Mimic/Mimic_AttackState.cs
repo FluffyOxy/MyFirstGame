@@ -25,7 +25,7 @@ public class Mimic_AttackState : Mimic_StateBase
         enemy.SetVelocity(0, 0);
         if (triggerCalled)
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
     }
 }

@@ -222,10 +222,10 @@ public class EntityFX : MonoBehaviour
     }
 
     //此处的isFacingLeft参数针对的时初始面向右边的实体，若初始面向左边，应为isFacingRight
-    public void CreateAfterImage(bool isFacingLeft)
+    public void CreateAfterImage(bool _isFacingLeft)
     {
         AfterImageFX newAfterImage = Instantiate(afterImagePrefab, transform.position, Quaternion.identity).GetComponent<AfterImageFX>();
-        newAfterImage.Setup(colorLooseSpeed, sr.sprite, isFacingLeft);
+        newAfterImage.Setup(colorLooseSpeed, sr.sprite, _isFacingLeft);
     }
 
     public void ScreenShake(Vector2 _shakePower)

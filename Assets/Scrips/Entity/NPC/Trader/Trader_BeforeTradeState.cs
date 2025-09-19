@@ -37,7 +37,7 @@ public class Trader_BeforeTradeState : TraderStateBase
             else
             {
                 UI.instance.SpeakDone();
-                stateMachine.changeState(npc.tradeState);
+                stateMachine.ChangeState(npc.tradeState);
             }
         }
     }

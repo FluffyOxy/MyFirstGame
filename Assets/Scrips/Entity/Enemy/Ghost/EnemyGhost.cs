@@ -93,7 +93,7 @@ public class EnemyGhost : Enemy
     {
         if (base.TryToBeStuuned())
         {
-            stateMachine.changeState(stunState);
+            stateMachine.ChangeState(stunState);
             return true;
         }
         return false;
@@ -106,7 +106,7 @@ public class EnemyGhost : Enemy
             Player player = _damageSource as Player;
             if (player != null && stateMachine.currentState is EnemyGhost_WanderState)
             {
-                stateMachine.changeState(battleIdleState);
+                stateMachine.ChangeState(battleIdleState);
             }
         }
     }
@@ -115,7 +115,7 @@ public class EnemyGhost : Enemy
     {
         if (!isDead)
         {
-            stateMachine.changeState(deadState);
+            stateMachine.ChangeState(deadState);
             base.Die();
             rg.isKinematic = false;
             rg.gravityScale = gravityScale;
@@ -140,7 +140,7 @@ public class EnemyGhost : Enemy
         navMeshAgent.SetDestination(_target);
     }
 
-    public bool IsDestinationValid()
+    public bool IsDestinationValid_LastFrame()
     {
         return navMeshAgent.hasPath;
     }

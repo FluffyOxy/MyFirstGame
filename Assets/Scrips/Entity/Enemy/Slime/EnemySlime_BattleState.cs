@@ -39,7 +39,7 @@ public class EnemySlime_BattleState : EnemyState
 
         if ((enemy.IsTouchWall() || !enemy.IsGrounded()) && moveDir == enemy.facingDir)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else if (Vector2.Distance(enemy.transform.position, player.position) > enemy.attackValidCheckRadius)
         {
@@ -57,7 +57,7 @@ public class EnemySlime_BattleState : EnemyState
             {
                 if (CanAttack())
                 {
-                    stateMachine.changeState(enemy.attackState);
+                    stateMachine.ChangeState(enemy.attackState);
                 }
             }
         }
@@ -65,13 +65,13 @@ public class EnemySlime_BattleState : EnemyState
         {
             if (timer < 0)
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
 
         if (PlayerManager.instance.player.isDead)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
     protected bool CanAttack()

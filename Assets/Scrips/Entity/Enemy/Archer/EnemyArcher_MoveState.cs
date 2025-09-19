@@ -31,20 +31,20 @@ public class EnemyArcher_MoveState : EnemyArcher_GroundedState
         }
         else if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else
         {
             enemy.SetVelocity(enemy.moveSpeed * enemy.facingDir, enemy.rg.velocity.y);
         }
 
-        if(enemy.shouldPullBack())
+        if(enemy.ShouldPullBack())
         {
-            stateMachine.changeState(enemy.pullBackState);
+            stateMachine.ChangeState(enemy.pullBackState);
         }
         else if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

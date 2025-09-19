@@ -27,7 +27,7 @@ public class EnemyGhost_WanderState : EnemyGhost_StateBase
         base.Update();
         if (enemyBase.IsPlayerDetected() || enemyBase.IsDetectPlayerFront())
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
     }
 }

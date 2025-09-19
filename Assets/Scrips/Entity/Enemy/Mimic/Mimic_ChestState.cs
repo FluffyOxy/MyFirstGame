@@ -29,7 +29,7 @@ public class Mimic_ChestState : Mimic_StateBase
                 int dice = Random.Range(0, 100);
                 if (dice < enemy.watchRate)
                 {
-                    stateMachine.changeState(enemy.watchState);
+                    stateMachine.ChangeState(enemy.watchState);
                 }
                 timer = enemy.watchCooldown;
             }

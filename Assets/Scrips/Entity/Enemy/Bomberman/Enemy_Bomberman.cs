@@ -60,7 +60,7 @@ public class Enemy_Bomberman : Enemy
         {
             if(base.TryToBeStuuned())
             {
-                stateMachine.changeState(stunnedState);
+                stateMachine.ChangeState(stunnedState);
                 return true;
             }
             return false;
@@ -73,7 +73,7 @@ public class Enemy_Bomberman : Enemy
                 counterBackDir = -1;
             }
             rg.velocity = new Vector2(counterBackForce.x * counterBackDir, counterBackForce.y);
-            stateMachine.changeState(explodeStunnedState);
+            stateMachine.ChangeState(explodeStunnedState);
             return true;
         }
     }
@@ -85,7 +85,7 @@ public class Enemy_Bomberman : Enemy
             Player player = _damageSource as Player;
             if (player != null && stateMachine.currentState == idleState || stateMachine.currentState == moveState)
             {
-                stateMachine.changeState(battleState);
+                stateMachine.ChangeState(battleState);
             }
         }
     }
@@ -94,7 +94,7 @@ public class Enemy_Bomberman : Enemy
     {
         if (!isDead && !isExplodeHolding)
         {
-            stateMachine.changeState(explodeHoldingState);
+            stateMachine.ChangeState(explodeHoldingState);
             isExplodeHolding = true;
         }
     }

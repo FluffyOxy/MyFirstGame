@@ -33,7 +33,7 @@ public class Mimic_MoveState : Mimic_StateBase
         }
         else if (!enemy.IsGrounded() && !enemy.IsPlatform())
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else
         {
@@ -42,7 +42,7 @@ public class Mimic_MoveState : Mimic_StateBase
 
         if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
     }
 }

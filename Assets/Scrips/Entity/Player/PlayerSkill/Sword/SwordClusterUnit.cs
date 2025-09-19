@@ -113,7 +113,7 @@ public class SwordClusterUnit : MonoBehaviour
         Destroy(gameObject);
     }
 
-    void UpdateNearAndCollisionUnits()
+    private void UpdateNearAndCollisionUnits()
     {
         float dist;
         float nearestUnitDist = float.MaxValue;
@@ -154,7 +154,7 @@ public class SwordClusterUnit : MonoBehaviour
         
     }
 
-    Vector2 GetVelocityMatchingVector()
+    private Vector2 GetVelocityMatchingVector()
     {
         if (nearUnits.Count == 0)
         {
@@ -170,7 +170,7 @@ public class SwordClusterUnit : MonoBehaviour
         return sumVelocity / nearUnits.Count;
     }
 
-    Vector2 GetCenterTargetingVector()
+    private Vector2 GetCenterTargetingVector()
     {
         if (nearUnits.Count == 0)
         {
@@ -181,7 +181,7 @@ public class SwordClusterUnit : MonoBehaviour
 
         return nearUnitsAvgPos - (Vector2)transform.position;
     }
-    Vector2 GetCollisionPreventingVector()
+    private Vector2 GetCollisionPreventingVector()
     {
         if (collisionUnits.Count == 0)
         {
@@ -193,7 +193,7 @@ public class SwordClusterUnit : MonoBehaviour
         return (Vector2)transform.position - nearUnitsAvgPos;
     }
 
-    Vector2 GetAvgPosition(List<SwordClusterUnit> _units)
+    private Vector2 GetAvgPosition(List<SwordClusterUnit> _units)
     {
         Vector2 sumPosition = new Vector2();
         foreach (var unit in nearUnits)
@@ -204,7 +204,7 @@ public class SwordClusterUnit : MonoBehaviour
         return sumPosition / nearUnits.Count;
     }
 
-    Vector2 GetMouseTargetingVector()
+    private Vector2 GetMouseTargetingVector()
     {
         return spawner.mousePos - (Vector2)transform.position;
     }

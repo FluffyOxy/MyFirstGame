@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05e5145818a654428c9de6811bdeccb, type: 3}
   m_Name: HealFlaskEffect
   m_EditorClassIdentifier: 
-  description: "\u996E\u7528\u65F6\u56DE\u590D30%\u7684\u8840\u91CF"
-  percentage: 0.3
+  description: "\u996E\u7528\u65F6\u56DE\u590D15%\u7684\u8840\u91CF"
+  percentage: 0.15

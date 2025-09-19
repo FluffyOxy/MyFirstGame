@@ -19,9 +19,9 @@ public class CheckPoint : MonoBehaviour
         id = System.Guid.NewGuid().ToString();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
-        if(collision.GetComponent<Player>() != null)
+        if(_collision.GetComponent<Player>() != null)
         {
             Check();
         }

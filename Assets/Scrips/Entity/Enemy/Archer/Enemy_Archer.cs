@@ -75,7 +75,7 @@ public class Enemy_Archer : Enemy
             Player player = _damageSource as Player;
             if (player != null && stateMachine.currentState == idleState || stateMachine.currentState == moveState)
             {
-                stateMachine.changeState(battleState);
+                stateMachine.ChangeState(battleState);
             }
         }
     }
@@ -84,7 +84,7 @@ public class Enemy_Archer : Enemy
     {
         if (!isDead)
         {
-            stateMachine.changeState(deadState);
+            stateMachine.ChangeState(deadState);
             base.Die();
         }
     }
@@ -94,7 +94,7 @@ public class Enemy_Archer : Enemy
         base.Flip();
     }
 
-    public bool shouldPullBack()
+    public bool ShouldPullBack()
     {
         Transform player = PlayerManager.instance.player.transform;
         return !PlayerManager.instance.player.isDead && Vector2.Distance(player.position, transform.position) < pullBackRadius;
@@ -179,7 +179,7 @@ public class Enemy_Archer : Enemy
 
                 if (haveGround && !haveWall)
                 {
-                    stateMachine.changeState(pullBackJumpState);
+                    stateMachine.ChangeState(pullBackJumpState);
                     return true;
                 }
                 else

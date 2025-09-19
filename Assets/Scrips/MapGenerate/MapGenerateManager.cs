@@ -178,7 +178,6 @@ public class Line
 //每个场景考虑使用自己的地图生成器
 public class MapGenerateManager : MonoBehaviour
 {
-    //房间类型划分为入口、出口、战斗、通道、下分支、上分支、左分支终点、右分支终点几种。其中入口出口分别在右边和左边右出入口，战斗和通道在两边都有出入口，下分支在左右下方有出入口，上分支在左右上有出入口，所有房间都有上方的入口
     [Header("Room Prefabs")]
     [SerializeField] public List<GameObject> entryRoomPrefabs;
     [SerializeField] public List<GameObject> exitRoomPrefabs;
@@ -285,19 +284,19 @@ public class MapGenerateManager : MonoBehaviour
             GenerateRewardBox(_slot, _rewardTransform);
         }
     }
-    private void GenerateRewardBox(RewardSlot slot, Transform _rewardTransform)
+    private void GenerateRewardBox(RewardSlot _slot, Transform _rewardTransform)
     {
         List<Drop> drops = new List<Drop>();
-        if (UnityEngine.Random.Range(0f, 100f) < slot.mimicRate)
+        if (UnityEngine.Random.Range(0f, 100f) < _slot.mimicRate)
         {
-            GenerateMimic(slot, drops, _rewardTransform);
+            GenerateMimic(_slot, drops, _rewardTransform);
         }
         else
         {
-            drops.AddRange(GetPrimaryRewards(slot.rewardAmount));
-            if (UnityEngine.Random.Range(0f, 100f) < slot.advancedRewardRate)
+            drops.AddRange(GetPrimaryRewards(_slot.rewardAmount));
+            if (UnityEngine.Random.Range(0f, 100f) < _slot.advancedRewardRate)
             {
-                drops.AddRange(GetAdvancedRewards(slot.advancedAmount));
+                drops.AddRange(GetAdvancedRewards(_slot.advancedAmount));
                 Chest newChest =
                     Instantiate(
                         advancedRewardChestPrefab, _rewardTransform.position, Quaternion.identity
@@ -314,18 +313,18 @@ public class MapGenerateManager : MonoBehaviour
             }
         }
     }
-    private void GenerateMimic(RewardSlot slot, List<Drop> drops, Transform _rewardTransform)
+    private void GenerateMimic(RewardSlot _slot, List<Drop> _drops, Transform _rewardTransform)
     {
-        drops.AddRange(GetPrimaryRewards(slot.rewardAmount));
-        if (UnityEngine.Random.Range(0f, 100f) < slot.mimicAdvancedRewardRate)
+        _drops.AddRange(GetPrimaryRewards(_slot.rewardAmount));
+        if (UnityEngine.Random.Range(0f, 100f) < _slot.mimicAdvancedRewardRate)
         {
-            drops.AddRange(GetAdvancedRewards(slot.advancedAmount));
+            _drops.AddRange(GetAdvancedRewards(_slot.advancedAmount));
         }
 
         Enemy_Mimic newMimic =
             Instantiate(
                 mimicChestPrefab, _rewardTransform.position, Quaternion.identity
             ).GetComponent<Enemy_Mimic>();
-        newMimic.SetDrops(drops);
+        newMimic.SetDrops(_drops);
     }
 }

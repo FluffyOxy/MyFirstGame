@@ -48,7 +48,7 @@ public class Trader_TradeState : TraderStateBase
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UI.instance.HideTradeBlock();
-            stateMachine.changeState(npc.afterTradeState);
+            stateMachine.ChangeState(npc.afterTradeState);
         }
     }
 }

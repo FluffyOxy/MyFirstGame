@@ -48,7 +48,6 @@ public class Player : Entity
     [SerializeField] public float movableDurationInAttacking;
     [SerializeField] public float unmovableDurationAfterAttack;
     [SerializeField] public float[] attackMovement;
-    [SerializeField] public float attackSpeedPer;
     [SerializeField] public float counterAttackDuration = 0.2f;
     [SerializeField] public float enemyCanBeStunnedCheckRadius;
     [SerializeField] public float unmovebleDurationAfterThrowSword;
@@ -275,7 +274,7 @@ public class Player : Entity
         {
             if(hit.GetComponent<Enemy>() != null)
             {
-                if(hit.GetComponent<Enemy>().canBeStunned())
+                if(hit.GetComponent<Enemy>().CanBeStunned())
                 {
                     return true;
                 }
@@ -309,9 +308,9 @@ public class Player : Entity
         }
     }
 
-    public override void slowEntityBy(float _slowPercent, float _slowDuration)
+    public override void SlowEntityBy(float _slowPercent, float _slowDuration)
     {
-        base.slowEntityBy(_slowPercent, _slowDuration);
+        base.SlowEntityBy(_slowPercent, _slowDuration);
 
         moveSpeed *= (1 - _slowPercent);
         jumpSpeed *= (1 - _slowPercent);
@@ -332,35 +331,35 @@ public class Player : Entity
     {
         float damage = cs.DoDamageTo_PrimaryAttack(_target);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.PrimaryAttack, _target, damage);
-        Inventory.instance.TryGetEquipmentByType(EquipmentType.Weapon)?.ExcuteItemEffect(data);
+        Inventory.instance.TryGetEquipmentByType(EquipmentType.Weapon)?.TryExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_Clone(Entity _target, float _damageRate, Transform _swordTransform)
     {
         float damage = (cs as PlayerStats).DoDamageTo_Clone(_target, _damageRate, _swordTransform);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.Clone, _target, damage);
-        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
+        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.TryExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_Crystal(Entity _target, Transform _crystalTransform)
     {
         float damage = (cs as PlayerStats).DoDamageTo_Crystal(_target, _crystalTransform);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.Crystal, _target, damage);
-        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
+        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.TryExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_Sword(Entity _target, float _damageRate, Transform _swordTransform)
     {
         float damage = (cs as PlayerStats).DoDamageTo_Sword(_target, _damageRate, _swordTransform);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.Sword, _target, damage);
-        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
+        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.TryExcuteItemEffect(data);
     }
 
     public virtual void DoDamageTo_CounterAttack(Entity _target)
     {
         float damage = (cs as PlayerStats).DoDamageTo_CounterAttack(_target);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.CounterAttack, _target, damage);
-        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.ExcuteItemEffect(data);
+        Inventory.instance.TryGetEquipmentByType(EquipmentType.Amulet)?.TryExcuteItemEffect(data);
     }
 
     public void SetCanInput(bool _canInput) 

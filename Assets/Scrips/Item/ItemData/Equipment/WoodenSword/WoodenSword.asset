@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0030604f8c71c7c43bb2ebb1e8f46e63, type: 3}
   m_Name: WoodenSword
   m_EditorClassIdentifier: 
+  itemId: 12ab6b390872dc744bbc21d7d61a6a56
   icon: {fileID: -1055781779, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   itemName: "\u6728\u5251"
   itemType: 1
   craftingMaterials: []
+  description: "\u5B87\u5B99\u4E07\u6CD5\u7684\u8D77\u6E90\uFF0C\u6211\u7684\u4E16\u754C\u7684\u5F00\u7AEF"
   equipmentType: 0
   statsModifierData:
     strength: 0
@@ -29,7 +31,19 @@ MonoBehaviour:
     damage: 5
     critChance: 0
     critPower: 0
+    attackSpeed: 0
     fireDamage: 0
     iceDamage: 0
     lightningDamage: 0
+    fireDuration: 0
+    iceDuration: 0
+    lightningDuration: 0
+    fireDamageSpeed: 0
+    fireDamageTransform: 0
+    chillArmorReduce: 0
+    chillSlowRate: 0
+    shockAccuracyReduce: 0
+    thunderStrikeCount: 0
+    thunderStrikeRate: 0
   effects: []
+  cooldown: 0

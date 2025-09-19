@@ -28,7 +28,7 @@ public class Trader : NPC, IPlayerCommunicable
     {
         if (stateMachine.currentState == idleState)
         {
-            stateMachine.changeState(beforeTradeState);
+            stateMachine.ChangeState(beforeTradeState);
         }
     }
 

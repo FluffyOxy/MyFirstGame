@@ -20,6 +20,8 @@ public class PlayerPrimaryAttackState : PlayerState
             comboCounter = 0;
         }
         player.anim.SetInteger("ComboCounter", comboCounter);
+        player.anim.speed = player.GetStats().GetStatByType(StatType.AttackSpeed) / 100;
+        
 
         float attackDir = player.facingDir;
         if(xInput != 0)
@@ -29,7 +31,6 @@ public class PlayerPrimaryAttackState : PlayerState
         player.SetVelocity(player.attackMovement[comboCounter] * attackDir, rg.velocity.y);
 
         timer = player.movableDurationInAttacking;
-        player.anim.speed = player.attackSpeedPer;
     }
 
     public override void Exit()

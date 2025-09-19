@@ -26,7 +26,7 @@ public class Witcher : NPC, IPlayerCommunicable
     {
         if(stateMachine.currentState == idleState)
         {
-            stateMachine.changeState(beforeSpellState);
+            stateMachine.ChangeState(beforeSpellState);
         }
     }
 

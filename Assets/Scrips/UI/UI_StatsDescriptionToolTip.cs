@@ -10,7 +10,7 @@ public class UI_StatsDescriptionToolTip : MonoBehaviour
 
     public void ShowToolTip(StatType _type, string _description)
     {
-        statNameText.text = Translater.instance.Translate(_type.ToString());
+        statNameText.text = Translator.instance.Translate(_type.ToString());
         statDescriptionText.text = _description;
 
         gameObject.SetActive(true);

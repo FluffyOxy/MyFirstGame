@@ -5,24 +5,24 @@ using UnityEngine;
 public class DeadZone : MonoBehaviour
 {
     [SerializeField] private DamageDataSerializable damageData;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
-        if(collision.GetComponent<Enemy>() != null)
+        if(_collision.GetComponent<Enemy>() != null)
         {
-            collision.GetComponent<Enemy>().Die();
+            _collision.GetComponent<Enemy>().Die();
         }
-        else if (collision.GetComponent<Player>() != null)
+        else if (_collision.GetComponent<Player>() != null)
         {
-            collision.GetComponent<Player>().cs.TakeDamage(damageData.GetDamageData(), transform);
+            _collision.GetComponent<Player>().cs.TakeDamage(damageData.GetDamageData(), transform);
 
             CheckPoint nearestCheckPoint = GameManager.instance.TryGetClosestCheckPointToPlayer();
             if(nearestCheckPoint != null)
             {
-                collision.GetComponent<Player>().transform.position = nearestCheckPoint.transform.position;
+                _collision.GetComponent<Player>().transform.position = nearestCheckPoint.transform.position;
             }
             else
             {
-                collision.GetComponent<Player>().Die();
+                _collision.GetComponent<Player>().Die();
             }
         }
     }

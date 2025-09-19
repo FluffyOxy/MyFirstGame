@@ -37,7 +37,7 @@ public class Witcher_AfterSpellState : WitcherStateBase
             else
             {
                 UI.instance.SpeakDone();
-                stateMachine.changeState(npc.finishState);
+                stateMachine.ChangeState(npc.finishState);
             }
         }
     }

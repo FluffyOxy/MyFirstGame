@@ -26,7 +26,7 @@ public class EnemyBomberman_ExplodeHoldingState : EnemyState
         base.Update();
         if(timer <= 0)
         {
-            enemy.stateMachine.changeState(enemy.explodeState);
+            enemy.stateMachine.ChangeState(enemy.explodeState);
         }
     }
 }

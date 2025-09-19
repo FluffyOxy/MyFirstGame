@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class UI_CraftWindow : MonoBehaviour
 {
-    [SerializeField] private UI_ItemToolTip ItemDetail;
+    [SerializeField] private UI_ItemToolTip itemDetail;
 
     [SerializeField] private Image[] materialImages;
 
@@ -23,7 +23,7 @@ public class UI_CraftWindow : MonoBehaviour
 
         equipment = _equipment;
 
-        ItemDetail.ShowToolTip(_equipment);
+        itemDetail.ShowToolTip(_equipment);
 
         foreach(var material in materialImages)
         {

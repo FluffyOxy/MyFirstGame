@@ -6,6 +6,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class PlayerStats : CharacterStats, ISaveManager
 {
     private Player player;
+    private float currentFlaskUsageTime;
 
     [Header("Stats UI")]
     [SerializeField] private Transform statsSlotParent;
@@ -19,7 +20,7 @@ public class PlayerStats : CharacterStats, ISaveManager
         }
         float getDamage = base.TakeDamage(_damageData, _damageDirection);
         EffectExcuteData data = new EffectExcuteData(EffectExcuteTime.TakeDamage, _damageData._damageSource, getDamage);
-        Inventory.instance.TryGetEquipmentByType(EquipmentType.Armor)?.ExcuteItemEffect(data);
+        Inventory.instance.TryGetEquipmentByType(EquipmentType.Armor)?.TryExcuteItemEffect(data);
 
         if(getDamage > 0)
         {
@@ -38,7 +39,61 @@ public class PlayerStats : CharacterStats, ISaveManager
         {
             UpdateStatsUI();
         }
+        currentFlaskUsageTime = GetStatByType(StatType.MaxFlaskUsageTime);
     }
+
+    protected override void Update()
+    {
+        base.Update();
+    }
+
+    public void RecoverFlaskUsageTimeRaw(float _amount)
+    {
+        currentFlaskUsageTime += _amount;
+        if (currentFlaskUsageTime > GetStatByType(StatType.MaxFlaskUsageTime))
+        {
+            currentFlaskUsageTime = GetStatByType(StatType.MaxFlaskUsageTime);
+        }
+
+        UpdateFlaskUsageTimeInUI();
+    }
+
+    public void RecoverFlaskUsageTime(float _amount)
+    {
+        currentFlaskUsageTime += GetStatByType(StatType.FlaskUsageRecover) * _amount;
+        if (currentFlaskUsageTime > GetStatByType(StatType.MaxFlaskUsageTime))
+        {
+            currentFlaskUsageTime = GetStatByType(StatType.MaxFlaskUsageTime);
+        }
+
+        UpdateFlaskUsageTimeInUI();
+    }
+
+    public void ReduceFlaskUsageTime(float _time)
+    {
+        currentFlaskUsageTime -= _time;
+        if(currentFlaskUsageTime < 0)
+        {
+            currentFlaskUsageTime = 0;
+        }
+
+        UpdateFlaskUsageTimeInUI();
+    }
+
+    public bool IsFlaskUsable()
+    {
+        return currentFlaskUsageTime >= 1;
+    }
+
+    public int CheckFlaskUsageTimeInInt()
+    {
+        return (int)currentFlaskUsageTime;
+    }
+    private void UpdateFlaskUsageTimeInUI()
+    {
+        UI.instance.UpdatePlaskUsageTime(CheckFlaskUsageTimeInInt());
+    }
+
     public override void AddModifier(StatsModifierData _modifierData)
     {
         base.AddModifier(_modifierData);
@@ -93,10 +148,11 @@ public class PlayerStats : CharacterStats, ISaveManager
         if(realDamage > 0)
         {
             SceneAudioManager.instance.playerSFX.swordHit.Play(null);
+            RecoverFlaskUsageTime(1);
         }
         return realDamage;
     }
-    public float DoDamageTo_Sword(Entity _target, float swordDamageRate, Transform _swordTransform)
+    public float DoDamageTo_Sword(Entity _target, float _swordDamageRate, Transform _swordTransform)
     {
         DamageData damageData = new DamageData();
         damageData.SetDamageSource(player);
@@ -106,8 +162,8 @@ public class PlayerStats : CharacterStats, ISaveManager
         CalculateMagicDamage(damageData);
         CalculateAilment(damageData);
 
-        damageData.SetPhysicsDamage(damageData._physical * swordDamageRate, damageData._isCrit);
-        damageData.SetMagicDamage(damageData._magical * swordDamageRate);
+        damageData.SetPhysicsDamage(damageData._physical * _swordDamageRate, damageData._isCrit);
+        damageData.SetMagicDamage(damageData._magical * _swordDamageRate);
 
         _target.DamageSourceNotice(player);
 
@@ -155,7 +211,7 @@ public class PlayerStats : CharacterStats, ISaveManager
         }
         return _target.GetStats().TakeDamage(damageData, _crystalTransform);
     }
-    public float DoDamageTo_Clone(Entity _target, float cloneDamageRate, Transform _cloneTransform)
+    public float DoDamageTo_Clone(Entity _target, float _cloneDamageRate, Transform _cloneTransform)
     {
         DamageData damageData = new DamageData();
         damageData.SetDamageSource(player);
@@ -165,8 +221,8 @@ public class PlayerStats : CharacterStats, ISaveManager
         CalculateMagicDamage(damageData);
         CalculateAilment(damageData);
 
-        damageData.SetPhysicsDamage(damageData._physical * cloneDamageRate, damageData._isCrit);
-        damageData.SetMagicDamage(damageData._magical * cloneDamageRate);
+        damageData.SetPhysicsDamage(damageData._physical * _cloneDamageRate, damageData._isCrit);
+        damageData.SetMagicDamage(damageData._magical * _cloneDamageRate);
 
         _target.DamageSourceNotice(player);
 
@@ -183,7 +239,7 @@ public class PlayerStats : CharacterStats, ISaveManager
     {
         if(_data.HP < 0)
         {
-            SetCurrentHealth(getMaxHealthValue());
+            SetCurrentHealth(GetMaxHealthValue());
         }
         else
         {
@@ -193,6 +249,6 @@ public class PlayerStats : CharacterStats, ISaveManager
 
     public void SaveData(ref GameData _data)
     {
-        _data.HP = getCurrentHealthValue();
+        _data.HP = GetCurrentHealthValue();
     }
 }

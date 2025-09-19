@@ -8,36 +8,36 @@ public class AreaSound : MonoBehaviour
     [SerializeField] private float exitDuration = 1f;
     [SerializeField] public bool isActivate = true;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
         if (!isActivate)
         {
             return;
         }
-        if (collision.GetComponent<Player>() != null)
+        if (_collision.GetComponent<Player>() != null)
         {
             SceneAudioManager.instance.env.GetEnvSoundByType(type).Play(null);
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D _collision)
     {
         if (isActivate)
         {
-            if (collision.GetComponent<Player>() != null && !SceneAudioManager.instance.env.GetEnvSoundByType(type).IsPlaying())
+            if (_collision.GetComponent<Player>() != null && !SceneAudioManager.instance.env.GetEnvSoundByType(type).IsPlaying())
             {
                 SceneAudioManager.instance.env.GetEnvSoundByType(type).Play(null);
             }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D _collision)
     {
         if (!isActivate)
         {
             return;
         }
-        if (collision.GetComponent<Player>() != null)
+        if (_collision.GetComponent<Player>() != null)
         {
             SceneAudioManager.instance.env.GetEnvSoundByType(type).StopWithinTime(exitDuration);
         }

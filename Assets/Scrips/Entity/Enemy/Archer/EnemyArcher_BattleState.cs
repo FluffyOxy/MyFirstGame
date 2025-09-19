@@ -30,7 +30,7 @@ public class EnemyArcher_BattleState : EnemyState
         base.Update();
         if (PlayerManager.instance.player.isDead)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
             return;
         }
 
@@ -43,13 +43,13 @@ public class EnemyArcher_BattleState : EnemyState
             moveDir = 1;
         }
 
-        if(enemy.shouldPullBack())
+        if(enemy.ShouldPullBack())
         {
-            stateMachine.changeState(enemy.pullBackState);
+            stateMachine.ChangeState(enemy.pullBackState);
         }
         else if ((enemy.IsTouchWall() || (!enemy.IsGrounded() && !enemy.IsPlatform())) && moveDir == enemy.facingDir)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else if(enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
@@ -59,7 +59,7 @@ public class EnemyArcher_BattleState : EnemyState
             {
                 if (enemy.CanAttack())
                 {
-                    stateMachine.changeState(enemy.attackState);
+                    stateMachine.ChangeState(enemy.attackState);
                 }
             }
         }
@@ -68,7 +68,7 @@ public class EnemyArcher_BattleState : EnemyState
             enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, enemy.rg.velocity.y);
             if (timer < 0)
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
     }

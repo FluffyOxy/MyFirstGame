@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0030604f8c71c7c43bb2ebb1e8f46e63, type: 3}
   m_Name: ThunderClaw
   m_EditorClassIdentifier: 
+  itemId: 4188f0b130153ad448d10174a9c4f131
   icon: {fileID: -1240070012, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
   itemName: "\u96F7\u722A"
   itemType: 1
   craftingMaterials: []
+  description: "\u8FD9\u597D\u50CF\u662F\u4E2A\u907F\u96F7\u9488\uFF1F"
   equipmentType: 0
   statsModifierData:
     strength: 0
@@ -26,11 +28,25 @@ MonoBehaviour:
     armor: 0
     evasion: 0
     magicResistance: 0
+    maxFlaskUsageTime: 0
+    flaskUsageRecover: 0
     damage: 5
     critChance: 10
     critPower: 0
+    attackSpeed: 0
     fireDamage: 0
     iceDamage: 0
-    lightningDamage: 10
+    lightningDamage: 5
+    fireDuration: 0
+    iceDuration: 0
+    lightningDuration: 0
+    fireDamageSpeed: 0
+    fireDamageTransform: 0
+    chillArmorReduce: 0
+    chillSlowRate: 0
+    shockAccuracyReduce: 0
+    thunderStrikeCount: 0
+    thunderStrikeRate: 0
   effects:
   - {fileID: 11400000, guid: 35587898641dd3d45ac83f133f304e87, type: 2}
+  cooldown: 0

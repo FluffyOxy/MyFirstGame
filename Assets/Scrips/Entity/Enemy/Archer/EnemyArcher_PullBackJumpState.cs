@@ -28,7 +28,7 @@ public class EnemyArcher_PullBackJumpState : EnemyState
         base.Update();
         if(enemy.rg.velocity.y <= 0)
         {
-            enemy.stateMachine.changeState(enemy.airState);
+            enemy.stateMachine.ChangeState(enemy.airState);
         }
     }
 }

@@ -33,7 +33,7 @@ public class DeathBriner_FlashMoveState : DeathBriner_MoveStateBase
         }
         if(triggerCalled)
         {
-            stateMachine.changeState(enemy.currentAttackState as DeathBriner_AttackStateBase);
+            stateMachine.ChangeState(enemy.currentAttackState as DeathBriner_AttackStateBase);
         }
     }
 }

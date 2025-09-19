@@ -31,7 +31,7 @@ public class SkeletonMoveState : SkeletonGroundedState
         }
         else if(!enemy.IsGrounded() && !enemy.IsPlatform())
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else
         {
@@ -40,7 +40,7 @@ public class SkeletonMoveState : SkeletonGroundedState
 
         if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
     }
 }

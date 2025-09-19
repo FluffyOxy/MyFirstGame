@@ -25,8 +25,8 @@ public class UI_ItemToolTip : MonoBehaviour
     {
         if (_equipment != null)
         {
-            itemNameText.text = Translater.instance.Translate(_equipment.itemName);
-            itemTypeText.text = Translater.instance.Translate(_equipment.equipmentType.ToString());
+            itemNameText.text = Translator.instance.Translate(_equipment.itemName);
+            itemTypeText.text = Translator.instance.Translate(_equipment.equipmentType.ToString());
             image.sprite = _equipment.icon;
 
             for(int i = 0; i < statSlot.Length; i++)

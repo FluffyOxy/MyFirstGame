@@ -52,19 +52,19 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         return item == null;
     }
 
-    public virtual void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData _eventData)
     {
         if(item == null)
         {
             return;
         }    
-        if (eventData.button == PointerEventData.InputButton.Left && canEquip())
+        if (_eventData.button == PointerEventData.InputButton.Left && canEquip())
         {
             Inventory.instance.EquipItem(item.data);
             ui.itemToolTip.HideToolTip();
             SceneAudioManager.instance.uiSFX.equip.Play(null);
         }
-        else if(eventData.button == PointerEventData.InputButton.Right)
+        else if(_eventData.button == PointerEventData.InputButton.Right)
         {
             Inventory.instance.DropItem(item.data);
             ui.itemToolTip.HideToolTip();
@@ -76,7 +76,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         return item.data.itemType == ItemType.Equipment;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _eventData)
     {
         if (item == null || item.data == null)
         {
@@ -85,7 +85,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
         ui.itemToolTip.ShowToolTip(item.data as ItemData_Equipment);
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData _eventData)
     {
         ui.itemToolTip.HideToolTip();
     }

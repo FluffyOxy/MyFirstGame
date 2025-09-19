@@ -37,7 +37,7 @@ public class Witcher_BeforeSpellState : WitcherStateBase
             }
             else
             {
-                stateMachine.changeState(npc.spellState);
+                stateMachine.ChangeState(npc.spellState);
             }
         }
     }

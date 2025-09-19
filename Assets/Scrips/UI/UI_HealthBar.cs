@@ -30,8 +30,8 @@ public class UI_HealthBar : MonoBehaviour
 
     private void UpdateHealthUI()
     {
-        slider.maxValue = stats.getMaxHealthValue();
-        slider.value = stats.getCurrentHealthValue();
+        slider.maxValue = stats.GetMaxHealthValue();
+        slider.value = stats.GetCurrentHealthValue();
     }
 
     private void FilpUI()

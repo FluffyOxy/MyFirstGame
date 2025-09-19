@@ -26,7 +26,7 @@ public class EnemyArcher_AirState : EnemyState
         if (enemy.IsGrounded())
         {
             enemy.SetVelocity(0, 0);
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
     }
 }

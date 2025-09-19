@@ -81,7 +81,7 @@ public class CloneSkill : Skill
         );
     }
 
-    public bool isUsingCrystalInsteadOfClone()
+    public bool IsUsingCrystalInsteadOfClone()
     {
         return isUnlocked_crystalInsteadOfClone;
     }

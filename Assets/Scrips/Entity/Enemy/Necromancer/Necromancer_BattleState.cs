@@ -29,11 +29,11 @@ public class Necromancer_BattleState : NecromancerStateBase
         base.Update();
         if (PlayerManager.instance.player.isDead)
         {
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
             return;
         }
 
-        if(enemy.shouldPullBack(moveDir != enemy.GetPlayerDir()))
+        if(enemy.ShouldPullBack(moveDir != enemy.GetPlayerDir()))
         {
             moveDir = -enemy.GetPlayerDir();
         }
@@ -45,7 +45,7 @@ public class Necromancer_BattleState : NecromancerStateBase
         if ((enemy.IsTouchWall() || !enemy.IsGrounded()) && moveDir == enemy.facingDir)
         {
             enemy.FaceToPlayer();
-            stateMachine.changeState(enemy.idleState);
+            stateMachine.ChangeState(enemy.idleState);
         }
         else if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
@@ -55,7 +55,7 @@ public class Necromancer_BattleState : NecromancerStateBase
             {
                 if (enemy.CanAttack())
                 {
-                    stateMachine.changeState(enemy.attackState);
+                    stateMachine.ChangeState(enemy.attackState);
                 }
             }
         }
@@ -64,7 +64,7 @@ public class Necromancer_BattleState : NecromancerStateBase
             enemy.SetVelocity(enemy.battleMoveSpeed * moveDir, enemy.rg.velocity.y);
             if (timer < 0)
             {
-                stateMachine.changeState(enemy.idleState);
+                stateMachine.ChangeState(enemy.idleState);
             }
         }
     }

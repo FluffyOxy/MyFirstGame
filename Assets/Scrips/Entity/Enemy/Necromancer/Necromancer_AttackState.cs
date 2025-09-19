@@ -30,12 +30,12 @@ public class Necromancer_AttackState : NecromancerStateBase
         if(enemy.isAnimSkullThrowTrigger)
         {
             enemy.isAnimSkullThrowTrigger = false;
-            enemy.throwSkullToPlayer();
+            enemy.ThrowSkullToPlayer();
         }
 
         if (triggerCalled)
         {
-            stateMachine.changeState(enemy.controllingState);
+            stateMachine.ChangeState(enemy.controllingState);
         }
     }
 }

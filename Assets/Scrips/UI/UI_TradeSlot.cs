@@ -14,7 +14,7 @@ public class UI_TradeSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     private ItemData itemData;
     private int coinAmount;
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData _eventData)
     {
         if (itemData is ItemData_Equipment)
         {
@@ -30,7 +30,7 @@ public class UI_TradeSlot : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
         SceneAudioManager.instance.uiSFX.buttonClick.Play(null);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnPointerUp(PointerEventData _eventData)
     {
         GetComponent<Image>().color = Color.white;
     }

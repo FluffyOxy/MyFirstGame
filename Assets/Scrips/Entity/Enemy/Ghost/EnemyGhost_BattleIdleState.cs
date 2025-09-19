@@ -27,7 +27,7 @@ public class EnemyGhost_BattleIdleState : EnemyGhost_BattleState
     {
         if (!enemy.CanSeePlayer() || enemy.CheckDistanceToPlayer() > enemy.attackValidCheckRadius)
         {
-            stateMachine.changeState(enemy.battleFlyState);
+            stateMachine.ChangeState(enemy.battleFlyState);
         }
 
         base.Update();

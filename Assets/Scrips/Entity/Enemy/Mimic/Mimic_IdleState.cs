@@ -29,11 +29,11 @@ public class Mimic_IdleState : Mimic_StateBase
 
         if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
         else if (timer < 0)
         {
-            stateMachine.changeState(enemy.moveState);
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
 }

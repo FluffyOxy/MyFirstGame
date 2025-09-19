@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -41,6 +42,9 @@ public class UI : MonoBehaviour
 
     [Header("Scene Switch")]
     [HideInInspector] public bool isSwitching = false;
+
+    [Header("CharacterUI")]
+    [SerializeField] private TextMeshProUGUI plaskUsageTime;
 
     private void Awake()
     {
@@ -100,6 +104,11 @@ public class UI : MonoBehaviour
         {
             SwitchTo(inGame);
         }
+    }
+
+    public void UpdatePlaskUsageTime(int _time)
+    {
+        plaskUsageTime.text = _time.ToString();
     }
 
     public UI_SkillToolTip GetSkillToolTip()
@@ -225,7 +234,7 @@ public class UI : MonoBehaviour
 
     public void HideSkillLearningBlock()
     {
-        skillLearningBlock.skillChooseFinish();
+        skillLearningBlock.SkillChooseFinish();
         skillLearningBlock.gameObject.SetActive(false);
         PlayerManager.instance.player.SetCanInput(true);
 

@@ -26,11 +26,11 @@ public class IceAndFireStrike_EffectController : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, transform.position + transform.right, moveSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D _collision)
     {
-        if(collision.GetComponent<Enemy>() != null)
+        if(_collision.GetComponent<Enemy>() != null)
         {
-            collision.GetComponent<Enemy>().cs.TakeDamage(damageData, transform);
+            _collision.GetComponent<Enemy>().cs.TakeDamage(damageData, transform);
         }
     }
 }

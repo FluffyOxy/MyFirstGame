@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179dfa8e26474364da3005191666934e, type: 3}
   m_Name: TimeFrozenEffect
   m_EditorClassIdentifier: 
-  description: "\u5F53\u8840\u91CF\u964D\u81F310%\u65F6\u505C\u6B62\u9644\u8FD1\u654C\u4EBA\u7684\u65F6\u95F43\u79D2(\u51B7\u537460\u79D2)"
-  LowHPPercentage: 0.1
+  description: "\u5F53\u8840\u91CF\u964D\u81F310%\u65F6\u505C\u6B62\u9644\u8FD1\u654C\u4EBA\u7684\u65F6\u95F43\u79D2\uFF08\u4EC5\u4ECE\u5927\u4E8E10%\u964D\u4F4E\u5230\u5C0F\u4E8E10%\u65F6\u89E6\u53D1\uFF09"
+  lowHpPercentage: 0.1
   coolDownDuration: 60
   timeFrozenRadius: 10
   timeFrozenDuration: 3

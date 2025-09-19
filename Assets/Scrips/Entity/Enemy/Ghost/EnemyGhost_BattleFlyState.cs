@@ -28,16 +28,16 @@ public class EnemyGhost_BattleFlyState : EnemyGhost_BattleState
     {
         if (enemy.CanSeePlayer() && enemy.CheckDistanceToPlayer() < enemy.attackValidCheckRadius)
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
         else
         {
             enemy.SetDestination(PlayerManager.instance.player.transform.position);
         }
 
-        if (!isSetDestinationThisFrame && !enemy.IsDestinationValid())
+        if (!isSetDestinationThisFrame && !enemy.IsDestinationValid_LastFrame())
         {
-            stateMachine.changeState(enemy.battleIdleState);
+            stateMachine.ChangeState(enemy.battleIdleState);
         }
         isSetDestinationThisFrame = false;
 

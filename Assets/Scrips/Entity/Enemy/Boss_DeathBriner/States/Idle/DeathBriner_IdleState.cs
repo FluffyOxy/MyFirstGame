@@ -45,7 +45,7 @@ public class DeathBriner_IdleState : DeathBriner_StateBase
                 if(enemy.CanJump())
                 {
                     enemy.CalculatePullBackJumpParameter();
-                    stateMachine.changeState(enemy.jumpState);
+                    stateMachine.ChangeState(enemy.jumpState);
                 }
             }
         }
@@ -62,7 +62,7 @@ public class DeathBriner_IdleState : DeathBriner_StateBase
             enemy.currentAttackState = enemy.remoteAttackState;
             enemy.isPullBack = true;
             enemy.SetRandomAttackCount();
-            stateMachine.changeState(enemy.runMoveState);
+            stateMachine.ChangeState(enemy.runMoveState);
             return;
         }
 
@@ -87,7 +87,7 @@ public class DeathBriner_IdleState : DeathBriner_StateBase
 
             enemy.currentAttackState = enemy.primaryAttackState;
             enemy.SetRandomAttackCount();
-            stateMachine.changeState(enemy.flashMoveState);
+            stateMachine.ChangeState(enemy.flashMoveState);
         }
         //…¡œ÷‘∂≥Ãπ•ª˜
         else if(dice < enemy.flashAttackRate_remote + (rate += enemy.flashAttackRate_primary))
@@ -106,21 +106,21 @@ public class DeathBriner_IdleState : DeathBriner_StateBase
 
             enemy.currentAttackState = enemy.remoteAttackState;
             enemy.SetRandomAttackCount();
-            stateMachine.changeState(enemy.flashMoveState);
+            stateMachine.ChangeState(enemy.flashMoveState);
         }
         //≥Â¥Ãπ•ª˜
         else if(dice < enemy.dashAttackRate + (rate += enemy.flashAttackRate_remote))
         {
             enemy.currentAttackState = enemy.dashAttackState;
             enemy.attackCounter = 1;
-            stateMachine.changeState(enemy.dashAttackState);
+            stateMachine.ChangeState(enemy.dashAttackState);
         }
         //∞µ”∞π•ª˜
         else if(dice < enemy.shadowAttackRate + (rate += enemy.dashAttackRate))
         {
             enemy.currentAttackState = enemy.shadowAttackState;
             enemy.attackCounter = 1;
-            stateMachine.changeState(enemy.shadowAttackState);
+            stateMachine.ChangeState(enemy.shadowAttackState);
         }
         //∆’Õ®µƒΩ¸’Ω∫Õ‘∂≥Ãπ•ª˜
         else
@@ -131,14 +131,14 @@ public class DeathBriner_IdleState : DeathBriner_StateBase
                 enemy.currentAttackState = enemy.primaryAttackState;
                 enemy.isPullBack = false;
                 enemy.SetRandomAttackCount();
-                stateMachine.changeState(enemy.runMoveState);
+                stateMachine.ChangeState(enemy.runMoveState);
             }
             else if (enemy.remoteAttackState.CanAttack() || (enemy.IsPlayerDetected() && !isPlayerMoveToEnemy))
             {
                 enemy.currentAttackState = enemy.remoteAttackState;
                 enemy.isPullBack = true;
                 enemy.SetRandomAttackCount();
-                stateMachine.changeState(enemy.runMoveState);
+                stateMachine.ChangeState(enemy.runMoveState);
             }
         }
     }

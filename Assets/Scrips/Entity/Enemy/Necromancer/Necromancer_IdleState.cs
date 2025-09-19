@@ -24,9 +24,9 @@ public class Necromancer_IdleState : NecromancerStateBase
     {
         base.Update();
         enemy.SetVelocity(0, 0);
-        if (enemy.shouldPullBack(false))
+        if (enemy.ShouldPullBack(false))
         {
-            stateMachine.changeState(enemy.battleState);
+            stateMachine.ChangeState(enemy.battleState);
         }
         else if (enemy.IsDetectPlayerFront() || enemy.IsPlayerDetected())
         {
@@ -43,19 +43,19 @@ public class Necromancer_IdleState : NecromancerStateBase
                 {
                     if (enemy.CanAttack())
                     {
-                        stateMachine.changeState(enemy.attackState);
+                        stateMachine.ChangeState(enemy.attackState);
                     }
                 }
             }
             else
             {
-                stateMachine.changeState(enemy.battleState);
+                stateMachine.ChangeState(enemy.battleState);
             }
 
         }
         else if (timer < 0)
         {
-            stateMachine.changeState(enemy.moveState);
+            stateMachine.ChangeState(enemy.moveState);
         }
     }
 }
