@@ -22,6 +22,7 @@ MonoBehaviour:
   - data: {fileID: 11400000, guid: e419b9a9ca54e1d41a7e0dc26db59d03, type: 2}
     stackSize: 1
   description: "\u57CE\u5E02\u91CC\u7684\u5C0F\u5077\u4F1A\u7528\u5B83\u5212\u5F00\u4F60\u7684\u53E3\u888B"
+  price: 150
   equipmentType: 0
   statsModifierData:
     strength: 0
@@ -32,6 +33,8 @@ MonoBehaviour:
     armor: 0
     evasion: 0
     magicResistance: 0
+    maxFlaskUsageTime: 0
+    flaskUsageRecover: 0
     damage: 10
     critChance: 10
     critPower: 10

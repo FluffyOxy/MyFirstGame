@@ -18,6 +18,7 @@ MonoBehaviour:
   itemType: 1
   craftingMaterials: []
   description: "\u5E26\u4E86\u8FD9\u4E2A\u9879\u94FE\u7684\u4EBA\u7279\u522B\u5BB9\u6613\u88AB\u9759\u7535\u7535\u5230"
+  price: 600
   equipmentType: 2
   statsModifierData:
     strength: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     fireDuration: 0
     iceDuration: 0
     lightningDuration: 0
-    fireDamageSpeed: 0
+    fireDamageCooldown: 0
     fireDamageTransform: 0
     chillArmorReduce: 0
     chillSlowRate: 0
@@ -50,3 +51,4 @@ MonoBehaviour:
   effects:
   - {fileID: 11400000, guid: c4c09122feb9af445a0fdc2a0ec50ee7, type: 2}
   cooldown: 0
+  detail: "\u6280\u80FD\u9020\u6210\u7684\u4F24\u5BB3\u5C06\u89E6\u53D1\u96F7\u51FB,\u9020\u6210\u9B54\u6CD5\u4F24\u5BB310\u5E76\u65BD\u52A0\u611F\u7535\u72B6\u60014\u79D2"

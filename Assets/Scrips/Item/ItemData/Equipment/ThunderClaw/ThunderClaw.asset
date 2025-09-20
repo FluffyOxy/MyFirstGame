@@ -18,6 +18,7 @@ MonoBehaviour:
   itemType: 1
   craftingMaterials: []
   description: "\u8FD9\u597D\u50CF\u662F\u4E2A\u907F\u96F7\u9488\uFF1F"
+  price: 600
   equipmentType: 0
   statsModifierData:
     strength: 0

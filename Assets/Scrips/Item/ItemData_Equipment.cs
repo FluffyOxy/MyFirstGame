@@ -17,6 +17,7 @@ public class ItemData_Equipment : ItemData
     [SerializeField] public StatsModifierData statsModifierData;
     [SerializeField] public List<ItemEffect> effects;
     [SerializeField] public float cooldown;
+    [TextArea][SerializeField] public string detail;
 
     public void AddModifiers()
     {
@@ -53,17 +54,7 @@ public class ItemData_Equipment : ItemData
             sb.Append("--");
             sb.AppendLine();
         }
-        foreach (var effect in effects)
-        {
-            AddItemEffectText(effect);
-        }
+        sb.Append(detail);
         return sb.ToString();
-    }
-
-    private void AddItemEffectText(ItemEffect _effect)
-    {
-        sb.Append(">>");
-        sb.Append(_effect.GetDescription());
-        sb.AppendLine();
     }
 }

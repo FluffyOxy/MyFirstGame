@@ -246,7 +246,7 @@ public class UI : MonoBehaviour
         return !skillLearningBlock.gameObject.activeSelf;
     }
 
-    public void ShowTradeBlock(List<Product> _products, List<Dialog> _successDialog, List<Dialog> _noCoinDialogs, List<Dialog> _fullBagDialogs)
+    public void ShowTradeBlock(List<ItemData> _products, List<Dialog> _successDialog, List<Dialog> _noCoinDialogs, List<Dialog> _fullBagDialogs)
     {
         tradeBlock.gameObject.SetActive(true);
         PlayerManager.instance.player.SetCanInput(false);

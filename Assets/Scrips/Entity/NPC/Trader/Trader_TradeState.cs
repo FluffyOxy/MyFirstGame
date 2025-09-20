@@ -15,7 +15,7 @@ public class Trader_TradeState : TraderStateBase
 
         if(npc.products.Count == 0)
         {
-            List<Product> productList = new List<Product>();
+            List<ItemData> productList = new List<ItemData>();
 
             foreach (var item in npc.possibleItems)
             {
@@ -25,7 +25,7 @@ public class Trader_TradeState : TraderStateBase
             while (npc.products.Count < npc.productAmount && productList.Count > 0)
             {
                 int randomIndex = Random.Range(0, productList.Count);
-                Product randomProduct = productList[randomIndex];
+                ItemData randomProduct = productList[randomIndex];
 
                 productList[randomIndex] = productList[productList.Count - 1];
                 productList.RemoveAt(productList.Count - 1);

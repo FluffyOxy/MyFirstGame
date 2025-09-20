@@ -195,7 +195,7 @@ public class StatsModifierData
     public float fireDuration;
     public float iceDuration;
     public float lightningDuration;
-    public float fireDamageSpeed;
+    public float fireDamageCooldown;
     public float fireDamageTransform;
     public float chillArmorReduce;
     public float chillSlowRate;
@@ -231,7 +231,7 @@ public class StatsModifierData
             case StatType.IceDuration:           return iceDuration;
             case StatType.LightningDuration:     return lightningDuration;
 
-            case StatType.FireDamageCooldown:       return fireDamageSpeed;
+            case StatType.FireDamageCooldown:    return fireDamageCooldown;
             case StatType.FireDamageTransform:   return fireDamageTransform;
             case StatType.ChillArmorReduce:      return chillArmorReduce;
             case StatType.ChillSlowRate:         return chillSlowRate;
@@ -663,7 +663,7 @@ public class CharacterStats : MonoBehaviour
         iceDuration.AddModifier(_modifierData.iceDuration);
         lightningDuration.AddModifier(_modifierData.lightningDuration);
 
-        fireDamageCooldown.AddModifier(_modifierData.fireDamageSpeed);
+        fireDamageCooldown.AddModifier(_modifierData.fireDamageCooldown);
         fireDamageTransform.AddModifier(_modifierData.fireDamageTransform);
         chillArmorReduce.AddModifier(_modifierData.chillArmorReduce);
         chillSlowRate.AddModifier(_modifierData.chillSlowRate);
@@ -701,7 +701,7 @@ public class CharacterStats : MonoBehaviour
         iceDuration.RemoveModifier(_modifierData.iceDuration);
         lightningDuration.RemoveModifier(_modifierData.lightningDuration);
 
-        fireDamageCooldown.RemoveModifier(_modifierData.fireDamageSpeed);
+        fireDamageCooldown.RemoveModifier(_modifierData.fireDamageCooldown);
         fireDamageTransform.RemoveModifier(_modifierData.fireDamageTransform);
         chillArmorReduce.RemoveModifier(_modifierData.chillArmorReduce);
         chillSlowRate.RemoveModifier(_modifierData.chillSlowRate);

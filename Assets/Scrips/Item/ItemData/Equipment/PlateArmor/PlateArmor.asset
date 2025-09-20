@@ -18,6 +18,7 @@ MonoBehaviour:
   itemType: 1
   craftingMaterials: []
   description: "\u53EF\u9760\u7684\u8001\u4F19\u8BA1"
+  price: 100
   equipmentType: 1
   statsModifierData:
     strength: 0
@@ -28,6 +29,8 @@ MonoBehaviour:
     armor: 10
     evasion: 0
     magicResistance: 1
+    maxFlaskUsageTime: 0
+    flaskUsageRecover: 0
     damage: 0
     critChance: 0
     critPower: 0

@@ -3,11 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 [Serializable]
-public class Product
-{
-    public ItemData item;
-    public int coinAmount;
-}
 public class UI_TradeBlock : MonoBehaviour
 {
     [SerializeField] private GameObject tradeSlotPrefab;
@@ -21,17 +16,17 @@ public class UI_TradeBlock : MonoBehaviour
     private Dialog currentDialog;
     private int dialogIndex;
 
-    public void Setup(List<Product> _products, List<Dialog> _successDialog, List<Dialog> _noCoinDialogs, List<Dialog> _fullBagDialogs)
+    public void Setup(List<ItemData> _products, List<Dialog> _successDialog, List<Dialog> _noCoinDialogs, List<Dialog> _fullBagDialogs)
     {
         if(isSetup)
         {
             return;
         }
 
-        foreach (Product product in _products)
+        foreach (ItemData product in _products)
         {
             UI_TradeSlot newSlot = Instantiate(tradeSlotPrefab, tradeSlotsParent).GetComponent<UI_TradeSlot>();
-            newSlot.Setup(product.item, product.coinAmount);
+            newSlot.Setup(product, product.price);
         }
 
         successDialogs = _successDialog; 

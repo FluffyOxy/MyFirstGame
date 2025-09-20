@@ -17,9 +17,9 @@ public class Trader : NPC, IPlayerCommunicable
     [SerializeField] public List<Dialog> successDialogs;
     [SerializeField] public List<Dialog> noCoinDialogs;
     [SerializeField] public List<Dialog> fullBagDialogs;
-    [SerializeField] public List<Product> possibleItems;
+    [SerializeField] public List<ItemData> possibleItems;
     [SerializeField] public int productAmount;
-    [HideInInspector] public List<Product> products = new List<Product>();
+    [HideInInspector] public List<ItemData> products = new List<ItemData>();
 
     [HideInInspector] public List<Sentence> currentDialog;
     [HideInInspector] public int sentenceIndex = 0;
