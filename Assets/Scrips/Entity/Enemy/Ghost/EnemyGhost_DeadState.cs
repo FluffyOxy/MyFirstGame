@@ -37,7 +37,5 @@ public class EnemyGhost_DeadState : EnemyGhost_StateBase
         {
             enemy.rg.velocity = enemy.deadAnimVelocity;
         }
-
-        Debug.Log(enemy.cd.enabled);
     }
 }

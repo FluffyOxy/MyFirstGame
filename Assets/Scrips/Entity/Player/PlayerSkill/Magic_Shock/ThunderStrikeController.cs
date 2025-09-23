@@ -52,8 +52,7 @@ public class ThunderStrikeController : MonoBehaviour
 
         damage.SetMagicDamage(_damageDate._magical);
         damage.SetShock(
-            _damageDate._shockDuration, 
-            _damageDate._thunderStrikeRadius, 
+            _damageDate._shockDuration,
             _damageDate._thunderStrikeRate, 
             _damageDate._thunderStrikerCounter - 1, 
             _damageDate._attackerShockReduceAccuracy

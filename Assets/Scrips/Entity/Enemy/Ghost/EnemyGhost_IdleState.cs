@@ -13,8 +13,6 @@ public class EnemyGhost_IdleState : EnemyGhost_WanderState
         enemy.SetVelocity(0, 0);
         enemy.Stop();
         timer = Random.Range(enemy.minIdleDuration, enemy.maxIdleDuration);
-
-        Debug.Log("EnemyGhost_IdleState");
     }
 
     public override void Exit()

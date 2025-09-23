@@ -16,7 +16,9 @@ public enum EffectExcuteTime
 public class EffectExcuteData
 {
     public EffectExcuteTime excuteTime { get; private set; }
+    //对护甲为受到的伤害；对护符和武器为造成的伤害；药瓶与此无关
     public float damage { get; private set; }
+    //对护甲为伤害来源；对护符和武器为伤害对象；药瓶与此无关
     public Entity target { get; private set; }
 
     public EffectExcuteData(EffectExcuteTime _excuteTime, Entity _target = null, float _damage = 0)
@@ -30,7 +32,7 @@ public class EffectExcuteData
 public class ItemEffect : ScriptableObject
 {
     [SerializeField] public string description;
-    public virtual void ExcuteEffect(EffectExcuteData _target)
+    public virtual void ExcuteEffect(EffectExcuteData _targetData)
     {
 
     }

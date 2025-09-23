@@ -14,8 +14,6 @@ public class EnemyGhost_BattleIdleState : EnemyGhost_BattleState
         base.Enter();
         enemy.SetVelocity(0, 0);
         enemy.Stop();
-
-        Debug.Log("EnemyGhost_BattleIdleState");
     }
 
     public override void Exit()

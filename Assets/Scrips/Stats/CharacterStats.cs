@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -57,7 +58,7 @@ public class DamageData
 
     public bool _shock { get; private set; } = false;
     public float _shockDuration { get; private set; } = 0f;
-    public float _thunderStrikeRadius { get; private set; } = 0f;
+    public float _thunderStrikeRadius { get; private set; } = 15f;
     public float _thunderStrikeRate { get; private set; } = 0f;
     public int _thunderStrikerCounter { get; private set; } = 0;
     public float _attackerShockReduceAccuracy { get; private set; } = 0f;
@@ -95,11 +96,10 @@ public class DamageData
         _chillDuration = chillDuration;
         _chillReduceArmorPer = chillReduceArmarPer;
     }
-    public void SetShock(float shockDuration, float thunderStrikeRadius, float thunderStrikeRate, int thunderStrikerCounter, float attackerShockReduceAccuracy)
+    public void SetShock(float shockDuration, float thunderStrikeRate, int thunderStrikerCounter, float attackerShockReduceAccuracy)
     {
         _shock = true;
         _shockDuration = shockDuration;
-        _thunderStrikeRadius = thunderStrikeRadius;
         _thunderStrikeRate = thunderStrikeRate;
         _thunderStrikerCounter = thunderStrikerCounter;
         _attackerShockReduceAccuracy = attackerShockReduceAccuracy;
@@ -111,29 +111,29 @@ public class DamageDataSerializable
     public Entity _damageSource { get; private set; } = null;
     [SerializeField] public bool shouldPlayAnim = true;
 
-    [SerializeField] private float _physical = 0;
-    [SerializeField] private bool _isCrit = false;
-    [SerializeField] private float _magical  = 0;
+    [SerializeField] public float _physical = -1;
+    [SerializeField] public bool _isCrit = false;
+    [SerializeField] public float _magical  = -1;
 
 
-    [SerializeField] private bool _ignite = false;
-    [SerializeField] private float _igniteDamageCooldown = float.PositiveInfinity;
-    [SerializeField] private float _igniteDuration = 0f;
-    [SerializeField] private float _igniteDamage = 0f;
+    [SerializeField] public bool _ignite = false;
+    [SerializeField] public float _igniteDamageCooldown = float.PositiveInfinity;
+    [SerializeField] public float _igniteDuration = 0f;
+    [SerializeField] public float _igniteDamage = 0f;
 
 
-    [SerializeField] private bool _chill = false;
-    [SerializeField] private float _chillSlowPercentage = 0f;
-    [SerializeField] private float _chillDuration = 0f;
-    [SerializeField] private float _chillReduceArmor = 0f;
+    [SerializeField] public bool _chill = false;
+    [SerializeField] public float _chillSlowPercentage = 0f;
+    [SerializeField] public float _chillDuration = 0f;
+    [SerializeField] public float _chillReduceArmor = 0f;
 
 
-    [SerializeField] private bool _shock = false;
-    [SerializeField] private float _shockDuration = 0f;
-    [SerializeField] private float _thunderStrikeRadius = 0f;
-    [SerializeField] private float _thunderStrikeRate = 0f;
-    [SerializeField] private int _thunderStrikerCounter = 0;
-    [SerializeField] private float _attackerShockReduceAccuracy = 0f;
+    [SerializeField] public bool _shock = false;
+    [SerializeField] public float _shockDuration = 0f;
+    [SerializeField] public float _thunderStrikeRadius = 15f;
+    [SerializeField] public float _thunderStrikeRate = 0f;
+    [SerializeField] public int _thunderStrikerCounter = 0;//À×»÷²ãÊý
+    [SerializeField] public float _attackerShockReduceAccuracy = 0f;
 
     public void SetDamageSource(Entity _source)
     {
@@ -156,7 +156,7 @@ public class DamageDataSerializable
         }
         if(_shock)
         {
-            damageData.SetShock(_shockDuration, _thunderStrikeRadius, _thunderStrikeRate, _thunderStrikerCounter, _attackerShockReduceAccuracy);
+            damageData.SetShock(_shockDuration, _thunderStrikeRate, _thunderStrikerCounter, _attackerShockReduceAccuracy);
         }
         return damageData;
     }
@@ -330,7 +330,6 @@ public class CharacterStats : MonoBehaviour
 
     public System.Action onCurrentHealthChange;
 
-
     public float GetMaxHealthValue()
     {
         return GetStatByType(StatType.MaxHealth);
@@ -425,36 +424,80 @@ public class CharacterStats : MonoBehaviour
         
         return realDamage;
     }
-    protected virtual void CalculatePhysicalDamage(DamageData _damageData)
+    protected virtual void CalculatePhysicalDamage(DamageData _damageData, float _damage = -1)
     {
-        _damageData.SetPhysicsDamage(GetStatByType(StatType.Damage), false);
+        if(_damage < 0)
+        {
+            _damage = GetStatByType(StatType.Damage);
+        }
+        _damageData.SetPhysicsDamage(_damage, false);
     }
-    protected virtual void CalculateCritDamage(DamageData _damageData)
+    protected virtual void CalculateCritDamage(DamageData _damageData, float _critChance = -1, float _critPower = -1)
     {
-        float totalCritChance = GetStatByType(StatType.CritChance);
+        if(_critChance < 0)
+        {
+            _critChance = GetStatByType(StatType.CritChance);
+        }
+
+        if(_critPower < 0)
+        {
+            _critPower = GetStatByType(StatType.CritPower);
+        }
+
+        float totalCritChance = _critChance;
         if (UnityEngine.Random.Range(0, 100) < totalCritChance)
         {
-            _damageData.SetPhysicsDamage(_damageData._physical * GetStatByType(StatType.CritPower) * 0.01f, true);
+            _damageData.SetPhysicsDamage(_damageData._physical * _critPower * 0.01f, true);
         }
     }
-    protected virtual void CalculateMagicDamage(DamageData _damageData)
+    protected virtual void CalculateMagicDamage(DamageData _damageData, float _fire = -1, float _ice = -1, float _lightning = -1)
     {
+        if(_fire < 0)
+        {
+            _fire = GetStatByType(StatType.FireDamage);
+        }
+
+        if(_ice < 0)
+        {
+            _ice = GetStatByType(StatType.IceDamage);
+        }
+
+        if(_lightning < 0)
+        {
+            _lightning = GetStatByType(StatType.LightningDamage);
+        }
+
         _damageData.SetMagicDamage(
-            Mathf.Max(GetStatByType(StatType.FireDamage), GetStatByType(StatType.IceDamage), GetStatByType(StatType.LightningDamage))
+            Mathf.Max(_fire, _ice, _lightning)
         );
     }
-    protected virtual void CalculateAilment(DamageData _damageData)
+    protected virtual void CalculateAilment(DamageData _damageData, float _fireDamage = -1, float _iceDamage = -1, float _lightningDamage = -1)
     {
-        float maxMagicDamage = Mathf.Max(fireDamage.GetValue(), iceDamage.GetValue(), lightningDamage.GetValue());
+        if(_fireDamage < 0)
+        {
+            _fireDamage = fireDamage.GetValue();
+        }
+
+        if(_iceDamage < 0)
+        {
+            _iceDamage = iceDamage.GetValue();
+        }
+
+        if(_lightningDamage < 0)
+        {
+            _lightningDamage = lightningDamage.GetValue();
+        }
+
+        float maxMagicDamage = Mathf.Max(_fireDamage, _iceDamage, _lightningDamage);
 
         if (maxMagicDamage == 0)
         {
             return;
         }
 
-        bool ignite = fireDamage.GetValue() == maxMagicDamage;
-        bool chill = iceDamage.GetValue() == maxMagicDamage;
-        bool shock = lightningDamage.GetValue() == maxMagicDamage;
+        bool ignite = _fireDamage == maxMagicDamage;
+        bool chill = _iceDamage == maxMagicDamage;
+        bool shock = _lightningDamage == maxMagicDamage;
 
         int sum = 0;
         while(true)
@@ -478,15 +521,51 @@ public class CharacterStats : MonoBehaviour
 
         if (ignite)
         {
-            _damageData.SetIgnite(GetStatByType(StatType.FireDamageCooldown), GetStatByType(StatType.FireDuration), GetStatByType(StatType.FireDamageTransform) * 0.01f * fireDamage.GetValue());
+            _damageData.SetIgnite(GetStatByType(StatType.FireDamageCooldown), GetStatByType(StatType.FireDuration), GetStatByType(StatType.FireDamageTransform) * 0.01f * _fireDamage);
         }
         if(chill)
         {
             _damageData.SetChill(GetStatByType(StatType.ChillSlowRate), GetStatByType(StatType.IceDuration), GetStatByType(StatType.ChillArmorReduce));
         }
-        if(shock)
+        if (shock)
         {
-            _damageData.SetShock(GetStatByType(StatType.LightningDuration), thunderStrikeRadius, GetStatByType(StatType.ThunderStrikeRate), (int)GetStatByType(StatType.ThunderStrikeCount), GetStatByType(StatType.ShockAccuracyReduce));
+            _damageData.SetShock(GetStatByType(StatType.LightningDuration), GetStatByType(StatType.ThunderStrikeRate), (int)GetStatByType(StatType.ThunderStrikeCount), GetStatByType(StatType.ShockAccuracyReduce));
+        }
+    }
+
+    public void CalculateDamageDataWithStats(ref DamageData _damageData, bool _isMagicEffectUseStatsValue, bool _isMagicBuff)
+    {
+        if (_damageData._physical < 0)
+        {
+            CalculatePhysicalDamage(_damageData);
+        }
+
+        if (_damageData._magical < 0)
+        {
+            float fire = _damageData._ignite ? -1 : 0;
+            float ice = _damageData._chill ? -1 : 0;
+            float shock = _damageData._shock ? -1 : 0;
+
+            CalculateMagicDamage(_damageData, fire, ice, shock);
+            if (_isMagicEffectUseStatsValue)
+            {
+                CalculateAilment(_damageData, fire, ice, shock);
+            }
+        }
+        else
+        {
+            if (_isMagicEffectUseStatsValue)
+            {
+                float fire = _damageData._ignite ? _damageData._magical : 0;
+                float ice = _damageData._chill ? _damageData._magical : 0;
+                float shock = _damageData._shock ? _damageData._magical : 0;
+                CalculateAilment(_damageData, fire, ice, shock);
+            }
+
+            if (_isMagicBuff)
+            {
+                _damageData.SetMagicDamage(0);
+            }
         }
     }
 
