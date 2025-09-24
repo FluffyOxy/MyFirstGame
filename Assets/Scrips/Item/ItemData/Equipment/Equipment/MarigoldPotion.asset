@@ -48,6 +48,7 @@ MonoBehaviour:
     shockAccuracyReduce: 0
     thunderStrikeCount: 0
     thunderStrikeRate: 0
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: ba0d9e1110636ef408ef2cfd25905fc2, type: 2}
   cooldown: 4
   detail: "\u6062\u590D10%"

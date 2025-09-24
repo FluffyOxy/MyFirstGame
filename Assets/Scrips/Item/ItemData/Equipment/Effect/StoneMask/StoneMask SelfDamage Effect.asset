@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac340c9e863d6144389e144c1b150274, type: 3}
+  m_Name: StoneMask SelfDamage Effect
+  m_EditorClassIdentifier: 
+  description: 
+  damageData:
+    shouldPlayAnim: 1
+    _physical: 5
+    _isCrit: 0
+    _magical: 0
+    _ignite: 0
+    _igniteDamageCooldown: Infinity
+    _igniteDuration: 0
+    _igniteDamage: 0
+    _chill: 0
+    _chillSlowPercentage: 0
+    _chillDuration: 0
+    _chillReduceArmor: 0
+    _shock: 0
+    _shockDuration: 0
+    _thunderStrikeRadius: 15
+    _thunderStrikeRate: 0
+    _thunderStrikerCounter: 0
+    _attackerShockReduceAccuracy: 0
+  isMagicEffectUseStatsValue: 1
+  isMagicBuff: 0

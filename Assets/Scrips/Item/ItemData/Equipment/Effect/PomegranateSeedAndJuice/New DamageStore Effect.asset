@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a63745f2469a1a146afe8fa412cafdc2, type: 3}
+  m_Name: New DamageStore Effect
+  m_EditorClassIdentifier: 
+  description: 
+  storeTime: 8
+  releaseTime: 4
+  releaseCooldown: 1
+  controllerPrefab: {fileID: 7211982121120387747, guid: 928ee37147439ed45889ca911af9decf, type: 3}

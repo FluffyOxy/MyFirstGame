@@ -1,12 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
+
+[Serializable]
+public class PostDamageEffectData
+{
+    //ÎüÑªÂÊ
+    [Range(0, 1)][SerializeField] public float vampirEffect = 0;
+}
 
 public class PlayerStats : CharacterStats, ISaveManager
 {
     private Player player;
     private float currentFlaskUsageTime;
+
+    private PostDamageEffectData postDamageEffectData = new PostDamageEffectData();
 
     [Header("Stats UI")]
     [SerializeField] private Transform statsSlotParent;
@@ -149,6 +160,7 @@ public class PlayerStats : CharacterStats, ISaveManager
         {
             SceneAudioManager.instance.playerSFX.swordHit.Play(null);
             RecoverFlaskUsageTime(1);
+            DamageEffect(realDamage);
         }
         return realDamage;
     }
@@ -173,6 +185,7 @@ public class PlayerStats : CharacterStats, ISaveManager
         }
 
         float realDamage = _target.GetStats().TakeDamage(damageData, _swordTransform);
+        DamageEffect(realDamage);
 
         return realDamage;
     }
@@ -192,7 +205,11 @@ public class PlayerStats : CharacterStats, ISaveManager
         {
             return 0;
         }
-        return _target.GetStats().TakeDamage(damageData, PlayerManager.instance.player.transform);
+
+        float realDamage = _target.GetStats().TakeDamage(damageData, PlayerManager.instance.player.transform);
+        DamageEffect(realDamage);
+
+        return realDamage;
     }
     public float DoDamageTo_Crystal(Entity _target, Transform _crystalTransform)
     {
@@ -209,7 +226,10 @@ public class PlayerStats : CharacterStats, ISaveManager
         {
             return 0;
         }
-        return _target.GetStats().TakeDamage(damageData, _crystalTransform);
+
+        float realDamage = _target.GetStats().TakeDamage(damageData, _crystalTransform);
+        DamageEffect(realDamage);
+        return realDamage;
     }
     public float DoDamageTo_Clone(Entity _target, float _cloneDamageRate, Transform _cloneTransform)
     {
@@ -229,11 +249,30 @@ public class PlayerStats : CharacterStats, ISaveManager
 
         if (UnityEngine.Random.Range(0, 100) < (1 - shockReduceAccuracyPercentage))
         {
-            
             return 0;
         }
-        return _target.cs.TakeDamage(damageData, _cloneTransform);
+
+        float realDamage = _target.cs.TakeDamage(damageData, _cloneTransform);
+        DamageEffect(realDamage);
+        return realDamage;
     }
+
+    protected void DamageEffect(float _damage)
+    {
+        Heal(_damage * postDamageEffectData.vampirEffect);
+    }
+
+    public void ModifyPostDamageEffectDataInTime(PostDamageEffectData _data, float _duration)
+    {
+        StartCoroutine(AddVampireEffectInTime_Helper(_data, _duration));
+    }
+    private IEnumerator AddVampireEffectInTime_Helper(PostDamageEffectData _data, float _duration)
+    {
+        postDamageEffectData.vampirEffect += _data.vampirEffect;
+        yield return new WaitForSeconds(_duration);
+        postDamageEffectData.vampirEffect -= _data.vampirEffect;
+    }
+
 
     public void LoadData(GameData _data)
     {
